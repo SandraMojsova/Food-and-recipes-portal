@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap&family=Roboto+Slab:wght@100;400;700&display=swap');
 
 body {
     background-color: #F8F7F2;
@@ -59,6 +59,7 @@ body {
   color: white;
   padding: 12px 22px;
   text-transform: uppercase;
+  font: normal normal 900 16px/21px Roboto;
 }
 
 #footer {
@@ -95,4 +96,61 @@ body {
     font: normal normal normal 14px/19px Roboto;
     display: flex;
     flex-direction: column;
+}
+
+#login {
+    padding: 20px 10%;
+}
+
+#login-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#login-text {
+    width: 688px;
+}
+#login-text h2 {
+    color:#F0972A;
+    font: normal normal bold 46px/60px Roboto Slab;
+    margin-bottom: 27px;
+}
+#login-text p {
+    font: normal normal normal 20px/26px Roboto Slab;
+    color: #A5A5A5;
+    height: 156px;
+}
+
+#login-email,
+#login-password {
+    display: flex;
+    flex-direction:column;
+}
+#login-email label,
+#login-password label{
+    margin-bottom: 10px;
+    color: #F0972A;
+    font: normal normal bold 16px/21px Roboto Slab;
+}
+#login-email input,
+#login-password input{
+    width: 294px;
+    height: 40px;
+    border: 1px solid #A5A5A5;
+border-radius: 5px;
+background: #F0EFEA;
+}
+
+#login-button {
+    width: 123px;
+height: 40px;
+border-radius: 5px;
+border-style: none;
+background: #96BB36 0% 0% no-repeat padding-box;
+box-shadow: 0px 3px 6px #00000029;
+color: #FFFFFF;
+font: normal normal 900 16px/21px Roboto;
+text-transform: uppercase;
+margin-top:38px;
 }

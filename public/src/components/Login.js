@@ -42,18 +42,26 @@ export const Login = () => {
         <div id="login">
             <h2>Log In</h2>
             <div>
-                <div>
-                    <h2>Welcome to Baby's</h2>
+            <div id="login-container">
+                <div id="login-text">
+                    <h2>Welcome to <span style={{color: "black"}}> Baby's </span></h2>
                     <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
                 </div>
                 <form>
+                    <div id="login-email">
+                <label for="email">Email</label>
                     <input type="text" name="email" placeholder="email" value={loginData.email} onChange={loginFieldUpdate} />
+                    </div>
                     <br />
+                    <div id="login-password">
+                    <label for="password">Password</label>
                     <input type="password" name="password" placeholder="password" value={loginData.password} onChange={loginFieldUpdate} />
+                    </div>
                     <br />
-                    <button onClick={loginBtn}>Log in</button>
+                    <button id="login-button" onClick={loginBtn}>Log in</button>
                 </form>
                 {err && <h3>{err}</h3>}
+            </div>
             </div>
         </div>
     )
