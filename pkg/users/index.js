@@ -22,8 +22,13 @@ const create = async (data) => {
 const getByEmail = async (email) => {
     return await User.findOne({ email });
 };
+const getAll = async (email) => {
+    return await User.findOne({email});
+};
+
 
 module.exports = {
     create,
-    getByEmail
+    getByEmail,
+    getAll
 }

@@ -67,9 +67,18 @@ const login = async (req, res) => {
     }
 };
 
+const getAll = async(req,res)=> {
+    try {
+        let u = await user.getByEmail(req.user.email);
+        return res.status(200).send(u);
+    } catch (err) {
+        return res.status(500).send(err);
+    }
+}
 module.exports = {
     createAccount,
-    login
+    login,
+    getAll
 }
 
 // exp: parseInt((new Date().getTime() + 24 * 60 * 60 * 1000) / 1000)
