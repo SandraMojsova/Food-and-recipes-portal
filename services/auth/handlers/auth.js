@@ -46,8 +46,7 @@ const login = async (req, res) => {
             return res.status(400).send(err.email.message)
         }
     }
-
-    try {
+   try {
         let u = await user.getByEmail(req.body.email);
         if (!u) {
             return res.status(400).send('Incorrect Email address');
@@ -75,10 +74,24 @@ const getAll = async(req,res)=> {
         return res.status(500).send(err);
     }
 }
+
+const updateProfile = async (req, res) => {
+    try {
+        await validator(req.body, 'UPDATE');
+    } catch (err) {
+        return res.status(400).send('Bad request');
+    }
+    try {
+        await user.update(req.user.uid,req.body);
+        res.status(204).send();
+    } catch (err) {
+        return res.status(500).send(err);
+    }
+};
 module.exports = {
     createAccount,
     login,
-    getAll
+    getAll,
+    updateProfile
 }
 
-// exp: parseInt((new Date().getTime() + 24 * 60 * 60 * 1000) / 1000)

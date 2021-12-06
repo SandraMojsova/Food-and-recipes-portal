@@ -13,6 +13,10 @@ const AccountLogin = {
     password: 'required'
 };
 
+const AccountUpdate= {
+    first_name: 'minLength:8'
+}
+
 const validate = async (data, schema) => {
     let sch;
     switch (schema) {
@@ -22,6 +26,10 @@ const validate = async (data, schema) => {
         case 'LOGIN':
             sch = AccountLogin;
             break;
+            case 'UPDATE':
+                sch = AccountUpdate;
+            break;
+
     }
     let v = new Validator(data, sch);
     let e = await v.check();

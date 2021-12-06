@@ -11,7 +11,7 @@ api.use(cors());
 api.use(jwt({
     secret: 'secretpassword',
     algorithms: ['HS256']
-}).unless({ // you don't need jwt for these routes
+}).unless({
     path: [
         '/api/v1/auth/login',
         '/api/v1/auth/create-account',
@@ -20,6 +20,7 @@ api.use(jwt({
 api.post('/api/v1/auth/create-account', handlers.createAccount);
 api.post('/api/v1/auth/login', handlers.login);
 api.get('/api/v1/auth/users', handlers.getAll);
+api.patch('/api/v1/auth/users/:id', handlers.updateProfile);
 
 
 
