@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const validator = require('../../../pkg/users/validate');
 const user = require('../../../pkg/users');
 const jwt = require('jsonwebtoken');
+const config = require('../../../pkg/config');
 
 const createAccount = async (req, res) => {
     try {
@@ -58,7 +59,7 @@ const login = async (req, res) => {
             uid: u._id,
             email: u.email,
             full_name: `${u.first_name} ${u.last_name}`,
-        }, 'secretpassword');
+        }, config.get('security').secret);
         res.status(200).send(token);
     } catch (err) {
         console.log(err);

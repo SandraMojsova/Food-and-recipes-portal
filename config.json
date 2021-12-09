@@ -4,5 +4,13 @@
         "password": "E0Gw7E1hFGT2vds8",
         "hostname": "nodetuts.5luc2.mongodb.net",
         "dbname": "fp-vezbi"
+    },
+    "security": {
+        "algorithms": ["HS256"],
+        "secret": "secret"
+    },
+    "services": {
+        "proxy": {"port": 7000},
+        "auth": {"port": 10001}
     }
 }
