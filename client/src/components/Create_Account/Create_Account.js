@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import {create} from '../../api/index';
 
 export const Create_Account = () => {
 
@@ -21,12 +21,8 @@ export const Create_Account = () => {
     const createAccBtn = async (e) => {
         e.preventDefault();
         try {
-            let res = await axios({
-                method: 'POST',
-                url: `http://localhost:10000/api/v1/auth/create-account`,
-                data: JSON.stringify(createAccountData),
-                headers: { 'Content-Type': 'application/json' }
-            });
+            let res = await create(createAccountData);
+            console.log(res);
             if (res.status === 201) {
                 history.push('/login');
             }
@@ -42,25 +38,11 @@ export const Create_Account = () => {
                 if (error.response.data.code === 11000) {
                     setError('Email already in use');
                 }
-
-
-
-                // setError(error.response.data)
-            } else if (error.request) {
-                /*
-                 * The request was made but no response was received, `error.request`
-                 * is an instance of XMLHttpRequest in the browser and an instance
-                 * of http.ClientRequest in Node.js
-                 */
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request and triggered an Error
-                console.log('Error', error.message);
+       }  else {
+                console.log(error);
             }
-            console.log(error);
         }
     }
-
 
     return (
         <div id="create-account">

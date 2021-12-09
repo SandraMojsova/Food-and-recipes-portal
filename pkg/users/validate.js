@@ -14,7 +14,7 @@ const AccountLogin = {
 };
 
 const AccountUpdate= {
-    first_name: 'minLength:8'
+    first_name: 'minLength:4'
 }
 
 const validate = async (data, schema) => {

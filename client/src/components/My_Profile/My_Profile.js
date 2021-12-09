@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import {userInfo,updateUserInfo} from '../../api/index';
 
 export const My_Profile=()=> {
     let token=JSON.parse(localStorage.getItem('jwt'));
@@ -24,15 +24,8 @@ export const My_Profile=()=> {
     };
     const btn= async()=> {
         try {
-        let response= await axios({
-            method: 'GET',
-            url:`http://localhost:10000/api/v1/auth/users`,
-            headers : {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token.data}`
-            }
-        })
-        //console.log(response.data);
+        let response= await userInfo(token.data);
+        console.log(response.data);
         setProfileData({
             email: response.data.email,
         password: response.data.password,
@@ -47,16 +40,9 @@ export const My_Profile=()=> {
 
 const save= async()=> {
     try {
-        let response= await axios({
-            method: 'PATCH',
-            url:`http://localhost:10000/api/v1/auth/users/:id`,
-            headers : {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token.data}`
-            },
-            data: JSON.stringify(changeProfileData),
-        })
+        let response= await updateUserInfo(changeProfileData, token.data);
         console.log(response.data);
+        console.log(response);
         setProfileData({
             first_name: changeProfileData.first_name,
         password: changeProfileData.password

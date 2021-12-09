@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import {login} from '../api/index';
 
 export const Login = () => {
 
@@ -18,12 +18,7 @@ export const Login = () => {
     const loginBtn = async (e) => {
         e.preventDefault();
         try {
-            let res = await axios({
-                method: 'POST',
-                url: `http://localhost:10000/api/v1/auth/login`,
-                data: JSON.stringify(loginData),
-                headers: { 'Content-Type': 'application/json' }
-            });
+            let res = await login(loginData);
             console.log(res);
             let token = await JSON.stringify(res);
             console.log(token);
