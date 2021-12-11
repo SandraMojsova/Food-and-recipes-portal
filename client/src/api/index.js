@@ -29,10 +29,10 @@ export const userInfo = (token)=> {
     })
 }
 
-export const updateUserInfo = (changeProfileData,token)=> {
+export const updateUserInfo = (changeProfileData,token,id)=> {
     return axios({
         method: 'PATCH',
-        url:`http://localhost:10001/api/v1/auth/users/:id`,
+        url:`http://localhost:10001/api/v1/auth/users/:${id}`,
         headers : {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`

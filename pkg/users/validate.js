@@ -2,25 +2,24 @@ const { Validator } = require('node-input-validator');
 
 const AccountCreate = {
     email: 'required|email',
-    password: 'required',
+    password: 'required|minLength:8',
     first_name: 'required|minLength:3',
-    last_name: 'required',
+    last_name: 'required|minLength:4',
     birthday: 'required|dateFormat:MM-DD-YYYY',
     repeatPassword:'required'
 };
 
 const AccountLogin = {
     email: 'required|email',
-    password: 'required'
+    password: 'required|minLength:8'
 };
 
 const AccountUpdate= {
-    email: '',
-    password: '',
+    password: 'minLength:8',
     first_name: 'minLength:3',
-    last_name: '',
-    birthday: '',
-    repeatPassword:''
+    last_name: 'minLength:4',
+    birthday: 'dateFormat:MM-DD-YYYY',
+    repeatPassword: 'minLength:8'
 }
 
 const validate = async (data, schema) => {
@@ -32,7 +31,7 @@ const validate = async (data, schema) => {
         case 'LOGIN':
             sch = AccountLogin;
             break;
-            case 'UPDATE':
+        case 'UPDATE':
                 sch = AccountUpdate;
             break;
 

@@ -20,6 +20,7 @@ export const My_Profile=()=> {
         birthday: '',
         repeatPassword: ''
     });
+    const [id,setId]=useState('');
 
     const update = (e) => {
         setChangeProfileData({ ...changeProfileData, [e.target.name]: e.target.value })
@@ -28,6 +29,8 @@ export const My_Profile=()=> {
         try {
         let response= await userInfo(token.data);
         console.log(response.data);
+        console.log(response.data._id);
+        setId(response.data._id);
         setProfileData({
             email: response.data.email,
         password: response.data.password,
@@ -43,28 +46,30 @@ export const My_Profile=()=> {
 
 const save= async()=> {
     try {
-        let response= await updateUserInfo(changeProfileData, token.data);
-        console.log(response.data);
+        
         // console.log(response);
-        // setProfileData({
-        //     email: changeProfileData.email ? changeProfileData.email : profileData.email ,
-        // password: changeProfileData.password ? changeProfileData.password : profileData.password,
-        // first_name: changeProfileData.first_name ? changeProfileData.first_name : profileData.first_name,
-        // last_name: changeProfileData.last_name ? changeProfileData.last_name : profileData.last_name,
-        // birthday: changeProfileData.birthday ? changeProfileData.birthday : profileData.birthday,
-        // repeatPassword: changeProfileData.repeatPassword ? changeProfileData.repeatPassword : profileData.repeatPassword
-        // })
-        setProfileData({
-            email: changeProfileData.email,
-        password: changeProfileData.password,
-        first_name: changeProfileData.first_name,
-        last_name: changeProfileData.last_name ,
-        birthday: changeProfileData.birthday ,
-        repeatPassword: changeProfileData.repeatPassword 
+        setChangeProfileData({
+            email: changeProfileData.email ? changeProfileData.email : profileData.email ,
+        password: changeProfileData.password ? changeProfileData.password : profileData.password,
+        first_name: changeProfileData.first_name ? changeProfileData.first_name : profileData.first_name,
+        last_name: changeProfileData.last_name ? changeProfileData.last_name : profileData.last_name,
+        birthday: changeProfileData.birthday ? changeProfileData.birthday : profileData.birthday,
+        repeatPassword: changeProfileData.repeatPassword ? changeProfileData.repeatPassword : profileData.repeatPassword
         })
+        setProfileData(changeProfileData);
+        let response= await updateUserInfo(changeProfileData, token.data,id);
+        console.log(response.data);
+        // setProfileData({
+        //     email: changeProfileData.email,
+        // password: changeProfileData.password,
+        // first_name: changeProfileData.first_name,
+        // last_name: changeProfileData.last_name ,
+        // birthday: changeProfileData.birthday ,
+        // repeatPassword: changeProfileData.repeatPassword 
+        // })
     }catch(err){
         console.log(err);
-        console.log(err.response.data);
+        console.log(err.response);
     }
 }
  useEffect(()=> {

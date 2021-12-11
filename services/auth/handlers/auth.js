@@ -88,7 +88,7 @@ const updateProfile = async (req, res) => {
     try {
         await validator(req.body, 'UPDATE');
     } catch (err) {
-        return res.status(400).send(err);
+        return res.status(400).send(err.message);
     }
     try {
         // let u = user.findbyId(req.user.uid);
@@ -101,6 +101,7 @@ const updateProfile = async (req, res) => {
         await user.update(req.user.uid,req.body);
         res.status(204).send();
     } catch (err) {
+        console.log(err.message);
         return res.status(500).send(err);
     }
 };
