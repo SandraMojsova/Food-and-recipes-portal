@@ -28,11 +28,15 @@ const getAll = async (email) => {
 const update = async (id,data) => {
     return await User.updateOne({_id: id}, data);
 };
+const findbyId= async(id)=> {
+    return await User.findById({_id: id});
+}
 
 
 module.exports = {
     create,
     getByEmail,
     getAll,
-    update
+    update,
+    findbyId
 }

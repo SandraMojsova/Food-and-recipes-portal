@@ -16,18 +16,26 @@ const createAccount = async (req, res) => {
         //     console.log(err.email.message)
         //     return res.status(400).send(err.email.message)
         // }
-        console.log(err);
-        return res.status(400).send(err);
+ console.log(err);   
+ let objKeys = Object.keys(err);
+                for (let item of objKeys) {
+                    console.log(err[item].message)
+                    return res.status(400).send(err[item].message);
+                }
+        
     }
     try {
         let data = req.body;
+        if(data.password!== data.repeatPassword) {
+            return res.status(400).send('Password must be same');
+        }
         data.password = bcrypt.hashSync(data.password);
         let u = await user.create(data);
         return res.status(201).send(u);
     } catch (err) {
         console.log(err);
         if (err.code === 11000) {
-            return res.status(400).send(err);
+            return res.status(400).send('Email already in use');
         }
         return res.status(500).send(err);
     }
@@ -80,9 +88,16 @@ const updateProfile = async (req, res) => {
     try {
         await validator(req.body, 'UPDATE');
     } catch (err) {
-        return res.status(400).send('Bad request');
+        return res.status(400).send(err);
     }
     try {
+        // let u = user.findbyId(req.user.uid);
+        // u.email = u.email ? u.email : req.body.email;
+        // u.password = u.password ? u.password : req.body.password;
+        // u.first_name = u.first_name ? u.first_name : req.body.first_name;
+        // u.last_name = u.last_name ? u.last_name : req.body.last_name;
+        // u.birthday = u.birthday ? u.birthday : req.body.birthday;
+        // u.repeatPassword = u.repeatPassword ? u.repeatPassword : req.body.repeatPassword;
         await user.update(req.user.uid,req.body);
         res.status(204).send();
     } catch (err) {

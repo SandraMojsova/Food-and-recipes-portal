@@ -9,7 +9,8 @@ export const Create_Account = () => {
         password: '',
         first_name: '',
         last_name: '',
-        birthday: ''
+        birthday: '',
+        repeatPassword: ''
     });
     const [err, setError] = useState(null);
 
@@ -29,15 +30,16 @@ export const Create_Account = () => {
         } catch (error) {
             if (error.response) {
                 console.log(error.response.data);
-                let e = error.response.data;
-                let objKeys = Object.keys(e);
-                for (let item of objKeys) {
-                    console.log(e[item].message);
-                    setError(e[item].message);
-                }
-                if (error.response.data.code === 11000) {
-                    setError('Email already in use');
-                }
+                setError(error.response.data)
+                // let e = error.response.data;
+                // let objKeys = Object.keys(e);
+                // for (let item of objKeys) {
+                //     console.log(e[item].message);
+                //     setError(e[item].message);
+                // }
+                // if (error.response.data.code === 11000) {
+                //     setError('Email already in use');
+                // }
        }  else {
                 console.log(error);
             }
@@ -63,6 +65,8 @@ export const Create_Account = () => {
                     <br />
                     <input type="text" name="birthday" placeholder="birthday" value={createAccountData.birthday} onChange={createFieldUpdate} />
                     <br />
+                    <input type="password" name="repeatPassword" placeholder="repeatPassword" value={createAccountData.repeatPassword} onChange={createFieldUpdate} />
+                    <br/>
                     <button onClick={createAccBtn}>create account</button>
                 </form>
                 {err && <h3>{err}</h3>}
