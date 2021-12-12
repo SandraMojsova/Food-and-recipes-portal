@@ -1,5 +1,7 @@
+import fileUpload from 'express-fileupload';
+import req from 'express/lib/request';
 import React, {useState, useEffect} from 'react';
-import {userInfo,updateUserInfo} from '../../api/index';
+import {userInfo,updateUserInfo, changeAvatar} from '../../api/index';
 
 export const My_Profile=()=> {
     let token=JSON.parse(localStorage.getItem('jwt'));
@@ -21,6 +23,7 @@ export const My_Profile=()=> {
         repeatPassword: ''
     });
     const [id,setId]=useState('');
+    const [image,setImage]=useState("");
 
     const update = (e) => {
         setChangeProfileData({ ...changeProfileData, [e.target.name]: e.target.value })
@@ -72,6 +75,17 @@ const save= async()=> {
         console.log(err.response);
     }
 }
+
+const img= async(e)=> {
+    try{
+        if(e.target.files.length) {
+            setImage(e.target.files[0]);
+        }
+    await changeAvatar(token.data);
+    }catch(err){
+        console.log(err.response);
+    }
+}
  useEffect(()=> {
     btn()
  },[]);
@@ -79,6 +93,10 @@ const save= async()=> {
 
  return(
      <div>My_Profile
+        
+         <input type="file" id="upload-button"/>
+         <img src={img}/>
+        
      <input type="text" name="email" placeholder={profileData.email} value={changeProfileData.email} onChange={update} />
     <br />
     <input type="password" name="password" placeholder={profileData.password} value={changeProfileData.password} onChange={update} />

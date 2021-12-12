@@ -91,13 +91,15 @@ const updateProfile = async (req, res) => {
         return res.status(400).send(err.message);
     }
     try {
-        // let u = user.findbyId(req.user.uid);
-        // u.email = u.email ? u.email : req.body.email;
-        // u.password = u.password ? u.password : req.body.password;
-        // u.first_name = u.first_name ? u.first_name : req.body.first_name;
-        // u.last_name = u.last_name ? u.last_name : req.body.last_name;
-        // u.birthday = u.birthday ? u.birthday : req.body.birthday;
-        // u.repeatPassword = u.repeatPassword ? u.repeatPassword : req.body.repeatPassword;
+        let u = user.findbyId(req.user.uid);
+        if(u) {
+            u.email = req.body.email? req.body.email :  u.email;
+            u.password = req.body.password ? req.body.password : u.password;
+            u.first_name = req.body.first_name ? req.body.first_name : u.first_name;
+            u.last_name = req.body.last_name ? req.body.last_name : u.last_name;
+            u.birthday = req.body.birthday ? req.body.birthday : u.birthday;
+            u.repeatPassword = req.body.repeatPassword ? req.body.repeatPassword : u.repeatPassword;
+        }
         await user.update(req.user.uid,req.body);
         res.status(204).send();
     } catch (err) {

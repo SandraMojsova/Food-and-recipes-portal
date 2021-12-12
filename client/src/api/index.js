@@ -40,3 +40,14 @@ export const updateUserInfo = (changeProfileData,token,id)=> {
         data: JSON.stringify(changeProfileData)
     })
 }
+
+export const changeAvatar = (token)=> {
+    return axios({
+        method: 'POST',
+        url: 'http://localhost:10002/api/v1/upload',
+        headers : {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': `Bearer ${token}`
+        },
+    })
+}
