@@ -25,11 +25,11 @@ const getByEmail = async (email) => {
 const getAll = async (email) => {
     return await User.findOne({email});
 };
-const update = async (id,data) => {
+const update = async (id, data) => {
     return await User.updateOne({_id: id}, data);
 };
 const findbyId= async(id)=> {
-    return await User.findById({_id: id});
+    return await User.findById(id);
 }
 
 

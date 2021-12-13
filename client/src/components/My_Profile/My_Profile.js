@@ -1,5 +1,4 @@
-import fileUpload from 'express-fileupload';
-import req from 'express/lib/request';
+
 import React, {useState, useEffect} from 'react';
 import {userInfo,updateUserInfo, changeAvatar} from '../../api/index';
 
@@ -47,19 +46,13 @@ export const My_Profile=()=> {
     }
 }
 
+
+
+
 const save= async()=> {
     try {
-        
         // console.log(response);
-        setChangeProfileData({
-            email: changeProfileData.email ? changeProfileData.email : profileData.email ,
-        password: changeProfileData.password ? changeProfileData.password : profileData.password,
-        first_name: changeProfileData.first_name ? changeProfileData.first_name : profileData.first_name,
-        last_name: changeProfileData.last_name ? changeProfileData.last_name : profileData.last_name,
-        birthday: changeProfileData.birthday ? changeProfileData.birthday : profileData.birthday,
-        repeatPassword: changeProfileData.repeatPassword ? changeProfileData.repeatPassword : profileData.repeatPassword
-        })
-        setProfileData(changeProfileData);
+        // setProfileData(changeProfileData);
         let response= await updateUserInfo(changeProfileData, token.data,id);
         console.log(response.data);
         // setProfileData({
@@ -75,6 +68,9 @@ const save= async()=> {
         console.log(err.response);
     }
 }
+useEffect(()=> {
+    btn()
+},[]);
 
 const img= async(e)=> {
     try{
@@ -86,28 +82,26 @@ const img= async(e)=> {
         console.log(err.response);
     }
 }
- useEffect(()=> {
-    btn()
- },[]);
-
+ 
 
  return(
      <div>My_Profile
         
-         <input type="file" id="upload-button"/>
-         <img src={img}/>
+         {/* <input type="file" id="upload-button"/>
+         <img src={img}/> */}
         
-     <input type="text" name="email" placeholder={profileData.email} value={changeProfileData.email} onChange={update} />
+     <input type="text" name="email"  value={profileData.email}  />
+     {/* /* value={changeProfileData.email} onChange={update} placeholder={profileData.email}} */}
     <br />
-    <input type="password" name="password" placeholder={profileData.password} value={changeProfileData.password} onChange={update} />
+    <input type="password" name="password" defaultValue={profileData.password} value={changeProfileData.password} onChange={update} />
     <br />
-    <input type="text" name="first_name" placeholder={profileData.first_name} value={changeProfileData.first_name} onChange={update} />
+    <input type="text" name="first_name" defaultValue={profileData.first_name} value={changeProfileData.first_name} onChange={update} />
     <br />
-    <input type="text" name="last_name" placeholder={profileData.last_name} value={changeProfileData.last_name} onChange={update} />
+    <input type="text" name="last_name" defaultValue={profileData.last_name} value={changeProfileData.last_name} onChange={update} />
     <br />
-    <input type="text" name="birthday" placeholder={profileData.birthday} value={changeProfileData.birthday} onChange={update} />
+    <input type="text" name="birthday" defaultValue={profileData.birthday} value={changeProfileData.birthday} onChange={update} />
     <br />
-    <input type="password" name="repeatPassword" placeholder={profileData.repeatPassword} value={changeProfileData.repeatPassword} onChange={update} />
+    <input type="password" name="repeatPassword" defaultValue={profileData.repeatPassword} value={changeProfileData.repeatPassword} onChange={update} />
     <br />
     <button onClick={save}>Save</button>
      </div>
