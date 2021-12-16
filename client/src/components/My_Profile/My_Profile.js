@@ -1,10 +1,11 @@
 
 import React, {useState, useEffect} from 'react';
-import {userInfo,updateUserInfo, changeAvatar} from '../../api/index';
+import {userInfo,  changeAvatar} from '../../api/index';
+import axios from 'axios';
 
 export const My_Profile=()=> {
     let token=JSON.parse(localStorage.getItem('jwt'));
-    //console.log(token.data);
+    // console.log(token.data);
      const [profileData, setProfileData] = useState({
         email: '',
         password: '',
@@ -13,19 +14,19 @@ export const My_Profile=()=> {
         birthday: '',
         repeatPassword: ''
     });
-    const [changeProfileData, setChangeProfileData] = useState({
-        email: '',
-        password: '',
-        first_name: '',
-        last_name: '',
-        birthday: '',
-        repeatPassword: ''
-    });
+    // const [changeProfileData, setChangeProfileData] = useState({
+    //     email: '',
+    //     password: '',
+    //     first_name: '',
+    //     last_name: '',
+    //     birthday: '',
+    //     repeatPassword: ''
+    // });
     const [id,setId]=useState('');
     const [image,setImage]=useState("");
 
     const update = (e) => {
-        setChangeProfileData({ ...changeProfileData, [e.target.name]: e.target.value })
+        setProfileData({ ...profileData, [e.target.name]: e.target.value })
     };
     const btn= async()=> {
         try {
@@ -46,23 +47,21 @@ export const My_Profile=()=> {
     }
 }
 
-
-
-
 const save= async()=> {
     try {
-        // console.log(response);
-        // setProfileData(changeProfileData);
-        let response= await updateUserInfo(changeProfileData, token.data,id);
+        const response = await axios({
+            method: 'PATCH',
+            url:`http://localhost:10001/api/v1/auth/users/${id}`,
+            headers :{
+                'Authorization': `Bearer ${token.data}`,
+                'Content-Type': 'text/html; charset=utf-8'
+            },
+            data: JSON.stringify(profileData)
+        })
+        // JSON.stringify(response.headers);
+        console.log(response);
         console.log(response.data);
-        // setProfileData({
-        //     email: changeProfileData.email,
-        // password: changeProfileData.password,
-        // first_name: changeProfileData.first_name,
-        // last_name: changeProfileData.last_name ,
-        // birthday: changeProfileData.birthday ,
-        // repeatPassword: changeProfileData.repeatPassword 
-        // })
+        console.log(profileData);
     }catch(err){
         console.log(err);
         console.log(err.response);
@@ -93,15 +92,15 @@ const img= async(e)=> {
      <input type="text" name="email"  value={profileData.email}  />
      {/* /* value={changeProfileData.email} onChange={update} placeholder={profileData.email}} */}
     <br />
-    <input type="password" name="password" defaultValue={profileData.password} value={changeProfileData.password} onChange={update} />
+    <input type="password" name="password" value={profileData.password} onChange={update} />
     <br />
-    <input type="text" name="first_name" defaultValue={profileData.first_name} value={changeProfileData.first_name} onChange={update} />
+    <input type="text" name="first_name" value={profileData.first_name} onChange={update} />
     <br />
-    <input type="text" name="last_name" defaultValue={profileData.last_name} value={changeProfileData.last_name} onChange={update} />
+    <input type="text" name="last_name"  value={profileData.last_name} onChange={update} />
     <br />
-    <input type="text" name="birthday" defaultValue={profileData.birthday} value={changeProfileData.birthday} onChange={update} />
+    <input type="text" name="birthday" value={profileData.birthday} onChange={update} />
     <br />
-    <input type="password" name="repeatPassword" defaultValue={profileData.repeatPassword} value={changeProfileData.repeatPassword} onChange={update} />
+    <input type="password" name="repeatPassword" value={profileData.repeatPassword} onChange={update} />
     <br />
     <button onClick={save}>Save</button>
      </div>

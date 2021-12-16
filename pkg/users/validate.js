@@ -15,6 +15,7 @@ const AccountLogin = {
 };
 
 const AccountUpdate= {
+    email: 'email',
     password: 'minLength:8',
     first_name: 'minLength:3',
     last_name: 'minLength:4',

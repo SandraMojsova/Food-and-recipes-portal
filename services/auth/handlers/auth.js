@@ -91,20 +91,27 @@ const updateProfile = async (req, res) => {
         return res.status(400).send(err.message);
     }
     try {
-        let u = await user.getByEmail(req.user.email);
-        if(u) {
-            u.password = req.body.password ? req.body.password : u.password;
-            u.first_name = req.body.first_name ? req.body.first_name : u.first_name;
-            u.last_name = req.body.last_name ? req.body.last_name : u.last_name;
-            u.birthday = req.body.birthday ? req.body.birthday : u.birthday;
-            u.repeatPassword = req.body.repeatPassword ? req.body.repeatPassword : u.repeatPassword;
-        }
-        console.log(u._id.valueOf());
+        // let u = await user.getByEmail(req.user.email);
+        // console.log(u);
+        // if(u) {
+        //     u.email = u.email;
+        //     u.password = req.body.password ? req.body.password : u.password;
+        //     u.first_name = req.body.first_name ? req.body.first_name : u.first_name;
+        //     u.last_name = req.body.last_name ? req.body.last_name : u.last_name;
+        //     u.birthday = req.body.birthday ? req.body.birthday : u.birthday;
+        //     u.repeatPassword = req.body.repeatPassword
+        // }
+        // console.log(u._id.valueOf());
+        // console.log(u);
     
-        let s = await user.update(u._id.valueOf(),u);
+        // let s = await user.update(u._id.valueOf(),u);
+        console.log(req.user.uid);
+        console.log(req.body);
+        let s = await user.update(req.user.uid , req.body);
         console.log(s);
-        res.status(200).send(s);
+        return res.status(200).send('ok');
     } catch (err) {
+        console.log(err)
         console.log(err.message);
         return res.status(500).send(err);
     }
