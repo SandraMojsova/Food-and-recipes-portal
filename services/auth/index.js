@@ -22,6 +22,7 @@ api.post('/api/v1/auth/create-account', handlers.createAccount);
 api.post('/api/v1/auth/login', handlers.login);
 api.get('/api/v1/auth/users', handlers.getAll);
 api.patch('/api/v1/auth/users/:id', handlers.updateProfile);
+api.get('/api/v1/auth/logout', handlers.logOut);
 
 
 

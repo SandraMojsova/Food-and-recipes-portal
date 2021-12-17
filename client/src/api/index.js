@@ -9,7 +9,7 @@ export const create = (createData) => {
     })
 }
 
-export const login = (loginData)=> {
+export const login = (loginData) => {
     return axios({
         method: 'POST',
         url: `http://localhost:10001/api/v1/auth/login`,
@@ -18,22 +18,22 @@ export const login = (loginData)=> {
     });
 }
 
-export const userInfo = (token)=> {
+export const userInfo = (token) => {
     return axios({
         method: 'GET',
-        url:`http://localhost:10001/api/v1/auth/users`,
-        headers : {
+        url: `http://localhost:10001/api/v1/auth/users`,
+        headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
     })
 }
 
-export const updateUser = (id , token, profileData)=> {
+export const updateUser = (id, token, profileData) => {
     return axios({
         method: 'PATCH',
-        url:`http://localhost:10001/api/v1/auth/users/${id}`,
-        headers :{
+        url: `http://localhost:10001/api/v1/auth/users/${id}`,
+        headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
@@ -41,12 +41,12 @@ export const updateUser = (id , token, profileData)=> {
     })
 }
 
-export const changeAvatar = (token)=> {
+export const changeAvatar = (token) => {
     return axios({
         method: 'POST',
         url: 'http://localhost:10002/api/v1/upload',
-        headers : {
-            'Content-Type': 'multipart/form-data',
+        headers: {
+            'Content-Type': 'multipart/form-data/document',
             'Authorization': `Bearer ${token}`
         },
     })

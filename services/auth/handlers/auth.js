@@ -16,17 +16,17 @@ const createAccount = async (req, res) => {
         //     console.log(err.email.message)
         //     return res.status(400).send(err.email.message)
         // }
- console.log(err);   
- let objKeys = Object.keys(err);
-                for (let item of objKeys) {
-                    console.log(err[item].message)
-                    return res.status(400).send(err[item].message);
-                }
-        
+        console.log(err);
+        let objKeys = Object.keys(err);
+        for (let item of objKeys) {
+            console.log(err[item].message)
+            return res.status(400).send(err[item].message);
+        }
+
     }
     try {
         let data = req.body;
-        if(data.password!== data.repeatPassword) {
+        if (data.password !== data.repeatPassword) {
             return res.status(400).send('Password must be same');
         }
         data.password = bcrypt.hashSync(data.password);
@@ -55,7 +55,7 @@ const login = async (req, res) => {
             return res.status(400).send(err.email.message)
         }
     }
-   try {
+    try {
         let u = await user.getByEmail(req.body.email);
         if (!u) {
             return res.status(400).send('Incorrect Email address');
@@ -75,7 +75,7 @@ const login = async (req, res) => {
     }
 };
 
-const getAll = async(req,res)=> {
+const getAll = async (req, res) => {
     try {
         let u = await user.getByEmail(req.user.email);
         return res.status(200).send(u);
@@ -103,11 +103,11 @@ const updateProfile = async (req, res) => {
         // }
         // console.log(u._id.valueOf());
         // console.log(u);
-    
+
         // let s = await user.update(u._id.valueOf(),u);
         console.log(req.user.uid);
         console.log(req.body);
-        let s = await user.update(req.user.uid , req.body);
+        let s = await user.update(req.user.uid, req.body.profileData);
         console.log(s);
         return res.status(200).send('ok');
     } catch (err) {
@@ -116,10 +116,15 @@ const updateProfile = async (req, res) => {
         return res.status(500).send(err);
     }
 };
+
+const logOut = (req, res) => {
+
+}
 module.exports = {
     createAccount,
     login,
     getAll,
-    updateProfile
+    updateProfile,
+    logOut
 }
 

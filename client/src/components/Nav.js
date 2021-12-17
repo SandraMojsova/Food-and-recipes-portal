@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../images/babys-food-place.png';
+import { NAV } from './Context';
+
 
 export const Nav = () => {
     const history = useHistory();
+    const nav = NAV();
+    console.log(nav);
     return (
         <div id="nav">
             <Link to="/"><img className="logo" src={logo} alt="logo" /></Link>
@@ -13,11 +17,19 @@ export const Nav = () => {
                 <li><Link to="/lunch" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Lunch</Link></li>
                 <li><Link to="/dinner" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Dinner</Link></li>
             </ul>
-            <div className="nav-buttons">
-                <button className="login-button" onClick={() => history.push('/login')}>Log In</button>
-                <span className="span">or</span>
-                <button className="create-button" onClick={() => history.push('/create-account')}>Create account</button>
-            </div>
+            {nav ? <>
+                <ul>
+                    <li><Link to="/my-recepies"> My recepies</Link></li>
+                    <li><Link to="/my-profile">My profile</Link></li>
+                    <li><Link to="/logout">log out</Link></li>
+                </ul> </> : <>
+                <div className="nav-buttons">
+                    <button className="login-button" onClick={() => history.push('/login')}>Log In</button>
+                    <span className="span">or</span>
+                    <button className="create-button" onClick={() => history.push('/create-account')}>Create account</button>
+                </div>
+            </>
+            }
         </div >
     )
 }
