@@ -17,7 +17,7 @@ export const Nav = () => {
                 <li><Link to="/lunch" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Lunch</Link></li>
                 <li><Link to="/dinner" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Dinner</Link></li>
             </ul>
-            {nav ? <>
+            {nav && nav ? <>
                 <ul>
                     <li><Link to="/my-recepies"> My recepies</Link></li>
                     <li><Link to="/my-profile">My profile</Link></li>

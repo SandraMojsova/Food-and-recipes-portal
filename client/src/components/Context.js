@@ -1,12 +1,11 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
 import axios from 'axios';
 
 export const C = React.createContext();
 
 export const Context = ({ children }) => {
     // let token = JSON.parse(localStorage.getItem('jwt'));
-    const [logged, setLogged] = useState(false);
-    console.log(window.location.href);
+    const [logged, setLogged] = useState(true);
     // axios({
     //     method: 'GET',
     //     url: `http://localhost:10001/api/v1/auth/users`,
@@ -20,11 +19,10 @@ export const Context = ({ children }) => {
     // }).catch(err => {
     //     console.log(err);
     // })
-    if (window.location.href === "http://localhost:3000/my-profile") {
-        setLogged(true)
-    }
-
-
+    // if(window.location.href=="http://localhost:3000/my-profile") {
+    //     setLogged(true);
+    // }
+ 
     return (
         <C.Provider value={logged}>
             {children}

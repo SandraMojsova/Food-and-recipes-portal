@@ -14,8 +14,8 @@ export const App = () => {
             </Context>
             <Switch>
                 <Route path="/login" component={Login} />
-                <Route path="/my-profile" component={My_Profile} />
                 <Route path="/create-account" component={Create_Account} />
+                <Route path="/my-profile" component={My_Profile} />
             </Switch>
             <Footer />
         </div>
