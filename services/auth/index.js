@@ -15,7 +15,7 @@ api.use(jwt({
 }).unless({
     path: [
         '/api/v1/auth/login',
-        '/api/v1/auth/create-account',
+        '/api/v1/auth/create-account'
     ]
 }));
 api.post('/api/v1/auth/create-account', handlers.createAccount);

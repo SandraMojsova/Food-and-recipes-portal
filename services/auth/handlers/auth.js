@@ -119,6 +119,7 @@ const updateProfile = async (req, res) => {
 
 const logOut = (req, res) => {
 
+    return res.redirect('/');
 }
 module.exports = {
     createAccount,

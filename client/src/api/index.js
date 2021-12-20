@@ -41,6 +41,15 @@ export const updateUser = (id, token, profileData) => {
     })
 }
 
+// export const logoutUser = (token) => {
+//     return axios({
+//         method: 'GET',
+//         url : 'http://localhost:10001/api/v1/auth/logout',
+//         headers: {
+//         'Authorization': `Bearer ${token}`}
+//     })
+// }
+
 export const changeAvatar = (token) => {
     return axios({
         method: 'POST',

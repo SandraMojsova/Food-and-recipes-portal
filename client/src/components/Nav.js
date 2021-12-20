@@ -2,12 +2,20 @@ import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../images/babys-food-place.png';
 import { NAV } from './Context';
+// import { logoutUser } from '../api/index';
 
 
 export const Nav = () => {
+    let token = JSON.parse(localStorage.getItem('jwt'));
     const history = useHistory();
-    const nav = NAV();
+    let nav = NAV();
     console.log(nav);
+
+    const logoutUser = () => {
+        localStorage.removeItem(token.data);
+        nav=false;
+    }
+
     return (
         <div id="nav">
             <Link to="/"><img className="logo" src={logo} alt="logo" /></Link>
@@ -21,7 +29,7 @@ export const Nav = () => {
                 <ul>
                     <li><Link to="/my-recepies"> My recepies</Link></li>
                     <li><Link to="/my-profile">My profile</Link></li>
-                    <li><Link to="/logout">log out</Link></li>
+                    <li><Link to="/" onClick={logoutUser}>log out</Link></li>
                 </ul> </> : <>
                 <div className="nav-buttons">
                     <button className="login-button" onClick={() => history.push('/login')}>Log In</button>
