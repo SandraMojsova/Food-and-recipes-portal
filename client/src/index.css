@@ -102,6 +102,11 @@ body {
     padding: 20px 10%;
 }
 
+#login-border {
+    border: 10px;
+    color: #a5a5a5;
+}
+
 #login-container {
     display: flex;
     justify-content: space-between;

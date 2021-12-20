@@ -33,5 +33,18 @@
     height: 40px;
     border: 1px solid #a5a5a5;
     border-radius: 5px;
-    background: #f8f7f2;
+    background: #f0efea;
+    color: #a5a5a5;
+}
+
+.save-button {
+    background: #96bb36 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    border-style: none;
+    color: white;
+    text-transform: uppercase;
+    width: 124px;
+    height: 40px;
+    font: normal normal 900 16px/21px Roboto;
+    margin-top: 42px;
 }

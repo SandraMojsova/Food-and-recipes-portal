@@ -1,38 +1,32 @@
-import React, { useState, createContext, useContext, useEffect } from 'react';
+import React, { useState, useContext, createContext } from 'react';
 import axios from 'axios';
 
-export const C = React.createContext();
+export const AuthContext = React.createContext();
 
 export const Context = ({ children }) => {
-    let token = JSON.parse(localStorage.getItem('jwt'));
+    let token = localStorage.getItem('jwt');
     const [logged, setLogged] = useState(false);
     axios({
         method: 'GET',
         url: `http://localhost:10001/api/v1/auth/users`,
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token.data}`
+            'Authorization': `Bearer ${token}`
         }
     }).then(res => {
         console.log(res);
         setLogged(true)
     }).catch(err => {
         console.log(err);
-        setLogged(false);
     })
-    // if(window.location.href=="http://localhost:3000/my-profile") {
-    //     setLogged(true);
-    // }
- 
+
     return (
-        <C.Provider value={logged}>
+        <AuthContext.Provider value={{ logged, setLogged }}>
             {children}
-        </C.Provider>
+        </AuthContext.Provider>
     )
 
 }
-
-export const NAV = () => {
-    return useContext(C);
+export const useAuthContext = () => {
+    return useContext(AuthContext);
 }
-

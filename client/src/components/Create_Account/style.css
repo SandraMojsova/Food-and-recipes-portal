@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;700&display=swap');
 
 #create-account {
-  padding: 20px 10%;
+    padding: 20px 10%;
 }
 
 .container {
@@ -10,18 +10,22 @@
     height: 364px;
 }
 
+.create-account-info {
+    margin-right: 102px;
+    height: 350px;
+}
 .create-account-info h2 {
     display: flex;
     flex-direction: column;
-    color: #F0972A;
-    margin-bottom: 29px ;
-    font: normal normal bold 46px/60px Roboto Slab; 
+    color: #f0972a;
+    margin-bottom: 29px;
+    font: normal normal bold 46px/60px Roboto Slab;
 }
 
 .create-account-info p {
-font: normal normal normal 20px/26px Roboto Slab;
-color: #A5A5A5;
-height: 215px;
+    font: normal normal normal 20px/26px Roboto Slab;
+    color: #a5a5a5;
+    height: 102px;
 }
 
 .form {
@@ -30,9 +34,9 @@ height: 215px;
 }
 
 .form label {
-    color :#F0972A;
-    font: normal normal bold 16px/21px Roboto Slab;
     margin-bottom: 10px;
+    color: #f0972a;
+    font: normal normal bold 16px/21px Roboto Slab;
 }
 
 .form input {
@@ -42,6 +46,8 @@ height: 215px;
     border-radius: 5px;
     background: #f0efea;
     margin-right: 33px;
+    margin-bottom: 23px;
+    margin-top: 10px;
 }
 
 .form button {

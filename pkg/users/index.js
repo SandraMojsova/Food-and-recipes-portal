@@ -22,13 +22,11 @@ const create = async (data) => {
 const getByEmail = async (email) => {
     return await User.findOne({ email });
 };
-const getAll = async (email) => {
-    return await User.findOne({email});
-};
+
 const update = async (id, data) => {
-    return await User.updateOne({_id: id}, data);
+    return await User.updateOne({ _id: id }, data);
 };
-const findbyId= async(id)=> {
+const findbyId = async (id) => {
     return await User.findById(id);
 }
 
@@ -36,7 +34,6 @@ const findbyId= async(id)=> {
 module.exports = {
     create,
     getByEmail,
-    getAll,
     update,
     findbyId
 }

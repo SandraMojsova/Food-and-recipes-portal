@@ -1,19 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../images/babys-food-place.png';
-import { NAV } from './Context';
-// import { logoutUser } from '../api/index';
-
+import { useAuthContext } from './Context';
 
 export const Nav = () => {
-    let token = JSON.parse(localStorage.getItem('jwt'));
     const history = useHistory();
-    let nav = NAV();
-    console.log(nav);
-
+    let { logged, setLogged } = useAuthContext();
+    //console.log(logged);
     const logoutUser = () => {
-        localStorage.removeItem(token.data);
-        nav=false;
+        localStorage.removeItem('jwt');
+        setLogged(false);
+        history.push('/');
     }
 
     return (
@@ -25,7 +22,7 @@ export const Nav = () => {
                 <li><Link to="/lunch" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Lunch</Link></li>
                 <li><Link to="/dinner" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Dinner</Link></li>
             </ul>
-            {nav && nav ? <>
+            {logged ? <>
                 <ul>
                     <li><Link to="/my-recepies"> My recepies</Link></li>
                     <li><Link to="/my-profile">My profile</Link></li>

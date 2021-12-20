@@ -6,7 +6,7 @@ const AccountCreate = {
     first_name: 'required|minLength:3',
     last_name: 'required|minLength:4',
     birthday: 'required|dateFormat:MM-DD-YYYY',
-    repeatPassword:'required'
+    repeat_password: 'required'
 };
 
 const AccountLogin = {
@@ -14,13 +14,13 @@ const AccountLogin = {
     password: 'required|minLength:8'
 };
 
-const AccountUpdate= {
+const AccountUpdate = {
     email: 'email',
     password: 'minLength:8',
     first_name: 'minLength:3',
     last_name: 'minLength:4',
     birthday: 'dateFormat:MM-DD-YYYY',
-    repeatPassword: 'minLength:8',
+    repeat_password: 'minLength:8',
 }
 
 const validate = async (data, schema) => {
@@ -33,7 +33,7 @@ const validate = async (data, schema) => {
             sch = AccountLogin;
             break;
         case 'UPDATE':
-                sch = AccountUpdate;
+            sch = AccountUpdate;
             break;
 
     }

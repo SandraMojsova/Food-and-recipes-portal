@@ -8,14 +8,6 @@ const createAccount = async (req, res) => {
     try {
         await validator(req.body, 'CREATE');
     } catch (err) {
-        // if (err.password) {
-        //     console.log(err.password.message)
-        //     return res.status(400).send(err.password.message)
-        // }
-        // if (err.email) {
-        //     console.log(err.email.message)
-        //     return res.status(400).send(err.email.message)
-        // }
         console.log(err);
         let objKeys = Object.keys(err);
         for (let item of objKeys) {
@@ -26,8 +18,8 @@ const createAccount = async (req, res) => {
     }
     try {
         let data = req.body;
-        if (data.password !== data.repeatPassword) {
-            return res.status(400).send('Password must be same');
+        if (data.password !== data.repeat_password) {
+            return res.status(400).send('Passwords must be same');
         }
         data.password = bcrypt.hashSync(data.password);
         let u = await user.create(data);
@@ -66,16 +58,16 @@ const login = async (req, res) => {
         let token = jwt.sign({
             uid: u._id,
             email: u.email,
-            full_name: `${u.first_name} ${u.last_name}`,
+            exp: parseInt((new Date().getTime() + 24 * 60 * 60 * 1000) / 1000)
         }, config.get('security').secret);
-        res.status(200).send(token);
+        return res.status(200).send(token);
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal server error');
     }
 };
 
-const getAll = async (req, res) => {
+const getUser = async (req, res) => {
     try {
         let u = await user.getByEmail(req.user.email);
         return res.status(200).send(u);
@@ -91,22 +83,8 @@ const updateProfile = async (req, res) => {
         return res.status(400).send(err.message);
     }
     try {
-        // let u = await user.getByEmail(req.user.email);
-        // console.log(u);
-        // if(u) {
-        //     u.email = u.email;
-        //     u.password = req.body.password ? req.body.password : u.password;
-        //     u.first_name = req.body.first_name ? req.body.first_name : u.first_name;
-        //     u.last_name = req.body.last_name ? req.body.last_name : u.last_name;
-        //     u.birthday = req.body.birthday ? req.body.birthday : u.birthday;
-        //     u.repeatPassword = req.body.repeatPassword
-        // }
-        // console.log(u._id.valueOf());
-        // console.log(u);
-
-        // let s = await user.update(u._id.valueOf(),u);
-        console.log(req.user.uid);
-        console.log(req.body);
+        // console.log(req.user.uid);
+        // console.log(req.body);
         let s = await user.update(req.user.uid, req.body.profileData);
         console.log(s);
         return res.status(200).send('ok');
@@ -117,15 +95,10 @@ const updateProfile = async (req, res) => {
     }
 };
 
-const logOut = (req, res) => {
-
-    return res.redirect('/');
-}
 module.exports = {
     createAccount,
     login,
-    getAll,
-    updateProfile,
-    logOut
+    getUser,
+    updateProfile
 }
 

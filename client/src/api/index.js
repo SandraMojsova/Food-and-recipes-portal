@@ -37,18 +37,9 @@ export const updateUser = (id, token, profileData) => {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
-        data: JSON.stringify(profileData)
+        data: JSON.stringify({ profileData })
     })
 }
-
-// export const logoutUser = (token) => {
-//     return axios({
-//         method: 'GET',
-//         url : 'http://localhost:10001/api/v1/auth/logout',
-//         headers: {
-//         'Authorization': `Bearer ${token}`}
-//     })
-// }
 
 export const changeAvatar = (token) => {
     return axios({

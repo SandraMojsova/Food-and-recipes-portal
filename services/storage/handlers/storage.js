@@ -1,8 +1,7 @@
-
 const fs = require('fs');
 
 let max_filesize = 1048576;
-let allowed_filetypes=  ["image/jpg","image/jpeg", "image/pjpg", "image/png", "image/gif"];
+let allowed_filetypes = ["image/jpg", "image/jpeg", "image/pjpg", "image/png", "image/gif"];
 const upload = async (req, res) => {
 
     if (req.files.document.size > max_filesize) {
@@ -16,7 +15,7 @@ const upload = async (req, res) => {
     let userDir = `user_${req.user.uid}`;
     let userDirPath = `${__dirname}/../files/${userDir}`;
 
-    if(!fs.existsSync(userDirPath)) {
+    if (!fs.existsSync(userDirPath)) {
         fs.mkdirSync(userDirPath);
     }
 
@@ -25,14 +24,14 @@ const upload = async (req, res) => {
     let fileName = `${req.files.document.name}`;
     let filePath = `${userDirPath}/${fileName}`;
     req.files.document.mv(filePath, err => {
-        if(err) {
+        if (err) {
             console.log(err);
             return res.status(500).send('Internal server error');
         }
-        res.status(200).send({filename: fileName});
+        res.status(200).send({ filename: fileName });
     });
 };
 
-module.exports={
+module.exports = {
     upload
 }
