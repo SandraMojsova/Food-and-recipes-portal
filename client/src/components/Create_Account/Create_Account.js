@@ -47,7 +47,7 @@ export const Create_Account = () => {
         <div id="create-account">
             <div className="create-account-text">
                 <h2 style={{ color: "#96BB36" }}>Create Account</h2>
-                <div id="create-border"> <hr /></div>
+                <div id="create-border"></div>
             </div>
             <div className="container">
                 <div className="create-account-info">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { userInfo, updateUser, changeAvatar } from '../../api/index';
 import './style.css';
+import axios from 'axios';
 
 export const My_Profile = () => {
     let token = localStorage.getItem('jwt');
@@ -14,7 +15,7 @@ export const My_Profile = () => {
         repeat_password: ''
     });
     const [id, setId] = useState('');
-    // const [image, setImage] = useState("");
+    const [image, setImage] = useState("");
 
     const update = (e) => {
         setProfileData({ ...profileData, [e.target.name]: e.target.value })
@@ -45,6 +46,17 @@ export const My_Profile = () => {
             console.log(response);
             // console.log(response.data);
             // console.log(profileData);
+            // const data = new FormData() 
+            // data.append('file', image);
+            // const i =await axios({
+            //     method: 'POST',
+            //     url: `http://localhost:10002/api/v1/upload`,
+            //     data: data,
+            //     headers: {
+            //         'Authorization': `Bearer ${token}`
+            //     }
+            // })
+            // console.log(i);
         } catch (err) {
             // console.log(err);
             console.log(err.response);
@@ -64,16 +76,29 @@ export const My_Profile = () => {
     //         console.log(err.response);
     //     }
     // }
-
-
+    const loadImage = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            setImage({
+              profile_image: URL.createObjectURL(event.target.files[0])
+            });
+    }
+}
+console.log(image)
     return (
         <div id="my-profile">
-
-            <h2 style={{ color: "#96BB36" }}>My Profile</h2>
+            <div className="my-profile-text">
+                <h2 style={{ color: "#96BB36" }}>My Profile</h2>
+                <div id="border"></div>
+            </div>
 
             <div className="profile-info">
-                <div>
-                    <input id="button" type="file" id="upload-button" />
+                <div className='upload-picture'>
+                    <img src={image.profile_image} alt="" id="profile-image"/>
+                    <br/>
+                    <div className='avatar-button'>
+                    <label for="upload">Change Avatar</label>
+                    <input style= {{display: 'none'}}type="file" id="upload" onChange={(event)=>loadImage(event)}/>
+                    </div>
                 </div>
 
                 <div className="profile-container">

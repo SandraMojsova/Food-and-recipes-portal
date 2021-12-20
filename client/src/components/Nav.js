@@ -23,10 +23,10 @@ export const Nav = () => {
                 <li><Link to="/dinner" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Dinner</Link></li>
             </ul>
             {logged ? <>
-                <ul>
-                    <li><Link to="/my-recepies"> My recepies</Link></li>
-                    <li><Link to="/my-profile">My profile</Link></li>
-                    <li><Link to="/" onClick={logoutUser}>log out</Link></li>
+                <ul className='logged-links'>
+                    <li><Link to="/my-recepies" style={{color: "#96BB36"}}> My recepies</Link></li>
+                    <li><Link to="/my-profile" style={{color: "#F0972A"}}>My profile</Link></li>
+                    <li><Link to="/" style={{color: "#B5B5B4"}} onClick={logoutUser}>log out</Link></li>
                 </ul> </> : <>
                 <div className="nav-buttons">
                     <button className="login-button" onClick={() => history.push('/login')}>Log In</button>

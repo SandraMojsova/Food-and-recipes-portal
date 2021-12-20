@@ -4,6 +4,16 @@
     padding: 20px 10%;
 }
 
+.create-account-text {
+    display:flex;
+    justify-content:space-between ;
+}
+#create-border {
+    width : 900px;
+    height: 1px;
+    background-color: black;
+    margin-top: 40px;
+}
 .container {
     display: flex;
     justify-content: space-between;

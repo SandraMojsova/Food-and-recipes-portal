@@ -46,12 +46,12 @@ export const Login = () => {
                     <form>
                         <div id="login-email">
                             <label for="email">Email</label>
-                            <input type="text" name="email" placeholder="email" value={loginData.email} onChange={loginFieldUpdate} />
+                            <input type="text" name="email" placeholder="user@domain.com" value={loginData.email} onChange={loginFieldUpdate} />
                         </div>
                         <br />
                         <div id="login-password">
                             <label for="password">Password</label>
-                            <input type="password" name="password" placeholder="password" value={loginData.password} onChange={loginFieldUpdate} />
+                            <input type="password" name="password" placeholder="*******" value={loginData.password} onChange={loginFieldUpdate} />
                         </div>
                         <br />
                         <button id="login-button" onClick={loginBtn}>Log in</button>

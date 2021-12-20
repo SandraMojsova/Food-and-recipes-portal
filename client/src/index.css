@@ -31,7 +31,8 @@ body {
     margin-right: 30px;
 }
 .nav_links li:nth-child(1),
-.footer-list li:nth-child(1) {
+.footer-list li:nth-child(1),
+.logged-links li:nth-child(1) {
     list-style-type: none;
 }
 .nav-buttons {
@@ -60,6 +61,18 @@ body {
     padding: 12px 22px;
     text-transform: uppercase;
     font: normal normal 900 16px/21px Roboto;
+}
+
+.logged-links {
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logged-links li {
+    margin-right: 30px;
+    text-transform: uppercase;
+    font: normal normal 900 18px/24px Roboto;
 }
 
 #footer {
