@@ -16,6 +16,7 @@ export const My_Profile = () => {
     });
     const [id, setId] = useState('');
     const [image, setImage] = useState("");
+    const [uploadFile, setUploadedFile] = useState({});
 
     const update = (e) => {
         setProfileData({ ...profileData, [e.target.name]: e.target.value })
@@ -40,23 +41,30 @@ export const My_Profile = () => {
         }
     }
 
-    const save = async () => {
+    const save = async (event) => {
         try {
             const response = await updateUser(id, token, profileData)
             console.log(response);
-            // console.log(response.data);
-            // console.log(profileData);
-            // const data = new FormData() 
-            // data.append('file', image);
-            // const i =await axios({
-            //     method: 'POST',
-            //     url: `http://localhost:10002/api/v1/upload`,
-            //     data: data,
-            //     headers: {
-            //         'Authorization': `Bearer ${token}`
-            //     }
-            // })
-            // console.log(i);
+            console.log(response.data);
+            console.log(profileData);
+            const formData = new FormData();
+            formData.append('file', image);
+            console.log(formData);
+            const res = await axios({
+                method: 'POST',
+                url: `http://localhost:10002/api/v1/storage/upload`,
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            console.log(res);
+            const { filename, filepath } = res.data;
+            setUploadedFile({ filename, filepath });
+
+            // const file = await res.json()
+            // console.log(file);
         } catch (err) {
             // console.log(err);
             console.log(err.response);
@@ -77,13 +85,15 @@ export const My_Profile = () => {
     //     }
     // }
     const loadImage = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            setImage({
-              profile_image: URL.createObjectURL(event.target.files[0])
-            });
+        // if (event.target.files && event.target.files[0]) {
+        //     setImage({
+        //         profile_image: URL.createObjectURL(event.target.files[0])
+        //     });
+        // }
+        setImage(event.target.files[0]);
     }
-}
-console.log(image)
+    console.log(image);
+    console.log(uploadFile);
     return (
         <div id="my-profile">
             <div className="my-profile-text">
@@ -93,11 +103,15 @@ console.log(image)
 
             <div className="profile-info">
                 <div className='upload-picture'>
-                    <img src={image.profile_image} alt="" id="profile-image"/>
-                    <br/>
+                    {
+                        uploadFile ?
+                            <img src={uploadFile.filepath} alt="" id="profile-image" />
+                            : null
+                    }
+                    <br />
                     <div className='avatar-button'>
-                    <label for="upload">Change Avatar</label>
-                    <input style= {{display: 'none'}}type="file" id="upload" onChange={(event)=>loadImage(event)}/>
+                        <label for="upload">Change Avatar</label>
+                        <input style={{ display: 'none' }} type="file" id="upload" onChange={loadImage} />
                     </div>
                 </div>
 
