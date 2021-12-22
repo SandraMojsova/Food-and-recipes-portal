@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { userInfo, updateUser, changeAvatar } from '../../api/index';
 import './style.css';
 import axios from 'axios';
+import fileUpload from 'express-fileupload';
 
 export const My_Profile = () => {
     let token = localStorage.getItem('jwt');
@@ -12,7 +13,8 @@ export const My_Profile = () => {
         first_name: '',
         last_name: '',
         birthday: '',
-        repeat_password: ''
+        repeat_password: '',
+        image: ''
     });
     const [id, setId] = useState('');
     const [image, setImage] = useState("");
@@ -34,37 +36,37 @@ export const My_Profile = () => {
                 first_name: response.data.first_name,
                 last_name: response.data.last_name,
                 birthday: response.data.birthday,
-                repeat_password: response.data.repeat_password
+                repeat_password: response.data.repeat_password,
+                image: response.data.image
             })
         } catch (err) {
             console.log(err.response);
         }
     }
-
+    const profilPic = async () => {
+        const formData = new FormData();
+        formData.append('file', image);
+        console.log(formData);
+        const res = await axios({
+            method: 'POST',
+            url: `http://localhost:10002/api/v1/storage/upload`,
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        console.log(res);
+        const { filepath } = res.data;
+        profileData.image = filepath;
+        console.log(profileData.image);
+    }
     const save = async (event) => {
         try {
             const response = await updateUser(id, token, profileData)
             console.log(response);
             console.log(response.data);
             console.log(profileData);
-            const formData = new FormData();
-            formData.append('file', image);
-            console.log(formData);
-            const res = await axios({
-                method: 'POST',
-                url: `http://localhost:10002/api/v1/storage/upload`,
-                data: formData,
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            console.log(res);
-            const { filename, filepath } = res.data;
-            setUploadedFile({ filename, filepath });
-
-            // const file = await res.json()
-            // console.log(file);
         } catch (err) {
             // console.log(err);
             console.log(err.response);
@@ -74,16 +76,6 @@ export const My_Profile = () => {
         profileInfo()
     }, []);
 
-    // const img = async (e) => {
-    //     try {
-    //         if (e.target.files.length) {
-    //             setImage(e.target.files[0]);
-    //         }
-    //         await changeAvatar(token.data);
-    //     } catch (err) {
-    //         console.log(err.response);
-    //     }
-    // }
     const loadImage = (event) => {
         // if (event.target.files && event.target.files[0]) {
         //     setImage({
@@ -93,21 +85,16 @@ export const My_Profile = () => {
         setImage(event.target.files[0]);
     }
     console.log(image);
-    console.log(uploadFile);
+    console.log(profileData.image);
     return (
         <div id="my-profile">
             <div className="my-profile-text">
                 <h2 style={{ color: "#96BB36" }}>My Profile</h2>
                 <div id="border"></div>
             </div>
-
             <div className="profile-info">
                 <div className='upload-picture'>
-                    {
-                        uploadFile ?
-                            <img src={uploadFile.filepath} alt="" id="profile-image" />
-                            : null
-                    }
+                    <img src={image ? URL.createObjectURL(image) : profileData.image} alt="" id="profile-image" />
                     <br />
                     <div className='avatar-button'>
                         <label for="upload">Change Avatar</label>
@@ -129,7 +116,7 @@ export const My_Profile = () => {
                             <label for="password">Password</label>
                             <input type="password" name="password" value={profileData.password} onChange={update} />
                         </div>
-                        <button onClick={save} className="save-button">Save</button>
+                        <button onClick={() => { save(); profilPic(); }} className="save-button">Save</button>
                     </div>
                     <div className="second">
                         <div className="profile">
@@ -147,7 +134,7 @@ export const My_Profile = () => {
                     </div>
 
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }

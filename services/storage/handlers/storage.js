@@ -14,7 +14,7 @@ const upload = async (req, res) => {
     }
 
     let userDir = `user_${req.user.uid}`;
-    let userDirPath = `${__dirname}/../files/${userDir}`;
+    let userDirPath = `${__dirname}/../../../files/${userDir}`;
 
     if (!fs.existsSync(userDirPath)) {
         fs.mkdirSync(userDirPath);
@@ -22,12 +22,14 @@ const upload = async (req, res) => {
 
     let fileName = `${req.files.file.name}`;
     let filePath = `${userDirPath}/${fileName}`;
+
+    let f = `api`
     req.files.file.mv(filePath, err => {
         if (err) {
             console.log(err);
             return res.status(500).send('Internal server error');
         }
-        res.status(200).send({ filename: fileName, filepath: `../../../../services/storage/files/${userDir}/${fileName}` });
+        res.status(200).send({ filename: fileName, filepath: f });
     });
 };
 

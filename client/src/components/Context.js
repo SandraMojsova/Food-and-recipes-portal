@@ -14,10 +14,10 @@ export const Context = ({ children }) => {
             'Authorization': `Bearer ${token}`
         }
     }).then(res => {
-        console.log(res);
+        // console.log(res);
         setLogged(true)
     }).catch(err => {
-        console.log(err);
+        // console.log(err);
     })
 
     return (

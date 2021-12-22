@@ -22,6 +22,7 @@ const createAccount = async (req, res) => {
             return res.status(400).send('Passwords must be same');
         }
         data.password = bcrypt.hashSync(data.password);
+        data.image = "";
         let u = await user.create(data);
         return res.status(201).send(u);
     } catch (err) {

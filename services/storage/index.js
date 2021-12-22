@@ -4,6 +4,7 @@ const fileUpload = require('express-fileupload');
 const jwt = require('express-jwt');
 const handlers = require('./handlers/storage');
 const cors = require('cors');
+const path = require('path');
 
 const api = express();
 
@@ -12,6 +13,7 @@ api.use(jwt({
     secret: config.get('security').secret
 }));
 
+api.use('/api/v1/storage', express.static(path.join(__dirname, "/../../files")));
 api.use(cors());
 api.use(fileUpload());
 
