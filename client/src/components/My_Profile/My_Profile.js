@@ -18,7 +18,6 @@ export const My_Profile = () => {
     });
     const [id, setId] = useState('');
     const [image, setImage] = useState("");
-    const [uploadFile, setUploadedFile] = useState({});
 
     const update = (e) => {
         setProfileData({ ...profileData, [e.target.name]: e.target.value })
@@ -46,7 +45,6 @@ export const My_Profile = () => {
     const profilPic = async () => {
         const formData = new FormData();
         formData.append('file', image);
-        console.log(formData);
         const res = await axios({
             method: 'POST',
             url: `http://localhost:10002/api/v1/storage/upload`,
@@ -57,16 +55,16 @@ export const My_Profile = () => {
             }
         })
         console.log(res);
-        const { filepath } = res.data;
-        profileData.image = filepath;
-        console.log(profileData.image);
+        let { filepath } = res.data;
+        // profileData.image = filepath;
     }
     const save = async (event) => {
         try {
+            console.log(profileData);
+            console.log(profileData.image);
             const response = await updateUser(id, token, profileData)
             console.log(response);
             console.log(response.data);
-            console.log(profileData);
         } catch (err) {
             // console.log(err);
             console.log(err.response);
@@ -85,7 +83,6 @@ export const My_Profile = () => {
         setImage(event.target.files[0]);
     }
     console.log(image);
-    console.log(profileData.image);
     return (
         <div id="my-profile">
             <div className="my-profile-text">

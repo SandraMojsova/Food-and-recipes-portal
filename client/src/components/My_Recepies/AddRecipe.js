@@ -17,17 +17,47 @@ export const AddRecipe = () => {
                 <img src={back_button} alt="" onClick={backToMyRecipes} className="button-icon" />
             </div>
             <div className="profile-info">
-                <div className='upload-picture'>
-                    <label>Recipe Image</label>
-                    <br />
-                    <img src={recipe_image} alt="" />
-                    <br />
+                <div>
+                    <div className='upload-picture'>
+                        <label>Recipe Image</label>
+                        <br />
+                        <img src={recipe_image} alt="" />
+                    </div>
                     <div className='upload-image-button'>
                         <label for="upload">Upload image</label>
                         <input type="file" id="upload" />
                     </div>
                 </div>
-            </div >
-        </div >
+                <div className="recipe-info">
+                    <div className="recipe-data">
+                        <label htmlFor="recipe-name">Recipe Name</label>
+                        <input name="recipe-name" className="recipe-title-input" />
+                    </div>
+                    <div className="data">
+                        <div className="recipe-data">
+                            <label htmlFor="category">Category</label>
+                            <input name="category-name" />
+                        </div>
+                        <div className="recipe-data">
+                            <label htmlFor="preparation-time">Preparation time</label>
+                            <input name="preparation-time" />
+                        </div>
+                        <div className="recipe-data">
+                            <label htmlFor="number">No. people</label>
+                            <input name="number" />
+                        </div>
+                    </div>
+                    <div className="recipe-data">
+                        <label htmlFor="description">Short description</label>
+                        <input name="description" />
+                    </div>
+                    <button>Save</button>
+                </div>
+                <div className="recipe" className="recipe-data">
+                    <label htmlFor="recipe">Recipe</label>
+                    <textarea name="recipe" />
+                </div>
+            </div>
+        </div>
     )
 }

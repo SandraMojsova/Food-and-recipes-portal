@@ -21,3 +21,29 @@
     width: 41px;
     height: 41px;
 }
+
+.recipe-info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 562px;
+}
+
+.recipe-info label {
+    color: #f0972a;
+}
+
+.recipe-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-title-input {
+    height: 40px;
+}
+
+.data {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
