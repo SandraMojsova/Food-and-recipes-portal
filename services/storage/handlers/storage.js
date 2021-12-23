@@ -2,7 +2,7 @@ const fs = require('fs');
 
 let max_filesize = 1048576;
 let allowed_filetypes = ["image/jpg", "image/jpeg", "image/pjpg", "image/png", "image/gif"];
-const upload = async (req, res) => {
+const uploadUserImage = async (req, res) => {
     console.log(req.files.file);
     if (req.files.file.size > max_filesize) {
         return res.status(400).send('File exceeds max file size');
@@ -32,6 +32,19 @@ const upload = async (req, res) => {
     });
 };
 
+const getUserImage = (req, res) => {
+    let userDir = `user_${req.user.uid}`;
+    let userDirPath = `${__dirname}/../../../files/${userDir}`;
+    let fileName = req.params.file;
+    let filePath = `${userDirPath}/${fileName}`;
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).send('Image not found');
+    }
+    res.download(filePath);
+
+}
+
 module.exports = {
-    upload
+    uploadUserImage,
+    getUserImage
 }

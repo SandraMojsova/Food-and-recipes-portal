@@ -5,7 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "proxy": "node services/proxy/index.js"
+        "proxy": "node services/proxy/index.js",
+        "auth": "node services/auth/index.js",
+        "storage": "node services/storage/index.js"
     },
     "keywords": [],
     "author": "",

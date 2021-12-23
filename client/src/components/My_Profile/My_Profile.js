@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { userInfo, updateUser, changeAvatar } from '../../api/index';
 import './style.css';
 import axios from 'axios';
-import fileUpload from 'express-fileupload';
 
 export const My_Profile = () => {
     let token = localStorage.getItem('jwt');
@@ -43,21 +42,31 @@ export const My_Profile = () => {
         }
     }
     const profilPic = async () => {
-        const formData = new FormData();
-        formData.append('file', image);
-        const res = await axios({
-            method: 'POST',
-            url: `http://localhost:10002/api/v1/storage/upload`,
-            data: formData,
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        console.log(res);
-        let { filepath } = res.data;
-        // profileData.image = filepath;
+        try {
+            const formData = new FormData();
+            formData.append('file', image);
+            const res = await axios({
+                method: 'POST',
+                url: `/api/v1/storage/users`,
+                data: formData,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            console.log(res);
+            console.log(res.data);
+            let p = res.data.filepath;
+            profileData.image = p;
+            console.log(p);
+            setProfileData({ ...profileData, image: p })
+            console.log(profileData);
+        }
+        catch (err) {
+            console.log(err.response.data);
+        }
     }
+
     const save = async (event) => {
         try {
             console.log(profileData);
@@ -70,19 +79,14 @@ export const My_Profile = () => {
             console.log(err.response);
         }
     }
+    console.log(profileData);
     useEffect(() => {
         profileInfo()
     }, []);
 
     const loadImage = (event) => {
-        // if (event.target.files && event.target.files[0]) {
-        //     setImage({
-        //         profile_image: URL.createObjectURL(event.target.files[0])
-        //     });
-        // }
         setImage(event.target.files[0]);
     }
-    console.log(image);
     return (
         <div id="my-profile">
             <div className="my-profile-text">
@@ -91,7 +95,11 @@ export const My_Profile = () => {
             </div>
             <div className="profile-info">
                 <div className='upload-picture'>
-                    <img src={image ? URL.createObjectURL(image) : profileData.image} alt="" id="profile-image" />
+                    <img src={profileData.image} />
+                    {/* <img src="http://localhost:10000/api/v1/storage/user_61c4488c6b85d60ed39a735b/24130093_1895390760475522_13657121933408698_o.jpg" /> */}
+                    {image === "" ? <img src={profileData.image ? `/api/v1/storage/users/${profileData.image} ` : null} alt="" />
+                        : <img src={image && URL.createObjectURL(image)} alt="" id="profile-image" />
+                    }
                     <br />
                     <div className='avatar-button'>
                         <label for="upload">Change Avatar</label>
@@ -113,7 +121,7 @@ export const My_Profile = () => {
                             <label for="password">Password</label>
                             <input type="password" name="password" value={profileData.password} onChange={update} />
                         </div>
-                        <button onClick={() => { save(); profilPic(); }} className="save-button">Save</button>
+                        <button onClick={() => { profilPic(); save(); }} className="save-button">Save</button>
                     </div>
                     <div className="second">
                         <div className="profile">

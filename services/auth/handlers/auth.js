@@ -85,7 +85,7 @@ const updateProfile = async (req, res) => {
     }
     try {
         // console.log(req.user.uid);
-        // console.log(req.body);
+        console.log(req.body);
         let s = await user.update(req.user.uid, req.body.profileData);
         console.log(s);
         return res.status(200).send('ok');

@@ -2,13 +2,13 @@ require('../../pkg/db');
 const express = require('express');
 const jwt = require('express-jwt');
 const handlers = require('./handlers/auth');
-const cors = require('cors');
+// const cors = require('cors');
 const config = require('../../pkg/config');
 
 const api = express();
 
 api.use(express.json());
-api.use(cors());
+// api.use(cors());
 api.use(jwt({
     secret: config.get('security').secret,
     algorithms: config.get('security').algorithms

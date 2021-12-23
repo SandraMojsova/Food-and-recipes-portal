@@ -10,7 +10,6 @@
         "secret": "secret"
     },
     "services": {
-        "proxy": { "port": 7000 },
         "auth": { "port": 10001 }
     }
 }

@@ -8,7 +8,7 @@ export const Context = ({ children }) => {
     const [logged, setLogged] = useState(false);
     axios({
         method: 'GET',
-        url: `http://localhost:10001/api/v1/auth/users`,
+        url: `/api/v1/auth/users`,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
