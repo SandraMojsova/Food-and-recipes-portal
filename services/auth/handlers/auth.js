@@ -79,13 +79,20 @@ const getUser = async (req, res) => {
 
 const updateProfile = async (req, res) => {
     try {
-        await validator(req.body, 'UPDATE');
+        await validator(req.body.profileData, 'UPDATE');
     } catch (err) {
+        console.log(err);
         return res.status(400).send(err.message);
     }
     try {
         // console.log(req.user.uid);
-        console.log(req.body);
+        // console.log(req.body);
+        // if (req.body.profileData.password && req.body.profileData.password !== req.body.profileData.repeat_password) {
+        //     return res.status(400).send('wrong');
+        // }
+        // if (req.body.profileData.password && req.body.profileData.password === req.body.profileData.repeat_password) {
+        //     req.body.profileData.password = bcrypt.hashSync(req.body.profileData.password);
+        // }
         let s = await user.update(req.user.uid, req.body.profileData);
         console.log(s);
         return res.status(200).send('ok');

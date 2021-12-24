@@ -5,7 +5,7 @@ const AccountCreate = {
     password: 'required|minLength:8',
     first_name: 'required|minLength:3',
     last_name: 'required|minLength:4',
-    birthday: 'required|dateFormat:MM-DD-YYYY',
+    birthday: 'required|minLength:4',
     repeat_password: 'required',
 };
 
@@ -19,7 +19,7 @@ const AccountUpdate = {
     password: 'minLength:8',
     first_name: 'minLength:3',
     last_name: 'minLength:4',
-    birthday: 'dateFormat:MM-DD-YYYY',
+    birthday: 'minLength:4',
     repeat_password: 'minLength:8',
     image: 'minLength:8'
 }

@@ -31,14 +31,16 @@ export const My_Profile = () => {
                 password: response.data.password,
                 first_name: response.data.first_name,
                 last_name: response.data.last_name,
+                image: response.data.image,
                 birthday: response.data.birthday,
-                repeat_password: response.data.repeat_password,
-                image: response.data.image
+                repeat_password: response.data.repeat_password
+
             })
         } catch (err) {
             console.log(err.response);
         }
     }
+
 
     const loadImage = async (event) => {
         let image = event.target.files[0];
@@ -115,7 +117,7 @@ export const My_Profile = () => {
                         </div>
                         <div className="profile">
                             <label for="birthday">Birthday</label>
-                            <input type="text" name="birthday" value={profileData.birthday} onChange={update} />
+                            <input type="text" name="birthday" placeholder="****" value={profileData.birthday} onChange={update} />
                         </div>
                         <div className="profile">
                             <label for="repeat_password">Repeat Password</label>
