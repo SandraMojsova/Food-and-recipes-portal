@@ -37,7 +37,6 @@ const getUserImage = (req, res) => {
         return res.status(404).send('Image not found');
     }
     res.download(filePath);
-
 }
 
 module.exports = {
