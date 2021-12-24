@@ -3,18 +3,16 @@ const fs = require('fs');
 let max_filesize = 1048576;
 let allowed_filetypes = ["image/jpg", "image/jpeg", "image/pjpg", "image/png", "image/gif"];
 const uploadUserImage = async (req, res) => {
-    console.log(req.files.file);
     if (req.files.file.size > max_filesize) {
         return res.status(400).send('File exceeds max file size');
     }
-    // console.log(req.files.file.type);
 
     if (!allowed_filetypes.includes(req.files.file.mimetype)) {
         return res.status(400).send('Filetype not allowed');
     }
 
-    let userDir = `user_${req.user.uid}`;
-    let userDirPath = `${__dirname}/../../../files/${userDir}`;
+    // let userDir = `user_${req.user.uid}`;
+    let userDirPath = `${__dirname}/../../../files/users`;
 
     if (!fs.existsSync(userDirPath)) {
         fs.mkdirSync(userDirPath);
@@ -28,15 +26,13 @@ const uploadUserImage = async (req, res) => {
             console.log(err);
             return res.status(500).send('Internal server error');
         }
-        res.status(200).send({ filepath: `/${userDir}/${fileName}` });
+        res.status(200).send({ filename: `/api/v1/storage/users/${fileName}` });
     });
 };
 
 const getUserImage = (req, res) => {
-    let userDir = `user_${req.user.uid}`;
-    let userDirPath = `${__dirname}/../../../files/${userDir}`;
-    let fileName = req.params.file;
-    let filePath = `${userDirPath}/${fileName}`;
+    let userDirPath = `${__dirname}/../../../files/users`;
+    let filePath = `${userDirPath}/${req.params.filename}`;
     if (!fs.existsSync(filePath)) {
         return res.status(404).send('Image not found');
     }

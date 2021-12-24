@@ -25,8 +25,6 @@ export const My_Profile = () => {
     const profileInfo = async () => {
         try {
             let response = await userInfo(token);
-            // console.log(response.data);
-            // console.log(response.data._id);
             setId(response.data._id);
             setProfileData({
                 email: response.data.email,
@@ -56,7 +54,7 @@ export const My_Profile = () => {
             })
             console.log(res);
             console.log(res.data);
-            let p = res.data.filepath;
+            let p = res.data.filename;
             profileData.image = p;
             console.log(p);
             setProfileData({ ...profileData, image: p })
@@ -80,13 +78,31 @@ export const My_Profile = () => {
         }
     }
     console.log(profileData);
-    useEffect(() => {
-        profileInfo()
-    }, []);
-
     const loadImage = (event) => {
         setImage(event.target.files[0]);
     }
+    // const [i, setI] = useState(null);
+    // const getImg = async () => {
+    //     try {
+    //         const res = await axios({
+    //             method: 'GET',
+    //             url: `/api/v1/storage/users/24130093_1895390760475522_13657121933408698_o.jpg`,
+    //             headers: {
+    //                 'Authorization': `Bearer ${token}`,
+    //             },
+    //             responseType: 'blob'
+
+    //         })
+    //         let r = URL.createObjectURL(res.data)
+    //         setI(r);
+    //     } catch (err) {
+    //         console.log(err.response);
+    //     }
+    // }
+    useEffect(() => {
+        profileInfo();
+    }, []);
+    console.log(profileData.image);
     return (
         <div id="my-profile">
             <div className="my-profile-text">
@@ -95,11 +111,10 @@ export const My_Profile = () => {
             </div>
             <div className="profile-info">
                 <div className='upload-picture'>
-                    <img src={profileData.image} />
-                    {/* <img src="http://localhost:10000/api/v1/storage/user_61c4488c6b85d60ed39a735b/24130093_1895390760475522_13657121933408698_o.jpg" /> */}
-                    {image === "" ? <img src={profileData.image ? `/api/v1/storage/users/${profileData.image} ` : null} alt="" />
+                    <img src={`${profileData.image}`} />
+                    {/* {image === "" ? <img src={`${profileData.image}`} alt="" />
                         : <img src={image && URL.createObjectURL(image)} alt="" id="profile-image" />
-                    }
+                    } */}
                     <br />
                     <div className='avatar-button'>
                         <label for="upload">Change Avatar</label>

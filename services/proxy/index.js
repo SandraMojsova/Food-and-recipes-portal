@@ -9,7 +9,6 @@ app.use('/api/v1/auth', proxy(
     { proxyReqPathResolver: (req) => `http://localhost:10001/api/v1/auth${req.url}` }
 ));
 
-
 app.use('/api/v1/storage', proxy(
     'http://localhost:10002',
     { proxyReqPathResolver: (req) => `http://localhost:10002/api/v1/storage${req.url}` }
