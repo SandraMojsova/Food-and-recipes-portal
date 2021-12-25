@@ -10,11 +10,21 @@ export const MyRecepies = () => {
     }
     return (
         <div id="my-recepies">
-            <div className="my-recepies-text ">
+                <div  className="my-recepies-text">
                 <h2 style={{ color: "#96BB36" }}>My recepies</h2>
                 <div className="border"></div>
                 <img src={plus} alt="" className="button-icon" onClick={addRecepies} />
-            </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Recipe Name</th>
+                            <th>Category</th>
+                            <th>Created On</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                </table>
         </div>
     )
 }

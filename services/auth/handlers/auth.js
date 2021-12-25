@@ -82,18 +82,23 @@ const updateProfile = async (req, res) => {
         await validator(req.body.profileData, 'UPDATE');
     } catch (err) {
         console.log(err);
-        return res.status(400).send(err.message);
+        let objKeys = Object.keys(err);
+        for (let item of objKeys) {
+            console.log(err[item].message)
+            return res.status(400).send(err[item].message);
+        }
     }
     try {
         // console.log(req.user.uid);
         // console.log(req.body);
-        // if (req.body.profileData.password && req.body.profileData.password !== req.body.profileData.repeat_password) {
-        //     return res.status(400).send('wrong');
-        // }
-        // if (req.body.profileData.password && req.body.profileData.password === req.body.profileData.repeat_password) {
-        //     req.body.profileData.password = bcrypt.hashSync(req.body.profileData.password);
-        // }
-        let s = await user.update(req.user.uid, req.body.profileData);
+        let data=req.body.profileData;
+        if (data.password && data.password !== data.repeat_password) {
+            return res.status(400).send('Passwords must be same');
+        }
+        if (data.password && data.password === data.repeat_password) {
+            data.password = bcrypt.hashSync(data.password);
+        }
+        let s = await user.update(req.user.uid, data);
         console.log(s);
         return res.status(200).send('ok');
     } catch (err) {

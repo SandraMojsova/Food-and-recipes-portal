@@ -17,6 +17,7 @@ export const My_Profile = () => {
         image: ''
     });
     const [id, setId] = useState('');
+    const [err , setError]= useState(null);
 
     const update = (e) => {
         setProfileData({ ...profileData, [e.target.name]: e.target.value })
@@ -28,14 +29,11 @@ export const My_Profile = () => {
             setId(response.data._id);
             setProfileData({
                 email: response.data.email,
-                password: response.data.password,
                 first_name: response.data.first_name,
                 last_name: response.data.last_name,
                 image: response.data.image,
                 birthday: response.data.birthday,
-                repeat_password: response.data.repeat_password
-
-            })
+        })
         } catch (err) {
             console.log(err.response);
         }
@@ -71,6 +69,7 @@ export const My_Profile = () => {
             window.location.reload();
         } catch (err) {
             // console.log(err);
+            setError(err.response.data);
             console.log(err.response);
         }
     }
@@ -106,7 +105,7 @@ export const My_Profile = () => {
                         </div>
                         <div className="profile">
                             <label for="password">Password</label>
-                            <input type="password" name="password" value={profileData.password} onChange={update} />
+                            <input type="password" name="password" placeholder="****" value={profileData.password} onChange={update} />
                         </div>
                         <button onClick={save} className="save-button">Save</button>
                     </div>
@@ -127,6 +126,7 @@ export const My_Profile = () => {
 
                 </div>
             </div >
+            {err && <h3>{err}</h3>}
         </div >
     )
 }
