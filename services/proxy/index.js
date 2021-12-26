@@ -14,6 +14,11 @@ app.use('/api/v1/storage', proxy(
     { proxyReqPathResolver: (req) => `http://localhost:10002/api/v1/storage${req.url}` }
 ));
 
+app.use('/api/v1/recipes', proxy(
+    'http://localhost:10003',
+    { proxyReqPathResolver: (req) => `http://localhost:10003/api/v1/recipes${req.url}` }
+));
+
 app.use('/', proxy(
     'http://localhost:3000',
     { proxyReqPathResolver: (req) => `http://localhost:3000${req.url}` }
