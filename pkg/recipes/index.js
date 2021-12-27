@@ -7,11 +7,11 @@ const Recipe = mongoose.model(
         category: String,
         preparation_time: Number,
         people: Number,
-        short_description :String,
-        recipe : String,
+        short_description: String,
+        recipe: String,
         user_id: String,
-        _created : Date,
-        image : String
+        _created: Date,
+        image: String
     },
     'recipes'
 );
@@ -20,10 +20,22 @@ const create = async (data) => {
     let recipe = new Recipe(data);
     return await recipe.save();
 };
-const getAllByUser = async(uid)=> {
+const getAllByUser = async (uid) => {
     return await Recipe.find({ user_id: uid });
+};
+
+const removeRecipe = async (id, uid) => {
+    return await Recipe.deleteOne({ _id: id, user_id: uid });
+};
+
+const update = async (id, uid, data) => {
+    return await Recipe.updateOne({ _id: id, user_id: uid }, data);
+
 }
+
 module.exports = {
     create,
-    getAllByUser
+    getAllByUser,
+    removeRecipe,
+    update
 }

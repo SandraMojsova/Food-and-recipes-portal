@@ -1,88 +1,9 @@
-import React, { useState } from "react";
-import "./index.css";
-import { useHistory } from "react-router-dom";
-import back_button from "../../images/icon_back_white.svg";
-import recipe_image from "../../images/recipe-image.jpg";
-import axios from "axios";
-import { Recipe } from './Recipe'
+import React from "react";
 
-export const AddRecipe = () => {
-    let token = localStorage.getItem("jwt");
-    let history = useHistory();
-    const backToMyRecipes = () => {
-        history.push("/my-recepies");
-    };
-    const [recipeData, setRecipeData] = useState({
-        recipe_title: "",
-        category: "",
-        preparation_time: "",
-        people: "",
-        short_description: "",
-        recipe: "",
-        image: "",
-    });
-    const [err, setError] = useState(null);
-    const createRecipe = (e) => {
-        setRecipeData({
-            ...recipeData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const recipeImage = async (event) => {
-        let image = event.target.files[0];
-        console.log(image);
-        const dataf = new FormData();
-        dataf.append('file', image);
-        console.log(dataf);
-        try {
-            const res = await axios({
-                method: 'POST',
-                url: `/api/v1/storage/recipes`,
-                data: dataf,
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            console.log(res);
-            console.log(res.data);
-            let p = res.data.filename;
-            setRecipeData({ ...recipeData, image: p });
-        } catch (err) {
-            console.log(err.response);
-        }
-    };
-    const createRecipeBtn = async (e) => {
-        e.preventDefault();
-        try {
-            let res = await axios({
-                method: "POST",
-                url: `/api/v1/recipes`,
-                data: JSON.stringify(recipeData),
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            console.log(res);
-            history.push("/my-recepies");
-        } catch (err) {
-            setError(err.response.data);
-        }
-    };
+export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, createRecipe, createRecipeBtn, recipe_image }) => {
     return (
-        <div id="add-recipe">
-            <Recipe
-                recipeData={recipeData}
-                back_button={back_button}
-                backToMyRecipes={backToMyRecipes}
-                recipeImage={recipeImage}
-                createRecipe={createRecipe}
-                createRecipeBtn={createRecipeBtn}
-                recipe_image={recipe_image}
-            />
-            {/* <div className="my-recepies-text">
+        <div>
+            <div className="my-recepies-text">
                 <h2 style={{ color: "#96BB36" }}>My recepies</h2>
                 <div className="border"></div>
                 <img
@@ -178,8 +99,7 @@ export const AddRecipe = () => {
                         onChange={createRecipe}
                     />
                 </div>
-            </div> */}
-            {err && <h3>{err}</h3>}
+            </div>
         </div>
-    );
-};
+    )
+}

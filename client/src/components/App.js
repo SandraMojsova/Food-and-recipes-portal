@@ -7,7 +7,8 @@ import { Create_Account } from './Create_Account/Create_Account';
 import { My_Profile } from './My_Profile/My_Profile';
 import { Context } from './Context';
 import { MyRecepies } from './My_Recepies/MyRecepies';
-import { AddRecipe } from './My_Recepies/AddRecipe'
+import { AddRecipe } from './My_Recepies/AddRecipe';
+import { UpdateRecipe } from './My_Recepies/UpdateRecipe';
 export const App = () => {
     return (
         <div id="app">
@@ -20,6 +21,7 @@ export const App = () => {
                 <Route path="/my-profile" component={My_Profile} />
                 <Route path="/my-recepies" component={MyRecepies} />
                 <Route path="/add-recipe" component={AddRecipe} />
+                <Route path="/update-recipe" component={UpdateRecipe} />
             </Switch>
             <Footer />
         </div>

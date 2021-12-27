@@ -2,7 +2,7 @@ require('../../pkg/db');
 const express = require('express');
 const jwt = require('express-jwt');
 const config = require('../../pkg/config');
-const handlers= require('./handlers/recipes');
+const handlers = require('./handlers/recipes');
 
 const api = express();
 
@@ -14,6 +14,8 @@ api.use(jwt({
 
 api.post('/api/v1/recipes', handlers.create);
 api.get('/api/v1/recipes/me', handlers.getRecipesByUser);
+api.delete('/api/v1/recipes/:id', handlers.deleteRecipe);
+api.patch('/api/v1/recipes/:id', handlers.updateRecipe);
 
 api.listen(10003, err => {
     if (err) {

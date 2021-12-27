@@ -9,11 +9,23 @@ const RecipeCreate = {
     recipe: 'required|maxLength:1000'
 };
 
+const RecipeUpdate = {
+    recipe_title: 'minLength:4',
+    category: '',
+    preparation_time: 'between:0,1000',
+    people: 'between:0,100',
+    short_description: 'minLength:20',
+    recipe: 'maxLength:1000'
+}
+
 const validate = async (data, schema) => {
     let sch;
     switch (schema) {
         case 'CREATE':
             sch = RecipeCreate;
+            break;
+        case 'UPDATE':
+            sch = RecipeUpdate;
             break;
     }
     let v = new Validator(data, sch);
