@@ -1,15 +1,16 @@
+const cfg = require('../../../pkg/config');
 const fs = require('fs');
 
-let max_filesize = 1048576;
-let allowed_filetypes = ["image/jpg", "image/jpeg", "image/pjpg", "image/png", "image/gif"];
+const cfgApp = cfg.get('storage');
+
 const uploadUserImage = async (req, res) => {
-    if (req.files.file.size > max_filesize) {
+    if (req.files.file.size > cfgApp.max_filesize) {
         return res.status(400).send('File exceeds max file size');
     }
-    if (!allowed_filetypes.includes(req.files.file.mimetype)) {
+    if (!cfgApp.allowed_filetypes.includes(req.files.file.mimetype)) {
         return res.status(400).send('Filetype not allowed');
     }
-    let userDirPath = `${__dirname}/../../../files/users`;
+    let userDirPath = `${__dirname}/../../../${cfgApp.upload_dir_users}`;
 
     if (!fs.existsSync(userDirPath)) {
         fs.mkdirSync(userDirPath);
@@ -28,47 +29,46 @@ const uploadUserImage = async (req, res) => {
 };
 
 const getUserImage = (req, res) => {
-    let userDirPath = `${__dirname}/../../../files/users`;
+    let userDirPath = `${__dirname}/../../../${cfgApp.upload_dir_users}`;
     let filePath = `${userDirPath}/${req.params.filename}`;
     if (!fs.existsSync(filePath)) {
         return res.status(404).send('Image not found');
     }
     res.download(filePath);
-}
+};
 
-const uploadRecipeImage = async (req,res)=>{
-    console.log(req.files.file);
-    if (req.files.file.size > max_filesize) {
+const uploadRecipeImage = async (req, res) => {
+    if (req.files.file.size > cfgApp.max_filesize) {
         return res.status(400).send('Image exceeds max file size');
     }
-    if (!allowed_filetypes.includes(req.files.file.mimetype)) {
+    if (!cfgApp.allowed_filetypes.includes(req.files.file.mimetype)) {
         return res.status(400).send('Filetype not allowed');
     }
-    let recipePath = `${__dirname}/../../../files/recipes`;
+    let recipePath = `${__dirname}/../../../${cfgApp.upload_dir_recipes}`;
 
     if (!fs.existsSync(recipePath)) {
         fs.mkdirSync(recipePath);
     }
 
-    let imageName = `${req.files.file.name}`;
-    let imagePath = `${recipePath}/${imageName}`;
+    let fileName = `${req.files.file.name}`;
+    let filePath = `${recipePath}/${fileName}`;
 
-    req.files.file.mv(imagePath, err => {
+    req.files.file.mv(filePath, err => {
         if (err) {
             console.log(err);
             return res.status(500).send('Internal server error');
         }
-        res.status(200).send({ filename: `/api/v1/storage/recipes/${imageName}` });
+        res.status(200).send({ filename: `/api/v1/storage/recipes/${fileName}` });
     });
-}
+};
 
 const getRecipeImage = (req, res) => {
-    let recipePath = `${__dirname}/../../../files/recipes`;
-    let imagePath = `${recipePath}/${req.params.filename}`;
-    if (!fs.existsSync(imagePath)) {
+    let recipePath = `${__dirname}/../../../${cfgApp.upload_dir_recipes}`;
+    let filePath = `${recipePath}/${req.params.filename}`;
+    if (!fs.existsSync(filePath)) {
         return res.status(404).send('Image not found');
     }
-    res.download(imagePath);
+    res.download(filePath);
 }
 
 module.exports = {

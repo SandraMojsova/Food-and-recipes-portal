@@ -10,6 +10,21 @@
         "secret": "secret"
     },
     "services": {
-        "auth": { "port": 10001 }
+        "proxy": { "port": 10000 },
+        "auth": { "port": 10001 },
+        "storage": { "port": 10002 },
+        "recipes": { "port": 10003 }
+    },
+    "storage": {
+        "upload_dir_users": "files/users",
+        "upload_dir_recipes": "files/recipes",
+        "max_filesize": 1048576,
+        "allowed_filetypes": [
+            "image/jpg",
+            "image/jpeg",
+            "image/pjpg",
+            "image/png",
+            "image/gif"
+        ]
     }
 }

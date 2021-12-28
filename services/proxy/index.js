@@ -1,6 +1,7 @@
 const proxy = require('express-http-proxy');
 const express = require('express');
 const path = require('path');
+const cfg = require('../../pkg/config');
 
 const app = express();
 
@@ -26,9 +27,11 @@ app.use('/', proxy(
 
 app.use('/', express.static(path.join(__dirname, '/../../public/build')));
 
-app.listen(10000, err => {
+const PORT = process.env.PORT || cfg.get('services').proxy.port;
+
+app.listen(PORT, err => {
     if (err) {
         return console.error(err);
     }
-    console.log(`Server started on port 10000`);
+    console.log(`Server started on port ${PORT}`);
 });

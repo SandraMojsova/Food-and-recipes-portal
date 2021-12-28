@@ -32,10 +32,15 @@ const update = async (id, uid, data) => {
     return await Recipe.updateOne({ _id: id, user_id: uid }, data);
 
 }
+const getOne = async (id) => {
+    return await Recipe.findById(id);
+};
+
 
 module.exports = {
     create,
     getAllByUser,
     removeRecipe,
-    update
+    update,
+    getOne
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './index.css'
+import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import plus from '../../images/icon_plus_white.svg';
 import trash_icon from '../../images/icon_trashcan.svg';
@@ -68,7 +69,8 @@ export const MyRecepies = () => {
                     {
                         recipes.map((recipe, i) => {
                             return (
-                                <tr key={i} onClick={() => { history.push('/update-recipe') }}>
+                                <tr key={i} onClick={() => { history.push(`/update-recipe/${recipe._id}`) }}>
+                                    {/* <Link to={`/my-recepies/${recipe._id}`}></Link> */}
                                     <td>{recipe.recipe_title}</td>
                                     <td className="recipe-category">{recipe.category}</td>
                                     <td>{recipe._created}</td>
@@ -79,6 +81,6 @@ export const MyRecepies = () => {
                     }
                 </tbody>
             </table>
-        </div>
+        </div >
     )
 }

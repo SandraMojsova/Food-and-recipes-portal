@@ -21,7 +21,7 @@ export const App = () => {
                 <Route path="/my-profile" component={My_Profile} />
                 <Route path="/my-recepies" component={MyRecepies} />
                 <Route path="/add-recipe" component={AddRecipe} />
-                <Route path="/update-recipe" component={UpdateRecipe} />
+                <Route path="/update-recipe/:id" component={UpdateRecipe} />
             </Switch>
             <Footer />
         </div>

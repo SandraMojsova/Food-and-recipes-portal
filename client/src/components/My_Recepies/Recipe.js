@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, createRecipe, createRecipeBtn, recipe_image }) => {
+export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, createRecipe, createRecipeBtn, recipe_image, RecipeBtn }) => {
     return (
         <div>
             <div className="my-recepies-text">
@@ -86,7 +86,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                             onChange={createRecipe}
                         />
                     </div>
-                    <button className="save-btn" onClick={createRecipeBtn}>
+                    <button className="save-btn" onClick={createRecipeBtn ? createRecipeBtn : RecipeBtn}>
                         Save
                     </button>
                 </div>

@@ -1,14 +1,13 @@
 const validator = require('../../../pkg/recipes/validate');
-const recipeModel = require('../../../pkg/recipes/index');
+const recipeModel = require('../../../pkg/recipes');
 
-const create = async (req, res) => {
+const createRecipe = async (req, res) => {
     try {
         await validator(req.body, "CREATE");
     } catch (err) {
         console.log(err);
         let objKeys = Object.keys(err);
         for (let item of objKeys) {
-            console.log(err[item].message)
             return res.status(400).send(err[item].message);
         }
     }
@@ -23,7 +22,8 @@ const create = async (req, res) => {
     } catch (err) {
         return res.status(500).send(err);
     }
-}
+};
+
 const getRecipesByUser = async (req, res) => {
     try {
         let data = await recipeModel.getAllByUser(req.user.uid);
@@ -31,7 +31,7 @@ const getRecipesByUser = async (req, res) => {
     } catch (err) {
         return res.status(500).send(err);
     }
-}
+};
 
 const deleteRecipe = async (req, res) => {
     try {
@@ -42,24 +42,37 @@ const deleteRecipe = async (req, res) => {
     } catch (err) {
         return res.status(500).send(err);
     }
-}
+};
 
-const updateRecipe = async (req, res) => {
+const getRecipeById = async (req, res) => {
     try {
-        await validator(req.body, 'UPDATE');
-    } catch (err) {
-        return res.status(400).send('Bad request');
-    }
-    try {
-        await recipeModel.updateRecipe(req.params.id, req.user.uid, req.body);
-        res.status(204).send();
+        let data = await recipeModel.getOne(req.params.id);
+        return res.status(200).send(data);
     } catch (err) {
         return res.status(500).send(err);
     }
 };
+
+const updateRecipe = async (req, res) => {
+    try {
+        await validator(req.body.recipeData, 'UPDATE');
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send(err);
+    }
+    try {
+        await recipeModel.update(req.params.id, req.user.uid, req.body.recipeData);
+        res.status(204).send();
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send(err);
+    }
+};
+
 module.exports = {
-    create,
+    createRecipe,
     getRecipesByUser,
     deleteRecipe,
-    updateRecipe
+    updateRecipe,
+    getRecipeById
 }

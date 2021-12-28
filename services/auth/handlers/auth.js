@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const validator = require('../../../pkg/users/validate');
-const user = require('../../../pkg/users');
+const userModel = require('../../../pkg/users');
 const jwt = require('jsonwebtoken');
 const config = require('../../../pkg/config');
 
@@ -11,10 +11,8 @@ const createAccount = async (req, res) => {
         console.log(err);
         let objKeys = Object.keys(err);
         for (let item of objKeys) {
-            console.log(err[item].message)
             return res.status(400).send(err[item].message);
         }
-
     }
     try {
         let data = req.body;
@@ -23,8 +21,8 @@ const createAccount = async (req, res) => {
         }
         data.password = bcrypt.hashSync(data.password);
         data.image = "";
-        let u = await user.create(data);
-        return res.status(201).send(u);
+        let user = await userModel.create(data);
+        return res.status(201).send(user);
     } catch (err) {
         console.log(err);
         if (err.code === 11000) {
@@ -40,38 +38,36 @@ const login = async (req, res) => {
     } catch (err) {
         console.log(err);
         if (err.password) {
-            console.log(err.password.message)
             return res.status(400).send(err.password.message)
         }
         if (err.email) {
-            console.log(err.email.message)
             return res.status(400).send(err.email.message)
         }
     }
     try {
-        let u = await user.getByEmail(req.body.email);
-        if (!u) {
+        let user = await userModel.getByEmail(req.body.email);
+        if (!user) {
             return res.status(400).send('Incorrect Email address');
         }
-        if (!bcrypt.compareSync(req.body.password, u.password)) {
+        if (!bcrypt.compareSync(req.body.password, user.password)) {
             return res.status(400).send('Wrong password');
         }
         let token = jwt.sign({
-            uid: u._id,
-            email: u.email,
+            uid: user._id,
+            email: user.email,
             exp: parseInt((new Date().getTime() + 24 * 60 * 60 * 1000) / 1000)
         }, config.get('security').secret);
         return res.status(200).send(token);
     } catch (err) {
         console.log(err);
-        return res.status(500).send('Internal server error');
+        return res.status(500).send(err);
     }
 };
 
 const getUser = async (req, res) => {
     try {
-        let u = await user.getByEmail(req.user.email);
-        return res.status(200).send(u);
+        let user = await userModel.getByEmail(req.user.email);
+        return res.status(200).send(user);
     } catch (err) {
         return res.status(500).send(err);
     }
@@ -84,26 +80,20 @@ const updateProfile = async (req, res) => {
         console.log(err);
         let objKeys = Object.keys(err);
         for (let item of objKeys) {
-            console.log(err[item].message)
             return res.status(400).send(err[item].message);
         }
     }
     try {
-        // console.log(req.user.uid);
-        // console.log(req.body);
-        let data=req.body.profileData;
+        let data = req.body.profileData;
         if (data.password && data.password !== data.repeat_password) {
             return res.status(400).send('Passwords must be same');
         }
         if (data.password && data.password === data.repeat_password) {
             data.password = bcrypt.hashSync(data.password);
         }
-        let s = await user.update(req.user.uid, data);
-        console.log(s);
-        return res.status(200).send('ok');
+        await userModel.update(req.user.uid, data);
+        return res.status(200).send('Updated');
     } catch (err) {
-        console.log(err)
-        console.log(err.message);
         return res.status(500).send(err);
     }
 };
