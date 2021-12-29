@@ -1,43 +1,45 @@
 import React, { useState, useEffect } from 'react';
-import { userInfo, updateUser, changeAvatar } from '../../api/index';
+import { userInfo, updateUser, changeAvatar } from '../../api/users';
 import './style.css';
 import axios from 'axios';
 import img from '../../images/profile-pic.jpg';
+import { useAuthContext } from '../Context'
 
 export const My_Profile = () => {
     let token = localStorage.getItem('jwt');
 
-    const [profileData, setProfileData] = useState({
-        email: '',
-        password: '',
-        first_name: '',
-        last_name: '',
-        birthday: '',
-        repeat_password: '',
-        image: ''
-    });
+    // const [profileData, setProfileData] = useState({
+    //     email: '',
+    //     password: '',
+    //     first_name: '',
+    //     last_name: '',
+    //     birthday: '',
+    //     repeat_password: '',
+    //     image: ''
+    // });
+    let { profileData, setProfileData } = useAuthContext();
     const [id, setId] = useState('');
-    const [err , setError]= useState(null);
+    const [err, setError] = useState(null);
 
     const update = (e) => {
         setProfileData({ ...profileData, [e.target.name]: e.target.value })
     };
 
-    const profileInfo = async () => {
-        try {
-            let response = await userInfo(token);
-            setId(response.data._id);
-            setProfileData({
-                email: response.data.email,
-                first_name: response.data.first_name,
-                last_name: response.data.last_name,
-                image: response.data.image,
-                birthday: response.data.birthday,
-        })
-        } catch (err) {
-            console.log(err.response);
-        }
-    }
+    // const profileInfo = async () => {
+    //     try {
+    //         let response = await userInfo(token);
+    //         setId(response.data._id);
+    //         setProfileData({
+    //             email: response.data.email,
+    //             first_name: response.data.first_name,
+    //             last_name: response.data.last_name,
+    //             image: response.data.image,
+    //             birthday: response.data.birthday,
+    //         })
+    //     } catch (err) {
+    //         console.log(err.response);
+    //     }
+    // }
 
 
     const loadImage = async (event) => {
@@ -73,11 +75,8 @@ export const My_Profile = () => {
             console.log(err.response);
         }
     }
-    useEffect(() => {
-        profileInfo();
-    }, []);
 
-    console.log(profileData.image);
+    // console.log(profileData.image);
     return (
         <div id="my-profile">
             <div className="my-profile-text">

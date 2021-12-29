@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Nav } from './Nav';
 import { Footer } from './Footer';
 import { Login } from './Login';
-import { Create_Account } from './Create_Account/Create_Account';
+import { CreateAccount } from './CreateAccount';
 import { My_Profile } from './My_Profile/My_Profile';
 import { Context } from './Context';
 import { MyRecepies } from './My_Recepies/MyRecepies';
@@ -14,16 +14,17 @@ export const App = () => {
         <div id="app">
             <Context>
                 <Nav />
+                <Switch>
+                    <Route path="/login" component={Login} />
+                    <Route path="/create-account" component={CreateAccount} />
+                    <Route path="/my-profile" component={My_Profile} />
+                    <Route path="/my-recepies" component={MyRecepies} />
+                    <Route path="/add-recipe" component={AddRecipe} />
+                    <Route path="/update-recipe/:id" component={UpdateRecipe} />
+                </Switch>
+                <Footer />
             </Context>
-            <Switch>
-                <Route path="/login" component={Login} />
-                <Route path="/create-account" component={Create_Account} />
-                <Route path="/my-profile" component={My_Profile} />
-                <Route path="/my-recepies" component={MyRecepies} />
-                <Route path="/add-recipe" component={AddRecipe} />
-                <Route path="/update-recipe/:id" component={UpdateRecipe} />
-            </Switch>
-            <Footer />
+
         </div>
     )
 }

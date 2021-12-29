@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { create } from "../../api/index";
+import { create } from "../../api/users";
 import "./style.css";
 
-export const Create_Account = () => {
+export const CreateAccount = () => {
 
     const [createAccountData, setCreateAccountData] = useState({
         email: "",
@@ -27,19 +27,13 @@ export const Create_Account = () => {
     const createAccBtn = async (e) => {
         e.preventDefault();
         try {
-            let res = await create(createAccountData);
-            console.log(res);
-            if (res.status === 201) {
+            let response = await create(createAccountData);
+            if (response.status === 201) {
                 history.push("/login");
             }
         } catch (error) {
-            if (error.response) {
-                console.log(error.response.data);
-                setError(error.response.data);
-            } else {
-                console.log(error);
-                setError(error);
-            }
+            console.log(error);
+            setError(error.response.data);
         }
     };
 
@@ -94,6 +88,7 @@ export const Create_Account = () => {
                             />
                         </div>
                         <button onClick={createAccBtn}>create account</button>
+                        {err && <h3 style={{ color: "#8B0000" }}>Error : {err}</h3>}
                     </div>
                     <div>
                         <div>
@@ -125,7 +120,6 @@ export const Create_Account = () => {
                         </div>
                     </div>
                 </form>
-                {err && <h3>{err}</h3>}
             </div>
         </div>
     );
