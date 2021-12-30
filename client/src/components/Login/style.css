@@ -1,28 +1,33 @@
 #login {
-    padding: 20px 10%;
+    padding: 63px 10% 20px;
 }
 
 .login {
     display: flex;
-    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
 }
 
 .login h2 {
     font: normal normal bold 36px/48px Roboto Slab;
     color: #96bb36;
+    margin: 0;
+    padding-right: 10px;
 }
 
 #login-border {
-    width: 900px;
     height: 1px;
     background-color: #a5a5a5;
-    margin-top: 65px;
+    margin-bottom: 10px;
+    flex-grow: 2
 }
 
 .login-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 323px;
+    margin-top: 93px;
 }
 
 .login-text {
@@ -38,10 +43,9 @@
 .login-text p {
     font: normal normal normal 20px/26px Roboto Slab;
     color: #a5a5a5;
-    height: 156px;
 }
 
-.form {
+.formData {
     display: flex;
     flex-direction: column;
 }
@@ -49,6 +53,10 @@
     display: flex;
     flex-direction: column;
     color: #a5a5a5;
+}
+
+.form-container:first-of-type {
+    margin-bottom: 23px;
 }
 
 .form-container label {

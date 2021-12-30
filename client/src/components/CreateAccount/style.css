@@ -1,24 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;700&display=swap');
 
 #create-account {
-    padding: 20px 10%;
+        padding: 63px 10% 20px;
 }
 
 .create-account-text {
     display: flex;
-    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.create-account-text h2 {
+    font: normal normal bold 36px/48px Roboto Slab;
+    margin: 0;
+    padding-right: 10px;
 }
 
 #create-border {
-    width: 800px;
     height: 1px;
     background-color: #a5a5a5;
-    margin-top: 40px;
+    margin-bottom: 10px;
+    flex-grow: 2
 }
 .container {
     display: flex;
     justify-content: space-between;
-    height: 364px;
+    margin-bottom: 202px;
+    /* height: 364px; */
 }
 
 .create-account-info {
@@ -31,18 +39,20 @@
     color: #f0972a;
     margin-bottom: 29px;
     font: normal normal bold 46px/60px Roboto Slab;
+    margin-top:93px;
 }
 
 .create-account-info p {
     font: normal normal normal 20px/26px Roboto Slab;
     color: #a5a5a5;
     width: 412px;
-    height: 215px;
 }
 
 .form {
     display: flex;
     justify-content: space-between;
+    margin-top:93px;
+    width: calc(100% - 514px);
 }
 
 .form label {
@@ -51,7 +61,7 @@
 }
 
 .form input {
-    width: 294px;
+    width: 254px;
     height: 40px;
     border: 1px solid #a5a5a5;
     border-radius: 5px;

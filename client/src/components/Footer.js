@@ -1,12 +1,10 @@
 import React from 'react';
+import logo_white from '../images/logo_white.svg'
 
 export const Footer = () => {
     return (
         <div id="footer">
-            <p className="footer-logo">
-                <span id="logo-babys">Baby's</span>
-                <span id="logo">food place</span>
-            </p>
+            <img src={logo_white} alt=""/>
             <ul className="footer-list">
                 <li>Breakfast</li>
                 <li>Brunch</li>

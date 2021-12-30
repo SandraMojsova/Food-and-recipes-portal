@@ -29,26 +29,38 @@ export const Login = () => {
             let res = await login(loginData);
             console.log(res);
             localStorage.setItem('jwt', res.data);
+            if(res.status===200) {
+            history.push('/my-profile');
+            }
         } catch (err) {
             console.log(err.response.data);
             setError(err.response.data);
         }
-        try {
-            let response = await axios({
-                method: 'GET',
-                url: `/api/v1/auth/users`,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-                }
-            })
-            console.log(response);
-            setProfileData(response.data);
-            setLogged(true);
-            history.push('/my-profile');
-        } catch (err) {
-            console.log(err);
-        }
+        // try {
+        //     let response = await axios({
+        //         method: 'GET',
+        //         url: `/api/v1/auth/users`,
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+        //         }
+        //     })
+        //     console.log(response);
+        //     setProfileData({
+        //                     email: response.data.email,
+        //                     first_name: response.data.first_name,
+        //                     last_name: response.data.last_name,
+        //                     image: response.data.image,
+        //                     birthday: response.data.birthday,
+        //                 });
+        //     setLogged(true);
+        //     history.push('/my-profile');
+        //     // if(res.status===200) {
+        //     // history.push('/my-profile');
+        //     // }
+        // } catch (err) {
+        //     console.log(err);
+        // }
     };
     return (
         <div id="login">
@@ -62,7 +74,7 @@ export const Login = () => {
                         <h2>Welcome to <span style={{ color: "black" }}> Baby's </span></h2>
                         <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
                     </div>
-                    <form method="post" className="form">
+                    <form method="post" className="formData">
                         <div className="form-container">
                             <label htmlFor="email">Email</label>
                             <input type="text" name="email" placeholder="user@domain.com" value={loginData.email} onChange={loginFieldUpdate} />

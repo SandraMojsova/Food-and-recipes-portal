@@ -103,7 +103,7 @@ export const CreateAccount = () => {
                         <div>
                             <label htmlFor="birthday">Birthday</label>
                             <input
-                                type="text"
+                                type="date"
                                 name="birthday"
                                 value={createAccountData.birthday}
                                 onChange={createFieldUpdate}

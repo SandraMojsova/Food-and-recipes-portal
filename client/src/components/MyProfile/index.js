@@ -8,7 +8,19 @@ import { useAuthContext } from '../Context'
 export const MyProfile = () => {
     let token = localStorage.getItem('jwt');
 
-    let { profileData, setProfileData, id } = useAuthContext();
+    let {logged, setLogged } = useAuthContext();
+    const [profileData, setProfileData] = useState({
+        email: '',
+        password: '',
+        first_name: '',
+        last_name: '',
+        birthday: '',
+        repeat_password: '',
+        image: ''
+    });
+
+    const [id,setId] = useState(null);
+
 
     const [err, setError] = useState(null);
 
@@ -16,21 +28,23 @@ export const MyProfile = () => {
         setProfileData({ ...profileData, [e.target.name]: e.target.value })
     };
 
-    // const profileInfo = async () => {
-    //     try {
-    //         let response = await userInfo(token);
-    //         setId(response.data._id);
-    //         setProfileData({
-    //             email: response.data.email,
-    //             first_name: response.data.first_name,
-    //             last_name: response.data.last_name,
-    //             image: response.data.image,
-    //             birthday: response.data.birthday,
-    //         })
-    //     } catch (err) {
-    //         console.log(err.response);
-    //     }
-    // }
+    const profileInfo = async () => {
+        try {
+            let response = await userInfo(token);
+            setId(response.data._id);
+            setProfileData({
+                email: response.data.email,
+                first_name: response.data.first_name,
+                last_name: response.data.last_name,
+                image: response.data.image,
+                birthday: response.data.birthday.getFullYear(),
+                // date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate()
+            })
+            setLogged(true);
+        } catch (err) {
+            console.log(err.response);
+        }
+    }
 
 
     const loadImage = async (event) => {
@@ -67,27 +81,26 @@ export const MyProfile = () => {
         }
     }
 
-    // useEffect(() => {
-    //     // profileInfo();
-    // }, [])
-    // console.log(profileData.image);
+    useEffect(() => {
+        profileInfo();
+    }, [])
+    console.log(profileData.image);
     return (
         <div id="my-profile">
             <div className="my-profile-text">
-                <h2 style={{ color: "#96BB36" }}>My Profile</h2>
+                <h2>My Profile</h2>
                 <div id="border"></div>
             </div>
             <div className="profile-info">
                 <div className='upload-picture'>
-                    <img src={profileData.image ? `${profileData.image}` : img} style={{ widht: "50px", height: "100px" }} />
-                    <br />
+                    <img src={profileData.image ? `${profileData.image}` : img} alt="" />
                     <div className='avatar-button'>
-                        <label htmlfor="upload">Change Avatar</label>
-                        <input style={{ display: 'none' }} type="file" id="upload" onChange={loadImage} />
+                        <label htmlFor="upload">Change Avatar</label>
+                        <input  style={{ display: 'none' }} type="file" id="upload" onChange={loadImage} />
                     </div>
                 </div>
                 <div className="profile-container">
-                    <div className="first">
+                    <div className="profile-container-data">
                         <div className="profile">
                             <label htmlFor="first_name">First Name</label>
                             <input type="text" name="first_name" value={profileData.first_name} onChange={update} />
@@ -110,7 +123,7 @@ export const MyProfile = () => {
                         </div>
                         <div className="profile">
                             <label htmlFor="birthday">Birthday</label>
-                            <input type="text" name="birthday" placeholder="****" value={profileData.birthday} onChange={update} />
+                            <input type="date" name="birthday" placeholder="****" value={profileData.birthday} onChange={update} />
                         </div>
                         <div className="profile">
                             <label htmlFor="repeat_password">Repeat Password</label>

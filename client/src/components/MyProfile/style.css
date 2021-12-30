@@ -1,35 +1,35 @@
 #my-profile {
-    padding: 20px 10%;
+    padding: 63px 10% 20px;
 }
 
 .my-profile-text {
     display: flex;
-    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.my-profile-text h2 {
+    font: normal normal bold 36px/48px Roboto Slab;
+    color: #96BB36;
+    padding-right: 10px;
+    margin: 0;
 }
 #border {
-    width: 950px;
     height: 1px;
     background-color: #a5a5a5;
-    margin-top: 40px;
+    margin-bottom: 10px;
+    flex-grow: 2
 }
 
-#profile-image {
+.upload-picture {
+    margin-right: 97px;
+}
+
+.upload-picture img {
     box-shadow: 0px 3px 6px #00000029;
-    background: url('../../images/profile-pic.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 174px;
-    height: 123px;
-}
-
-.avatar-button {
-    border: 1px solid #a5a5a5;
-    width: 174px;
-    height: 32px;
-    text-align: center;
-    padding-top: 10px;
-    margin-top: 35px;
+    width: 123px;
+height: 123px;
+margin-left: 20px;
 }
 
 .avatar-button label {
@@ -37,10 +37,21 @@
     color: #a5a5a5;
     text-transform: uppercase;
 }
+.avatar-button {
+    border: 1px solid #a5a5a5;
+    border-radius: 5px;
+    width: 174px;
+    height: 32px;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 35px;
+}
+
 .profile-info {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    margin-top: 93px;
+    margin-bottom: 228px;
 }
 
 .profile-container {
@@ -48,7 +59,7 @@
     justify-content: space-between;
 }
 
-.first {
+.profile-container-data {
     margin-right: 33px;
 }
 
@@ -70,6 +81,7 @@
     border-radius: 5px;
     background: #f0efea;
     color: #a5a5a5;
+    font: normal normal bold 14px/19px Roboto;
 }
 
 .save-button {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import logo from '../images/babys-food-place.png';
+import logo_color from '../images/logo_color.svg';
 import { useAuthContext } from './Context';
 
 export const Nav = () => {
@@ -15,7 +15,7 @@ export const Nav = () => {
 
     return (
         <div id="nav">
-            <Link to="/"><img className="logo" src={logo} alt="logo" /></Link>
+            <Link to="/"><img className="logo" src={logo_color} alt="logo" /></Link>
             <ul className="nav_links">
                 <li><Link to="/breakfast" style={{ textDecoration: 'none', color: '#A5A5A5' }}> Breakfast</Link></li>
                 <li><Link to="/brunch" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Brunch</Link></li>

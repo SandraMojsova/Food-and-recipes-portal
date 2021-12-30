@@ -4,18 +4,18 @@ import axios from 'axios';
 export const AuthContext = React.createContext();
 
 export const Context = ({ children }) => {
-    let token = localStorage.getItem('jwt');
+    // let token = localStorage.getItem('jwt');
     const [logged, setLogged] = useState(false);
-    const [id, setId] = useState('');
-    const [profileData, setProfileData] = useState({
-        email: '',
-        password: '',
-        first_name: '',
-        last_name: '',
-        birthday: '',
-        repeat_password: '',
-        image: ''
-    });
+    // const [id, setId] = useState('');
+    // const [profileData, setProfileData] = useState({
+    //     email: '',
+    //     password: '',
+    //     first_name: '',
+    //     last_name: '',
+    //     birthday: '',
+    //     repeat_password: '',
+    //     image: ''
+    // });
 
     // const getU = async () => {
     //     try {
@@ -44,9 +44,9 @@ export const Context = ({ children }) => {
     // useEffect(() => {
     //     getU();
     // }, []);
-    console.log(profileData);
+    // console.log(profileData);
     return (
-        <AuthContext.Provider value={{ logged, setLogged, profileData, setProfileData, id }}>
+        <AuthContext.Provider value={{ logged, setLogged }}>
             {children}
         </AuthContext.Provider>
     )
