@@ -5,20 +5,11 @@ import axios from 'axios';
 import img from '../../images/profile-pic.jpg';
 import { useAuthContext } from '../Context'
 
-export const My_Profile = () => {
+export const MyProfile = () => {
     let token = localStorage.getItem('jwt');
 
-    // const [profileData, setProfileData] = useState({
-    //     email: '',
-    //     password: '',
-    //     first_name: '',
-    //     last_name: '',
-    //     birthday: '',
-    //     repeat_password: '',
-    //     image: ''
-    // });
-    let { profileData, setProfileData } = useAuthContext();
-    const [id, setId] = useState('');
+    let { profileData, setProfileData, id } = useAuthContext();
+
     const [err, setError] = useState(null);
 
     const update = (e) => {
@@ -76,6 +67,9 @@ export const My_Profile = () => {
         }
     }
 
+    // useEffect(() => {
+    //     // profileInfo();
+    // }, [])
     // console.log(profileData.image);
     return (
         <div id="my-profile">
@@ -88,7 +82,7 @@ export const My_Profile = () => {
                     <img src={profileData.image ? `${profileData.image}` : img} style={{ widht: "50px", height: "100px" }} />
                     <br />
                     <div className='avatar-button'>
-                        <label for="upload">Change Avatar</label>
+                        <label htmlfor="upload">Change Avatar</label>
                         <input style={{ display: 'none' }} type="file" id="upload" onChange={loadImage} />
                     </div>
                 </div>
@@ -103,29 +97,29 @@ export const My_Profile = () => {
                             <input type="text" name="email" value={profileData.email} />
                         </div>
                         <div className="profile">
-                            <label for="password">Password</label>
+                            <label htmlFor="password">Password</label>
                             <input type="password" name="password" placeholder="****" value={profileData.password} onChange={update} />
                         </div>
                         <button onClick={save} className="save-button">Save</button>
+                        {err && <h3 style={{ color: "#8B0000" }}>Error : {err}</h3>}
                     </div>
                     <div className="second">
                         <div className="profile">
-                            <label for="last_name">Last Name</label>
+                            <label htmlFor="last_name">Last Name</label>
                             <input type="text" name="last_name" value={profileData.last_name} onChange={update} />
                         </div>
                         <div className="profile">
-                            <label for="birthday">Birthday</label>
+                            <label htmlFor="birthday">Birthday</label>
                             <input type="text" name="birthday" placeholder="****" value={profileData.birthday} onChange={update} />
                         </div>
                         <div className="profile">
-                            <label for="repeat_password">Repeat Password</label>
+                            <label htmlFor="repeat_password">Repeat Password</label>
                             <input type="password" placeholder="****" name="repeat_password" value={profileData.repeat_password} onChange={update} />
                         </div>
                     </div>
 
                 </div>
             </div >
-            {err && <h3>{err}</h3>}
         </div >
     )
 }

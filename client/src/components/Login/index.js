@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { login } from '../../api/users';
-import './style.css'
+import './style.css';
+import axios from 'axios';
+import { useAuthContext } from '../Context';
 
 export const Login = () => {
 
@@ -11,6 +13,9 @@ export const Login = () => {
     };
     const [loginData, setLoginData] = useState(loginDataInit);
     const [err, setError] = useState(null);
+
+    let { profileData, setProfileData, logged, setLogged } = useAuthContext();
+    console.log(profileData);
 
     const loginFieldUpdate = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -22,13 +27,27 @@ export const Login = () => {
         e.preventDefault();
         try {
             let res = await login(loginData);
+            console.log(res);
             localStorage.setItem('jwt', res.data);
-            if (res.status === 200) {
-                history.push('/my-profile');
-            }
         } catch (err) {
             console.log(err.response.data);
             setError(err.response.data);
+        }
+        try {
+            let response = await axios({
+                method: 'GET',
+                url: `/api/v1/auth/users`,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                }
+            })
+            console.log(response);
+            setProfileData(response.data);
+            setLogged(true);
+            history.push('/my-profile');
+        } catch (err) {
+            console.log(err);
         }
     };
     return (
