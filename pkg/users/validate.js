@@ -5,7 +5,7 @@ const AccountCreate = {
     password: 'required|minLength:8',
     first_name: 'required|minLength:3',
     last_name: 'required|minLength:4',
-    birthday: 'required|dateFormat:YYYY-MM-DD',
+    birthday: 'required',
     repeat_password: 'required',
 };
 
