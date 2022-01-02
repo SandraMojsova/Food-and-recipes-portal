@@ -7,7 +7,7 @@ export const Nav = () => {
     const history = useHistory();
     let { logged, setLogged } = useAuthContext();
     //console.log(logged);
-    const logoutUser = () => {
+    const logoutUser = async () => {
         localStorage.removeItem('jwt');
         setLogged(false);
         history.push('/');

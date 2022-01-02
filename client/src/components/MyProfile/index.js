@@ -5,67 +5,95 @@ import axios from 'axios';
 import img from '../../images/profile-pic.jpg';
 import { useAuthContext } from '../Context'
 
+
 export const MyProfile = () => {
     let token = localStorage.getItem('jwt');
 
-    let {logged, setLogged } = useAuthContext();
-    const [profileData, setProfileData] = useState({
-        email: '',
-        password: '',
-        first_name: '',
-        last_name: '',
-        birthday: '',
-        repeat_password: '',
-        image: ''
-    });
+    let {profileData, setProfileData, id } = useAuthContext();
+    // const [profileData, setProfileData] = useState({
+    //     email: '',
+    //     password: '',
+    //     first_name: '',
+    //     last_name: '',
+    //     birthday: '',
+    //     repeat_password: '',
+    //     image: ''
+    // });
 
-    const [id,setId] = useState(null);
+    // const [id,setId] = useState(null);
 
 
     const [err, setError] = useState(null);
+    const [image,setImage]= useState(null);
+    const [upload, setUpload]= useState(null);
 
     const update = (e) => {
         setProfileData({ ...profileData, [e.target.name]: e.target.value })
     };
 
-    const profileInfo = async () => {
-        try {
-            let response = await userInfo(token);
-            setId(response.data._id);
-            setProfileData({
-                email: response.data.email,
-                first_name: response.data.first_name,
-                last_name: response.data.last_name,
-                image: response.data.image,
-                birthday: response.data.birthday.getFullYear(),
-                // date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate()
-            })
-            setLogged(true);
-        } catch (err) {
-            console.log(err.response);
+    // const profileInfo = async () => {
+    //     try {
+    //         let response = await userInfo(token);
+    //         setId(response.data._id);
+    //         setProfileData({
+    //             email: response.data.email,
+    //             first_name: response.data.first_name,
+    //             last_name: response.data.last_name,
+    //             image: response.data.image,
+    //             birthday: response.data.birthday.getFullYear(),
+    //             // date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate()
+    //         })
+    //         setLogged(true);
+    //     } catch (err) {
+    //         console.log(err.response);
+    //     }
+    // }
+    
+    const loadImage = async(event)=> {
+        if (event.target.files && event.target.files[0]) {
+            setUpload(event.target.files[0]);
+            setImage(URL.createObjectURL(event.target.files[0]));
         }
     }
-
-
-    const loadImage = async (event) => {
-        let image = event.target.files[0];
-        const formData = new FormData();
-        formData.append('file', image);
-        const res = await axios({
-            method: 'POST',
-            url: `/api/v1/storage/users`,
-            data: formData,
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        console.log(res);
-        console.log(res.data);
-        let p = res.data.filename;
-        setProfileData({ ...profileData, image: p })
-    }
-
+    // // URL.createObjectURL(res.data)
+    // const loadImage = async (event) => {
+    //     let image = event.target.files[0];
+    //     const formData = new FormData();
+    //     formData.append('file', image);
+    //     const res = await axios({
+    //         method: 'POST',
+    //         url: `/api/v1/storage/users`,
+    //         data: formData,
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data',
+    //             'Authorization': `Bearer ${token}`
+    //         }
+    //     })
+    //     console.log(res);
+    //     console.log(res.data);
+    //     let p = res.data.filename;
+    //     setProfileData({ ...profileData, image: p })
+    // }
+    // const up = async() => {
+    //     const formData = new FormData();
+    //     formData.append('file', upload);
+    //     const res =await  axios({
+    //         method: 'POST',
+    //         url: `/api/v1/storage/users`,
+    //         data: formData,
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data',
+    //             'Authorization': `Bearer ${token}`
+    //         },
+    //     })
+    //     console.log(res);
+    //     console.log(res.data);
+    //     let p = res.data.filename;
+    //     setProfileData({ ...profileData, image: p })
+    // }
+    console.log(image);
+    console.log(upload);
+  
     const save = async (event) => {
         try {
             console.log(profileData);
@@ -73,7 +101,7 @@ export const MyProfile = () => {
             const response = await updateUser(id, token, profileData)
             console.log(response);
             console.log(response.data);
-            window.location.reload();
+            // window.location.reload();
         } catch (err) {
             // console.log(err);
             setError(err.response.data);
@@ -81,10 +109,10 @@ export const MyProfile = () => {
         }
     }
 
-    useEffect(() => {
-        profileInfo();
-    }, [])
-    console.log(profileData.image);
+    // useEffect(() => {
+    //     setProfileData();
+    // }, [])
+    // console.log(profileData.image);
     return (
         <div id="my-profile">
             <div className="my-profile-text">
@@ -92,8 +120,13 @@ export const MyProfile = () => {
                 <div id="border"></div>
             </div>
             <div className="profile-info">
-                <div className='upload-picture'>
-                    <img src={profileData.image ? `${profileData.image}` : img} alt="" />
+                <div className='upload-picture'> 
+                {
+                    image==null ?
+                    <img src={profileData.image ? `${profileData.image}` : img} alt="" /> :
+                    <img src={image} alt="" />
+                    }
+
                     <div className='avatar-button'>
                         <label htmlFor="upload">Change Avatar</label>
                         <input  style={{ display: 'none' }} type="file" id="upload" onChange={loadImage} />

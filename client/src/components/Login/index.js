@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { login } from '../../api/users';
 import './style.css';
 import axios from 'axios';
@@ -15,7 +15,7 @@ export const Login = () => {
     const [err, setError] = useState(null);
 
     let { profileData, setProfileData, logged, setLogged } = useAuthContext();
-    console.log(profileData);
+    // console.log(profileData);
 
     const loginFieldUpdate = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -25,16 +25,17 @@ export const Login = () => {
 
     const loginBtn = async (e) => {
         e.preventDefault();
+        let res='';
         try {
-            let res = await login(loginData);
+            res = await login(loginData);
             console.log(res);
             localStorage.setItem('jwt', res.data);
-            if(res.status===200) {
-            history.push('/my-profile');
-            }
         } catch (err) {
             console.log(err.response.data);
             setError(err.response.data);
+        }
+        if(res.status===200) {
+               history.push('/my-profile');
         }
         // try {
         //     let response = await axios({
