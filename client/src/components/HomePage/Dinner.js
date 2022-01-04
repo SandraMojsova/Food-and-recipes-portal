@@ -3,13 +3,13 @@ import {Card} from './Card';
 import axios from 'axios';
 import './style.css';
 
-export const Brunch = ()=> {
+export const Dinner = ()=> {
     const [recipes, setRecipes]= useState([]);
-    const categoryBrunch = async()=> {
+    const categoryDinner = async()=> {
          try{
          let response = await axios({
              method: 'GET',
-             url: `/api/v1/recipes/all/brunch`,
+             url: `/api/v1/recipes/all/dinner`,
              headers: { 'Content-Type': 'application/json' }
          })
          console.log(response.data);
@@ -19,13 +19,13 @@ export const Brunch = ()=> {
          }
      }
      useEffect(()=>{
-        categoryBrunch();
+        categoryDinner();
      },[])
  
     return(
-        <div id="brunch">
-             <div className="home-page-text">
-                <h2 style={{ color: "#96BB36" }}>Brunch</h2>
+        <div id="dinner">
+            <div className="home-page-text">
+                <h2 style={{ color: "#96BB36" }}>Dinner</h2>
                 <div className="home-page-border"></div>
             </div>
                  <div className='new-recipes'>

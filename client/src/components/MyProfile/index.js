@@ -101,7 +101,7 @@ export const MyProfile = () => {
             const response = await updateUser(id, token, profileData)
             console.log(response);
             console.log(response.data);
-            // window.location.reload();
+            window.location.reload();
         } catch (err) {
             // console.log(err);
             setError(err.response.data);

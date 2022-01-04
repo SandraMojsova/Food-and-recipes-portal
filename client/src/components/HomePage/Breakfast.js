@@ -24,6 +24,10 @@ export const Breakfast = ()=> {
  
     return(
         <div id="breakfast">
+             <div className="home-page-text">
+                <h2 style={{ color: "#96BB36" }}>Breakfast</h2>
+                <div className="home-page-border"></div>
+            </div>
                  <div className='new-recipes'>
             {
                 recipes.map((item,index)=> {

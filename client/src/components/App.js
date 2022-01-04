@@ -12,6 +12,8 @@ import { UpdateRecipe } from './My_Recepies/UpdateRecipe';
 import { HomePage } from './HomePage/HomePage';
 import {Breakfast} from './HomePage/Breakfast';
 import {Brunch} from './HomePage/Brunch';
+import { Lunch } from './HomePage/Lunch';
+import {Dinner} from './HomePage/Dinner'
 export const App = () => {
     return (
         <div id="app">
@@ -25,6 +27,8 @@ export const App = () => {
                 <Route path="/update-recipe/:id" component={UpdateRecipe} />
                 <Route path="/breakfast" component={Breakfast} />
                 <Route path="/brunch" component={Brunch} />
+                <Route path="/lunch" component={Lunch} />
+                <Route path="/dinner" component={Dinner} />
                 <Route path="/" component={HomePage} />
             </Switch>
             <Footer />

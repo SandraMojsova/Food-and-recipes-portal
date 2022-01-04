@@ -1,4 +1,8 @@
-#home-page {
+#home-page,
+#breakfast,
+#lunch,
+#brunch,
+#dinner {
   padding: 63px 10% 20px;
 }
 
