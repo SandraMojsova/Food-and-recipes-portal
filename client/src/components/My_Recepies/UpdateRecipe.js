@@ -74,8 +74,7 @@ export const UpdateRecipe = () => {
     }, [])
 
     return (
-        <div>
-            <h1>Hello</h1>
+        <div id="update-recipe">
             <Recipe
                 recipeData={recipeData}
                 back_button={back_button}

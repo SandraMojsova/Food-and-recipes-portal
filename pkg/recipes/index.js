@@ -10,7 +10,7 @@ const Recipe = mongoose.model(
         short_description: String,
         recipe: String,
         user_id: String,
-        _created: Date,
+        _created: String,
         image: String
     },
     'recipes'
@@ -36,11 +36,21 @@ const getOne = async (id) => {
     return await Recipe.findById(id);
 };
 
+const getAll = async()=>{
+    return await Recipe.find({});
+}
+
+const getByCategory= async(category)=> {
+    return await Recipe.find({category: category})
+}
+
 
 module.exports = {
     create,
     getAllByUser,
     removeRecipe,
     update,
-    getOne
+    getOne,
+    getAll,
+    getByCategory
 }

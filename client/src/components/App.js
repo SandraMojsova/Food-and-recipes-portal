@@ -9,6 +9,9 @@ import { MyProfile } from './MyProfile';
 import { MyRecepies } from './My_Recepies/MyRecepies';
 import { AddRecipe } from './My_Recepies/AddRecipe';
 import { UpdateRecipe } from './My_Recepies/UpdateRecipe';
+import { HomePage } from './HomePage/HomePage';
+import {Breakfast} from './HomePage/Breakfast';
+import {Brunch} from './HomePage/Brunch';
 export const App = () => {
     return (
         <div id="app">
@@ -20,6 +23,9 @@ export const App = () => {
                 <Route path="/my-recepies" component={MyRecepies} />
                 <Route path="/add-recipe" component={AddRecipe} />
                 <Route path="/update-recipe/:id" component={UpdateRecipe} />
+                <Route path="/breakfast" component={Breakfast} />
+                <Route path="/brunch" component={Brunch} />
+                <Route path="/" component={HomePage} />
             </Switch>
             <Footer />
 

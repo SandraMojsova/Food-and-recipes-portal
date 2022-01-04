@@ -28,7 +28,8 @@ export const MyRecepies = () => {
         }
     }
 
-    const removeRecipe = async (id) => {
+    const removeRecipe = async (event,id) => {
+        event.stopPropagation();
         let selectedRecipe = recipes.find((recipe) => recipe._id === id);
         try {
             await deleteRecipe(selectedRecipe._id, token)
@@ -67,7 +68,7 @@ export const MyRecepies = () => {
                                     <td>{recipe.recipe_title}</td>
                                     <td className="recipe-category">{recipe.category}</td>
                                     <td>{recipe._created}</td>
-                                    <td onClick={() => { removeRecipe(recipe._id) }}><img src={trash_icon} /></td>
+                                    <td onClick={(event) => { removeRecipe(event, recipe._id) }}><img src={trash_icon} /></td>
                                 </tr>
                             )
                         })

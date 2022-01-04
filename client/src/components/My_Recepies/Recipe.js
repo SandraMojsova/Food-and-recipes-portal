@@ -48,7 +48,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                             <label htmlFor="category">Category</label>
                             <select
                                 name="category"
-                                className="category inputs"
+                                className="inputs"
                                 value={recipeData.category}
                                 onChange={createRecipe}
                             >
