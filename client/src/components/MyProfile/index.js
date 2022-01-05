@@ -49,31 +49,48 @@ export const MyProfile = () => {
     //     }
     // }
     
-    const loadImage = async(event)=> {
-        if (event.target.files && event.target.files[0]) {
-            setUpload(event.target.files[0]);
-            setImage(URL.createObjectURL(event.target.files[0]));
-        }
-    }
-    // // URL.createObjectURL(res.data)
-    // const loadImage = async (event) => {
-    //     let image = event.target.files[0];
-    //     const formData = new FormData();
-    //     formData.append('file', image);
-    //     const res = await axios({
-    //         method: 'POST',
-    //         url: `/api/v1/storage/users`,
-    //         data: formData,
-    //         headers: {
-    //             'Content-Type': 'multipart/form-data',
-    //             'Authorization': `Bearer ${token}`
+    // const loadImage = async(event)=> {
+    //     if (event.target.files && event.target.files[0]) {
+    //         setUpload(event.target.files[0]);
+    //         setImage(URL.createObjectURL(event.target.files[0]));
+    //         if(upload) {
+    //             const formData = new FormData();
+    //             formData.append('file', upload);
+    //             const res =await axios({
+    //                 method: 'POST',
+    //                 url: `/api/v1/storage/users`,
+    //                 data: formData,
+    //                 headers: {
+    //                     'Content-Type': 'multipart/form-data',
+    //                     'Authorization': `Bearer ${token}`
+    //                 },
+    //             })
+    //             console.log(res);
+    //             console.log(res.data);
+    //             let p = res.data.filename;
+    //             setProfileData({ ...profileData, image: p })
     //         }
-    //     })
-    //     console.log(res);
-    //     console.log(res.data);
-    //     let p = res.data.filename;
-    //     setProfileData({ ...profileData, image: p })
+    //     }
     // }
+    // // URL.createObjectURL(res.data)
+    const loadImage = async (event) => {
+        let image = event.target.files[0];
+        const formData = new FormData();
+        formData.append('file', image);
+        const res = await axios({
+            method: 'POST',
+            url: `/api/v1/storage/users`,
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        console.log(res);
+        console.log(res.data);
+        let p = res.data.filename;
+        setProfileData({ ...profileData, image: p })
+    }
     // const up = async() => {
     //     const formData = new FormData();
     //     formData.append('file', upload);
@@ -91,9 +108,6 @@ export const MyProfile = () => {
     //     let p = res.data.filename;
     //     setProfileData({ ...profileData, image: p })
     // }
-    console.log(image);
-    console.log(upload);
-  
     const save = async (event) => {
         try {
             console.log(profileData);
