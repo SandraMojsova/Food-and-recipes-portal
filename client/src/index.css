@@ -75,6 +75,10 @@ body {
     font: normal normal 900 18px/24px Roboto;
 }
 
+.logged-links li:last-of-type{
+    margin-right: 0;
+}
+
 #footer {
     display: flex;
     justify-content: space-between;

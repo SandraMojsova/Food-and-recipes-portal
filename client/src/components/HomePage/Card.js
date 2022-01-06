@@ -12,7 +12,7 @@ export const Card = ({ item, likePost}) => {
   // let token = localStorage.getItem('jwt');
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div id="card">
+    <div className="card-main-box">
       <div className="card">
         <div className="image-container">
           <img src={pizza} alt="" />
@@ -29,7 +29,7 @@ export const Card = ({ item, likePost}) => {
             <span>{item.people} persons</span>
             <img src={icon_star} alt="" onClick={()=> likePost(item._id)}/>
             <span>{item.likes.length}</span>
-            <div onClick={() => console.log("clicked")}>
+            <div onClick={() => console.log("clicked")} className="arrow-button-box">
               <img
                 src={icon_arrows}
                 alt=""

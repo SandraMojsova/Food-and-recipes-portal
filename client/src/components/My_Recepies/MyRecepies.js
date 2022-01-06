@@ -66,7 +66,7 @@ export const MyRecepies = () => {
                             return (
                                 <tr key={i} onClick={() => { history.push(`/update-recipe/${recipe._id}`) }}>
                                     <td>{recipe.recipe_title}</td>
-                                    <td className="recipe-category">{recipe.category}</td>
+                                    <td className="recipe-category-green-box"><span>{recipe.category}</span></td>
                                     <td>{recipe._created}</td>
                                     <td onClick={(event) => { removeRecipe(event, recipe._id) }}><img src={trash_icon} /></td>
                                 </tr>

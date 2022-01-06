@@ -13,7 +13,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                     className="button-icon"
                 />
             </div>
-            <div className="profile-info">
+            <div className="recipe-form-box">
                 <div className="recipe">
                     <div className="recipe-picture">
                         <label className="recipe-picture-label">Recipe Image</label>
@@ -48,7 +48,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                             <label htmlFor="category">Category</label>
                             <select
                                 name="category"
-                                className="inputs"
+                                className="inputs select-category"
                                 value={recipeData.category}
                                 onChange={createRecipe}
                             >
@@ -79,11 +79,12 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                     </div>
                     <div className="recipe-data">
                         <label htmlFor="short_description">Short description</label>
-                        <input
+                        <textarea
                             name="short_description"
-                            className="inputs description"
+                            className="description"
                             value={recipeData.short_description}
                             onChange={createRecipe}
+                            rows={5}
                         />
                     </div>
                     <button className="save-btn" onClick={createRecipeBtn ? createRecipeBtn : RecipeBtn}>
@@ -94,9 +95,10 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                     <label htmlFor="recipe">Recipe</label>
                     <textarea
                         name="recipe"
-                        className="recipe inputs"
+                        className="recipe-details"
                         value={recipeData.recipe}
                         onChange={createRecipe}
+                        rows={18}
                     />
                 </div>
             </div>
