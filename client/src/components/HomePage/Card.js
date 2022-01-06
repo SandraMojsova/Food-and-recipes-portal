@@ -6,8 +6,10 @@ import icon_star from "../../images/icon_star.svg";
 import icon_arrows from "../../images/icon_arrows_white.svg";
 import icon_close from '../../images/icon_close.svg'
 import { Modal } from "./Modal";
+import axios from 'axios';
 
-export const Card = ({ item }) => {
+export const Card = ({ item, likePost}) => {
+  // let token = localStorage.getItem('jwt');
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div id="card">
@@ -25,8 +27,8 @@ export const Card = ({ item }) => {
             <span>{item.preparation_time} min</span>
             <img src={icon_plate} alt="" />
             <span>{item.people} persons</span>
-            <img src={icon_star} alt="" />
-            <span>28</span>
+            <img src={icon_star} alt="" onClick={()=> likePost(item._id)}/>
+            <span>{item.likes.length}</span>
             <div onClick={() => console.log("clicked")}>
               <img
                 src={icon_arrows}
@@ -49,8 +51,8 @@ export const Card = ({ item }) => {
                 <span>{item.preparation_time} min</span>
                 <img src={icon_plate} alt="" />
                 <span>{item.people} persons</span>
-                <img src={icon_star} alt="" />
-                <span>28</span>
+                <img src={icon_star} alt=""/>
+                <span>{item.likes.length}</span>
                 </div>
                 </div>
                 <p>{item.recipe}</p>

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {ObjectId} = mongoose.Schema.Types;
 
 const Recipe = mongoose.model(
     'recipes',
@@ -11,7 +12,8 @@ const Recipe = mongoose.model(
         recipe: String,
         user_id: String,
         _created: String,
-        image: String
+        image: String,
+        likes:['']
     },
     'recipes'
 );
@@ -44,6 +46,16 @@ const getByCategory= async(category)=> {
     return await Recipe.find({category: category})
 }
 
+const like = async( postId , userId)=> {
+    return await Recipe.findByIdAndUpdate({_id :postId}, {
+        $push: {likes : userId} })
+}
+
+const dislike = async( postId , userId)=> {
+    return await Recipe.findByIdAndUpdate({_id :postId}, {
+        $pull: {likes : userId} })
+}
+
 
 module.exports = {
     create,
@@ -52,5 +64,7 @@ module.exports = {
     update,
     getOne,
     getAll,
-    getByCategory
+    getByCategory,
+    like,
+    dislike
 }

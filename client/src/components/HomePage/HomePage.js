@@ -4,8 +4,13 @@ import {Card} from './Card';
 import axios from 'axios';
 
 export const HomePage= ()=> {
+    let token = localStorage.getItem('jwt');
 
    const [r,setR]= useState([]);
+
+//    const update = (e) => {
+//     setR({ ...r, likes: e.target.value })
+// };
    const recipes = async()=> {
         try{
         let response = await axios({
@@ -19,11 +24,27 @@ export const HomePage= ()=> {
             console.log(err);
         }
     }
+    const likePost= async(id)=> {
+        try{
+            let response = await axios({
+                method: 'PUT',
+                url: `/api/v1/recipes/like/${id}`,
+                data : JSON.stringify({id}),
+                headers: { 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` }
+            })
+            console.log(response);
+            console.log(response.data);
+            console.log(response.data.likes);
+            }catch(err){
+                console.log(err.response);
+            }
+    }
+
     useEffect(()=>{
      recipes();
     },[])
 
-    console.log(r);
     return(
         <div id="home-page">
             <div className="home-page-text">
@@ -33,7 +54,7 @@ export const HomePage= ()=> {
             <div className='new-recipes'>
             {
                 r.slice(-3).map((item,index)=> {
-                    return <Card item={item} key={index}  />
+                    return <Card item={item} key={index} likePost={likePost}/>
                 })
  }
           </div>

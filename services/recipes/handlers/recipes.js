@@ -98,6 +98,21 @@ const getRecipesByCategory= async(req,res)=> {
   }
 }
 
+const likeRecipe = async(req,res)=> {
+  try{
+  const data = await recipeModel.getOne(req.params.id);
+  if(!data.likes.includes(req.user.uid)) {
+    await recipeModel.like(req.params.id, req.user.uid);
+  }
+  else {
+    await recipeModel.dislike(req.params.id, req.user.uid);
+  }
+  return res.status(200).send(data);
+  }catch(err){
+    return res.status(500).send(err);
+  }
+}
+
 module.exports = {
   createRecipe,
   getRecipesByUser,
@@ -105,5 +120,6 @@ module.exports = {
   updateRecipe,
   getRecipeById,
   getAllRecipes,
-  getRecipesByCategory
+  getRecipesByCategory,
+  likeRecipe
 };
