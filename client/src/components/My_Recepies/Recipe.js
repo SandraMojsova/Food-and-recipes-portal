@@ -3,14 +3,14 @@ import React from "react";
 export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, createRecipe, createRecipeBtn, recipe_image, RecipeBtn }) => {
     return (
         <div>
-            <div className="my-recepies-text">
-                <h2 style={{ color: "#96BB36" }}>My recepies</h2>
+            <div className="my-recepies-text-box">
+                <h2>My recepies</h2>
                 <div className="border"></div>
                 <img
                     src={back_button}
                     alt=""
                     onClick={backToMyRecipes}
-                    className="button-icon"
+                    className="back-button-icon"
                 />
             </div>
             <div className="recipe-form-box">

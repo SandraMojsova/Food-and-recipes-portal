@@ -15,7 +15,7 @@ export const Card = ({ item, likePost}) => {
     <div className="card-main-box">
       <div className="card">
         <div className="image-container">
-          <img src={pizza} alt="" />
+          <img src={item.image} alt="" />
           <div className="category">{item.category}</div>
         </div>
         <div className="card-info">
@@ -42,9 +42,9 @@ export const Card = ({ item, likePost}) => {
                 <img src={icon_close} onClick={() => setIsOpen(false)}/>
                 </div>
                 <div className="recipe-info-container">
-                  <div>
-                <img src={pizza} alt="" />
-                <h2 id="best-for">Best served for <span>{item.category}</span></h2>
+                  <div className="recipe-info-box">
+                <img src={item.image} alt="" className="recipe-info-box-img"/>
+                <h2 className="best-for">Best served for <span>{item.category}</span></h2>
                 <p id="description">{item.short_description}</p>
                 <div className="card-container">
                 <img src={icon_time} alt="" />
@@ -55,7 +55,10 @@ export const Card = ({ item, likePost}) => {
                 <span>{item.likes.length}</span>
                 </div>
                 </div>
+                <div className="recipe-details-box">
+                  <span>Recipe Details</span>
                 <p>{item.recipe}</p>
+                </div>
                 </div>
               </Modal>
             </div>

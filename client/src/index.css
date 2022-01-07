@@ -45,6 +45,7 @@ body {
     padding: 12px 22px;
     text-transform: uppercase;
     color: #a5a5a5;
+    font: normal normal 900 16px/21px Roboto;
 }
 
 .span {

@@ -2,18 +2,28 @@
 #my-recepies,
 #add-recipe,
 #update-recipe {
-    padding: 20px 10%;
+    padding: 63px 10% 20px;
 }
 
-.my-recepies-text {
+.my-recepies-text,
+.my-recepies-text-box {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.my-recepies-text h2,
+.my-recepies-text-box h2{
+    font: normal normal bold 36px/48px Roboto Slab;
+    color: #96BB36;
+    padding-right: 10px;
 }
 .border {
-    width: 700px;
     height: 1px;
     background-color: #a5a5a5;
-    margin-top: 40px;
+    flex-grow: 2;
+    margin-top:30px;
 }
 
 .recipe-picture-label {
@@ -21,12 +31,13 @@
     color: #f0972a;
 }
 
-.button-icon {
+.add-button-icon,
+.back-button-icon {
     background: #f0972a 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 50%;
-    width: 41px;
-    height: 41px;
+    margin-left: 10px;
+    padding: 11px;
 }
 
 #recipe-picture {
@@ -55,8 +66,8 @@
 .recipe-form-box {
     display: flex;
     justify-content: space-between;
-    margin-top: 93px;
-    margin-bottom: 228px;
+    margin-top: 90px;
+    margin-bottom: 174px;
 }
 
 .recipe-info {
@@ -118,6 +129,8 @@
 border: 1px solid #A5A5A5;
 border-radius: 5px;
 padding: 10px 12px;
+font: normal normal normal 14px/19px Roboto;
+color: #A5A5A5;
 }
 
 .save-btn {
@@ -141,6 +154,7 @@ padding: 10px 12px;
     border-collapse: separate;
     border-spacing: 0 5px;
     width: 100%;
+  margin-bottom: 113px;
 }
 
 .recipes-table thead tr {
@@ -163,10 +177,9 @@ padding: 10px 12px;
 
 .recipes-table tbody tr {
     background: #ffffff 0% 0% no-repeat padding-box;
+    font: normal normal bold 16px/21px Roboto;
     border-radius: 5px;
-    margin-bottom: 5px;
     align-items: center;
-    cursor: pointer;
 }
 
 .recipes-table tbody tr td {
@@ -175,6 +188,7 @@ padding: 10px 12px;
 
 .recipes-table tbody tr td:first-of-type {
     padding: 20px 31px;
+    width: 25%;
 }
 
 .recipes-table tbody tr td:last-of-type {
@@ -200,4 +214,6 @@ border: 1px solid #A5A5A5;
 border-radius: 5px;
 padding: 10px 12px;
 max-height: 264px;
+font: normal normal normal 14px/19px Roboto;
+color: #A5A5A5;
 }

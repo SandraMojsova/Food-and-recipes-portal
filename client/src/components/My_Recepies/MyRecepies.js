@@ -47,9 +47,9 @@ export const MyRecepies = () => {
     return (
         <div id="my-recepies">
             <div className="my-recepies-text">
-                <h2 style={{ color: "#96BB36" }}>My recepies</h2>
+                <h2>My recepies</h2>
                 <div className="border"></div>
-                <img src={add_icon} alt="" className="button-icon" onClick={addRecepies} />
+                <img src={add_icon} alt="" className="add-button-icon" onClick={addRecepies} />
             </div>
             <table className="recipes-table">
                 <thead>
@@ -65,9 +65,9 @@ export const MyRecepies = () => {
                         recipes.map((recipe, i) => {
                             return (
                                 <tr key={i} onClick={() => { history.push(`/update-recipe/${recipe._id}`) }}>
-                                    <td>{recipe.recipe_title}</td>
+                                    <td style={{color: "#A5A5A5"}}>{recipe.recipe_title}</td>
                                     <td className="recipe-category-green-box"><span>{recipe.category}</span></td>
-                                    <td>{recipe._created}</td>
+                                    <td style={{color: "#A5A5A5"}}>{recipe._created}</td>
                                     <td onClick={(event) => { removeRecipe(event, recipe._id) }}><img src={trash_icon} /></td>
                                 </tr>
                             )
