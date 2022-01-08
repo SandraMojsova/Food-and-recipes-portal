@@ -27,7 +27,7 @@ export const HomePage= ()=> {
     const likePost= async(id)=> {
         try{
             let response = await axios({
-                method: 'PUT',
+                method: 'PATCH',
                 url: `/api/v1/recipes/like/${id}`,
                 data : JSON.stringify({id}),
                 headers: { 'Content-Type': 'application/json',
@@ -35,16 +35,37 @@ export const HomePage= ()=> {
             })
             console.log(response);
             console.log(response.data);
-            console.log(response.data.likes);
+            let result= response.data;
+            let newData = r.map(item=> {
+                if(item._id == result._id) {
+                    return result;
+                }
+                else{
+                return item;
+            }
+            })
+            console.log(newData);
+            setR(newData);
             }catch(err){
                 console.log(err.response);
             }
     }
-
     useEffect(()=>{
      recipes();
     },[])
 
+    let niza=[...r];
+    niza.sort((a,b)=>{ 
+        if(a.likes < b.likes) {
+            return 1
+        }
+        if(a.likes > b.likes){
+            return -1
+        }
+        return 0;
+
+    })
+    console.log(niza);
     return(
         <div id="home-page">
             <div className="home-page-text">
@@ -61,6 +82,22 @@ export const HomePage= ()=> {
           <div className="home-page-text">
                 <h2 style={{ color: "#96BB36" }}>Most Popular Recipes</h2>
                 <div className="home-page-border"></div>
+            </div>
+            <div className='new-recipes'>
+            {
+                niza.sort((a,b)=>{ 
+                    if(a.likes <b.likes) {
+                        return 1
+                    }
+                    if(a.likes>b.likes){
+                        return -1
+                    }
+                    return 0;
+
+                }).slice(0,6).map((item,index)=> {
+                    return <Card item={item} key={index} likePost={likePost}/>
+                })
+            }
             </div>
           
         </div>

@@ -48,12 +48,12 @@ const getByCategory= async(category)=> {
 
 const like = async( postId , userId)=> {
     return await Recipe.findByIdAndUpdate({_id :postId}, {
-        $push: {likes : userId} })
+        $push: {likes : userId}}, {new:true})
 }
 
 const dislike = async( postId , userId)=> {
     return await Recipe.findByIdAndUpdate({_id :postId}, {
-        $pull: {likes : userId} })
+        $pull: {likes : userId} }, {new:true})
 }
 
 

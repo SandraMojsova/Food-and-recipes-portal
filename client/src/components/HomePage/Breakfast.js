@@ -18,6 +18,7 @@ export const Breakfast = ()=> {
              console.log(err);
          }
      }
+     
      useEffect(()=>{
         categoryBreakfast();
      },[])

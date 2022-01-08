@@ -46,7 +46,7 @@ export const Context = ({ children }) => {
     }, []);
     // console.log(profileData);
     return (
-        <AuthContext.Provider value={{ logged, setLogged, profileData, setProfileData }}>
+        <AuthContext.Provider value={{logged, setLogged, profileData, setProfileData, getU }}>
             {children}
         </AuthContext.Provider>
     )

@@ -9,7 +9,7 @@ import { useAuthContext } from '../Context'
 export const MyProfile = () => {
     let token = localStorage.getItem('jwt');
 
-    let {profileData, setProfileData, id } = useAuthContext();
+    let {profileData, setProfileData, id ,getU } = useAuthContext();
     // const [profileData, setProfileData] = useState({
     //     email: '',
     //     password: '',
@@ -123,10 +123,6 @@ export const MyProfile = () => {
         }
     }
 
-    // useEffect(() => {
-    //     setProfileData();
-    // }, [])
-    // console.log(profileData.image);
     return (
         <div id="my-profile">
             <div className="my-profile-text">

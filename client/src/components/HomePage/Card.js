@@ -8,8 +8,7 @@ import icon_close from '../../images/icon_close.svg'
 import { Modal } from "./Modal";
 import axios from 'axios';
 
-export const Card = ({ item, likePost}) => {
-  // let token = localStorage.getItem('jwt');
+export const Card = ({item, likePost}) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="card-main-box">
@@ -27,7 +26,7 @@ export const Card = ({ item, likePost}) => {
             <span>{item.preparation_time} min</span>
             <img src={icon_plate} alt="" />
             <span>{item.people} persons</span>
-            <img src={icon_star} alt="" onClick={()=> likePost(item._id)}/>
+            <img src={icon_star} alt="" onClick={()=> {likePost(item._id)}}/>
             <span>{item.likes.length}</span>
             <div onClick={() => console.log("clicked")} className="arrow-button-box">
               <img

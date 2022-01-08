@@ -26,7 +26,7 @@ api.delete('/api/v1/recipes/:id', handlers.deleteRecipe);
 api.patch('/api/v1/recipes/:id', handlers.updateRecipe);
 api.get('/api/v1/recipes/:id', handlers.getRecipeById);
 api.get('/api/v1/recipes/all/:category', handlers.getRecipesByCategory);
-api.put('/api/v1/recipes/like/:id', handlers.likeRecipe);
+api.patch('/api/v1/recipes/like/:id', handlers.likeRecipe);
 // api.put('/api/v1/recipes/unlike', handlers.dislikeRecipe);
 
 api.listen(cfg.get('services').recipes.port, err => {
