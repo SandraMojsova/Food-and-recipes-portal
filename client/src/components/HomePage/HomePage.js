@@ -54,18 +54,6 @@ export const HomePage= ()=> {
      recipes();
     },[])
 
-    let niza=[...r];
-    niza.sort((a,b)=>{ 
-        if(a.likes < b.likes) {
-            return 1
-        }
-        if(a.likes > b.likes){
-            return -1
-        }
-        return 0;
-
-    })
-    console.log(niza);
     return(
         <div id="home-page">
             <div className="home-page-text">
@@ -85,16 +73,7 @@ export const HomePage= ()=> {
             </div>
             <div className='new-recipes'>
             {
-                niza.sort((a,b)=>{ 
-                    if(a.likes <b.likes) {
-                        return 1
-                    }
-                    if(a.likes>b.likes){
-                        return -1
-                    }
-                    return 0;
-
-                }).slice(0,6).map((item,index)=> {
+                r.sort((a,b) => (a.likes.length < b.likes.length) ? 1 : ((a.likes.length > b.likes.length) ? -1 : 0)).slice(0,6).map((item,index)=> {
                     return <Card item={item} key={index} likePost={likePost}/>
                 })
             }
