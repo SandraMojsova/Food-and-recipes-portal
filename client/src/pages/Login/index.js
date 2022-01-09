@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { login } from '../../api/users';
 import './style.css';
-import axios from 'axios';
-import { useAuthContext } from '../Context';
 
 export const Login = () => {
 
@@ -14,9 +12,6 @@ export const Login = () => {
     const [loginData, setLoginData] = useState(loginDataInit);
     const [err, setError] = useState(null);
 
-    let { profileData, setProfileData, logged, setLogged } = useAuthContext();
-    // console.log(profileData);
-
     const loginFieldUpdate = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
     };
@@ -25,44 +20,18 @@ export const Login = () => {
 
     const loginBtn = async (e) => {
         e.preventDefault();
-        let res='';
         try {
-            res = await login(loginData);
-            console.log(res);
+            let res = await login(loginData);
             localStorage.setItem('jwt', res.data);
+            if(res.status===200) {
+              history.push('/my-profile');
+            }
         } catch (err) {
             console.log(err.response.data);
             setError(err.response.data);
         }
-        if(res.status===200) {
-               history.push('/my-profile');
-        }
-        // try {
-        //     let response = await axios({
-        //         method: 'GET',
-        //         url: `/api/v1/auth/users`,
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             'Authorization': `Bearer ${localStorage.getItem('jwt')}`
-        //         }
-        //     })
-        //     console.log(response);
-        //     setProfileData({
-        //                     email: response.data.email,
-        //                     first_name: response.data.first_name,
-        //                     last_name: response.data.last_name,
-        //                     image: response.data.image,
-        //                     birthday: response.data.birthday,
-        //                 });
-        //     setLogged(true);
-        //     history.push('/my-profile');
-        //     // if(res.status===200) {
-        //     // history.push('/my-profile');
-        //     // }
-        // } catch (err) {
-        //     console.log(err);
-        // }
     };
+    
     return (
         <div id="login">
             <div className="login">

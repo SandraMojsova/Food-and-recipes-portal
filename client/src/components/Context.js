@@ -21,7 +21,7 @@ export const Context = ({ children }) => {
         try {
             let response = await axios({
                 method: 'GET',
-                url: `/api/v1/auth/users`,
+                url: `/api/v1/auth/user`,
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`

@@ -3,28 +3,25 @@ import { useHistory } from 'react-router-dom';
 import { recipesByUser, deleteRecipe } from '../../api/recipes'
 import add_icon from '../../images/icon_plus_white.svg';
 import trash_icon from '../../images/icon_trashcan.svg';
-import './index.css'
+import './style.css';
 
 export const MyRecepies = () => {
 
     let token = localStorage.getItem('jwt');
-
     let history = useHistory();
+
+    const [recipes, setRecipes] = useState([]);
+
     const addRecepies = () => {
         history.push('/add-recipe');
     };
-
-    const [recipes, setRecipes] = useState([]);
-    const [id, setId] = useState(null);
-    const [err, setErr] = useState(null);
 
     const allRecipesByUser = async () => {
         try {
             let res = await recipesByUser(token);
             setRecipes(res.data);
         } catch (err) {
-            console.log(err.response)
-            setErr(err.response)
+            console.log(err.response);
         }
     }
 
@@ -36,7 +33,6 @@ export const MyRecepies = () => {
             setRecipes([...recipes].filter((recipe) => recipe._id !== id));
         } catch (err) {
             console.log(err.response);
-            setErr(err.response)
         }
     }
 

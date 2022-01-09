@@ -4,9 +4,10 @@ import logo_color from '../images/logo_color.svg';
 import { useAuthContext } from './Context';
 
 export const Nav = () => {
+
     const history = useHistory();
     let { logged, setLogged } = useAuthContext();
-    //console.log(logged);
+    
     const logoutUser = async () => {
         localStorage.removeItem('jwt');
         setLogged(false);

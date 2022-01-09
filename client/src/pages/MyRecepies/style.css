@@ -1,0 +1,86 @@
+#my-recepies {
+    padding: 63px 10% 20px;
+}
+
+.my-recepies-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.my-recepies-text h2{
+    font: normal normal bold 36px/48px Roboto Slab;
+    color: #96BB36;
+    padding-right: 10px;
+}
+
+.border {
+    height: 1px;
+    background-color: #a5a5a5;
+    flex-grow: 2;
+    margin-top:30px;
+}
+
+.add-button-icon {
+    background: #f0972a 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 50%;
+    margin-left: 10px;
+    padding: 11px;
+}
+
+.recipes-table {
+    border-collapse: separate;
+    border-spacing: 0 5px;
+    width: 100%;
+    margin-bottom: 113px;
+}
+
+.recipes-table thead tr {
+    color: #f0972a;
+    font: normal normal bold 16px/21px Roboto;
+}
+
+.recipes-table thead tr th{
+    text-align: left;
+}
+
+.recipes-table thead tr th:first-of-type{
+    padding: 17px 31px;
+}
+
+.recipes-table thead tr th:last-of-type{
+    text-align: right;
+    padding-right: 32px;
+}
+
+.recipes-table tbody tr {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    font: normal normal bold 16px/21px Roboto;
+    border-radius: 5px;
+    align-items: center;
+}
+
+.recipes-table tbody tr td {
+    max-height: 61px;
+}
+
+.recipes-table tbody tr td:first-of-type {
+    padding: 20px 31px;
+    width: 25%;
+}
+
+.recipes-table tbody tr td:last-of-type {
+    text-align: right;
+    padding: 20px 46px;
+}
+
+.recipe-category-green-box span {
+    background: #96bb36 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    font: normal normal bold 12px/16px Roboto;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 5px 16px;
+}

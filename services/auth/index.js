@@ -22,7 +22,7 @@ api.use(jwt({
 
 api.post('/api/v1/auth/create-account', handlers.createAccount);
 api.post('/api/v1/auth/login', handlers.login);
-api.get('/api/v1/auth/users', handlers.getUser);
+api.get('/api/v1/auth/user', handlers.getUser);
 api.patch('/api/v1/auth/users/:id', handlers.updateProfile);
 
 

@@ -4,7 +4,6 @@ import { create } from "../../api/users";
 import "./style.css";
 
 export const CreateAccount = () => {
-
     const [createAccountData, setCreateAccountData] = useState({
         email: "",
         password: "",
@@ -24,7 +23,7 @@ export const CreateAccount = () => {
 
     let history = useHistory();
 
-    const createAccBtn = async (e) => {
+    const createAccountBtn = async (e) => {
         e.preventDefault();
         try {
             let response = await create(createAccountData);
@@ -40,7 +39,7 @@ export const CreateAccount = () => {
     return (
         <div id="create-account">
             <div className="create-account-text">
-                <h2 style={{ color: "#96BB36" }}>Create Account</h2>
+                <h2>Create Account</h2>
                 <div id="create-border"></div>
             </div>
             <div className="container">
@@ -87,8 +86,8 @@ export const CreateAccount = () => {
                                 onChange={createFieldUpdate}
                             />
                         </div>
-                        <button onClick={createAccBtn}>create account</button>
-                        {err && <h3 style={{ color: "#8B0000" }}>Error : {err}</h3>}
+                        <button onClick={createAccountBtn}>create account</button>
+                        {err && <h3 style={{ color: "#8B0000"}}>Error: {err}</h3>}
                     </div>
                     <div>
                         <div>

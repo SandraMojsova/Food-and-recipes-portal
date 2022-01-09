@@ -1,27 +1,43 @@
 import React, {useState, useEffect} from 'react';
 import {Card} from './Card';
-import axios from 'axios';
+import { recipesByCategory , addStar} from '../../api/recipes';
 import './style.css';
 
 export const Breakfast = ()=> {
+    
+    let token = localStorage.getItem("jwt");
     const [recipes, setRecipes]= useState([]);
+
     const categoryBreakfast = async()=> {
          try{
-         let response = await axios({
-             method: 'GET',
-             url: `/api/v1/recipes/all/breakfast`,
-             headers: { 'Content-Type': 'application/json' }
-         })
-         console.log(response.data);
+         let response = await recipesByCategory('breakfast');
          setRecipes(response.data);
          }catch(err){
              console.log(err);
          }
      }
+
+     const likePost= async(id)=> {
+        try{
+            let response = await addStar(id,token);
+            let result= response.data;
+            let newData = recipes.map(item=> {
+                if(item._id == result._id) {
+                    return result;
+                }
+                else{
+                return item;
+            }})
+            setRecipes(newData);
+            }catch(err){
+                console.log(err.response);
+            }
+    }
      
      useEffect(()=>{
         categoryBreakfast();
      },[])
+
  
     return(
         <div id="breakfast">
@@ -32,9 +48,9 @@ export const Breakfast = ()=> {
                  <div className='new-recipes'>
             {
                 recipes.map((item,index)=> {
-                    return <Card item={item} key={index}  />
+                    return <Card item={item} key={index} likePost={likePost}  />
                 })
- }
+            }
           </div>
         </div>
     )

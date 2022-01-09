@@ -1,59 +1,44 @@
 import React, { useEffect, useState } from 'react';
+import {getAllRecipes, addStar} from '../../api/recipes';
+import {Card} from '../../components/RecipeCategories/Card';
 import './style.css';
-import {Card} from './Card';
-import axios from 'axios';
 
 export const HomePage= ()=> {
-    let token = localStorage.getItem('jwt');
 
-   const [r,setR]= useState([]);
+   let token = localStorage.getItem("jwt");
+   const [recipes,setRecipes]= useState([]);
 
-//    const update = (e) => {
-//     setR({ ...r, likes: e.target.value })
-// };
-   const recipes = async()=> {
+   const AllRecipes = async()=> {
         try{
-        let response = await axios({
-            method: 'GET',
-            url: `/api/v1/recipes/all`,
-            headers: { 'Content-Type': 'application/json' }
-        })
-        console.log(response.data);
-        setR(response.data);
+        let response = await getAllRecipes();
+        setRecipes(response.data);
         }catch(err){
             console.log(err);
         }
     }
+
     const likePost= async(id)=> {
         try{
-            let response = await axios({
-                method: 'PATCH',
-                url: `/api/v1/recipes/like/${id}`,
-                data : JSON.stringify({id}),
-                headers: { 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` }
-            })
-            console.log(response);
-            console.log(response.data);
+            let response = await addStar(id,token);
             let result= response.data;
-            let newData = r.map(item=> {
+            let newData = recipes.map(item=> {
                 if(item._id == result._id) {
                     return result;
                 }
                 else{
                 return item;
-            }
-            })
-            console.log(newData);
-            setR(newData);
+            }})
+            setRecipes(newData);
             }catch(err){
                 console.log(err.response);
             }
     }
-    useEffect(()=>{
-     recipes();
-    },[])
 
+    useEffect(()=>{
+        AllRecipes();
+    },[]);
+
+   let recipesArray= [...recipes];
     return(
         <div id="home-page">
             <div className="home-page-text">
@@ -62,10 +47,10 @@ export const HomePage= ()=> {
             </div>
             <div className='new-recipes'>
             {
-                r.slice(-3).map((item,index)=> {
+                recipes.slice(-3).map((item,index)=> {
                     return <Card item={item} key={index} likePost={likePost}/>
                 })
- }
+            }
           </div>
           <div className="home-page-text">
                 <h2 style={{ color: "#96BB36" }}>Most Popular Recipes</h2>
@@ -73,12 +58,11 @@ export const HomePage= ()=> {
             </div>
             <div className='new-recipes'>
             {
-                r.sort((a,b) => (a.likes.length < b.likes.length) ? 1 : ((a.likes.length > b.likes.length) ? -1 : 0)).slice(0,6).map((item,index)=> {
+                recipesArray.sort((a,b) => (a.likes.length < b.likes.length) ? 1 : ((a.likes.length > b.likes.length) ? -1 : 0)).slice(0,6).map((item,index)=> {
                     return <Card item={item} key={index} likePost={likePost}/>
                 })
             }
             </div>
-          
         </div>
     )
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './modal.css';
 
 export const Modal = ({open,children}) => {
     if (!open) return null;
 
     return ReactDOM.createPortal(
       <>
-         <div className='overlay-styles' />
+         <div className='others-styles' />
         <div className='modal-styles'>
           {children}
         </div>

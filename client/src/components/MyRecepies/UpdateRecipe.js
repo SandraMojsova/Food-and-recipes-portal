@@ -8,9 +8,7 @@ import { Recipe } from './Recipe';
 export const UpdateRecipe = () => {
     let token = localStorage.getItem('jwt');
     let history = useHistory();
-    const backToMyRecipes = () => {
-        history.push("/my-recepies");
-    };
+
     const [recipeData, setRecipeData] = useState({
         recipe_title: "",
         category: "",
@@ -20,9 +18,15 @@ export const UpdateRecipe = () => {
         recipe: "",
         image: ""
     });
+    const [err, setError] = useState(null);
+
     let url = window.location.pathname;
     let id = url.substring(url.lastIndexOf('/') + 1);
-    console.log(id);
+
+    const backToMyRecipes = () => {
+        history.push("/my-recepies");
+    };
+
     const getRecipeById = async () => {
         try {
             let res = await recipeById(id, token);
@@ -39,32 +43,33 @@ export const UpdateRecipe = () => {
             console.log(err.response.data);
         }
     }
+
     const createRecipe = (e) => {
         setRecipeData({
             ...recipeData,
             [e.target.name]: e.target.value,
         });
     };
+
     const recipeImage = async (event) => {
         let image = event.target.files[0];
-        console.log(image);
-        const dataf = new FormData();
-        dataf.append('file', image);
-        console.log(dataf);
+        const formData = new FormData();
+        formData.append('file', image);
         try {
-            const res = await uploadImage(token, dataf);
+            const res = await uploadImage(token, formData);
             setRecipeData({ ...recipeData, image: res.data.filename });
         } catch (err) {
             console.log(err.response);
         }
     };
 
-    const RecipeBtn = async (e) => {
+    const saveRecipeBtn = async (e) => {
         e.preventDefault();
         try {
             await updateRecipe(id, recipeData, token);
             history.push("/my-recepies");
         } catch (err) {
+            setError(err.response.data);
             console.log(err.response.data);
         }
     };
@@ -82,8 +87,9 @@ export const UpdateRecipe = () => {
                 recipe_image={recipe_image}
                 createRecipe={createRecipe}
                 recipeImage={recipeImage}
-                RecipeBtn={RecipeBtn}
+                saveRecipeBtn={saveRecipeBtn}
             />
+            {err && <h3>{err}</h3>}
         </div>
     )
 }

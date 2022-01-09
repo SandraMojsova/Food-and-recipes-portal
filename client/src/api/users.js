@@ -40,3 +40,15 @@ export const updateUser = (id, token, profileData) => {
         data: JSON.stringify({ profileData })
     })
 }
+
+export const uploadImg = (formData, token)=> {
+    return axios({
+        method: "POST",
+        url: `/api/v1/storage/users`,
+        data: formData,
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+}
