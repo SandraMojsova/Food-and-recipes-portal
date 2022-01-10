@@ -5,7 +5,7 @@ import icon_star from "../../images/icon_star.svg";
 import icon_arrows from "../../images/icon_arrows_white.svg";
 import icon_close from '../../images/icon_close.svg'
 import { Modal } from "./Modal";
-import {addStar} from '../../api/recipes';
+// import icon_star_liked from '../../images/icon_star_liked.svg'
 
 export const Card = ({ item , likePost}) => {
 

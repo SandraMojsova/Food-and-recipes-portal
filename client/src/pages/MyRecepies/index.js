@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { recipesByUser, deleteRecipe } from '../../api/recipes'
+import { recipesByUser, deleteRecipe } from '../../api/recipes';
 import add_icon from '../../images/icon_plus_white.svg';
 import trash_icon from '../../images/icon_trashcan.svg';
 import './style.css';

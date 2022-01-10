@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { updateUser, userInfo , uploadImg } from "../../api/users";
+import {Header} from '../../components/Header';
 import "./style.css";
 import img from "../../images/profile-pic.jpg";
 import { useAuthContext } from "../../components/Context";
@@ -36,10 +37,7 @@ export const MyProfile = () => {
 
     return (
         <div id="my-profile">
-            <div className="my-profile-text">
-                <h2>My Profile</h2>
-                <div id="border"></div>
-            </div>
+            <Header text="My Profile"/>
             <div className="profile-info">
                 <div className="upload-picture">
                 <img src={profileData.image ? `${profileData.image}` : img} />

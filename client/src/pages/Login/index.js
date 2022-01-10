@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory} from 'react-router-dom';
 import { login } from '../../api/users';
+import {Header} from '../../components/Header';
 import './style.css';
 
 export const Login = () => {
@@ -34,10 +35,7 @@ export const Login = () => {
     
     return (
         <div id="login">
-            <div className="login">
-                <h2>Log In</h2>
-                <div id="login-border"></div>
-            </div>
+            <Header text="Log In"/>
             <div>
                 <div className="login-container">
                     <div className="login-text">

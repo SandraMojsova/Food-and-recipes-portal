@@ -13,6 +13,7 @@ import { Breakfast } from './RecipeCategories/Breakfast';
 import { Brunch } from './RecipeCategories/Brunch';
 import { Lunch } from './RecipeCategories/Lunch';
 import { Dinner } from './RecipeCategories/Dinner';
+import { AllCategories} from '../components/RecipeCategories/AllCategories';
 
 export const App = () => {
     return (
@@ -26,9 +27,9 @@ export const App = () => {
                 <Route path="/add-recipe" component={AddRecipe} />
                 <Route path="/update-recipe/:id" component={UpdateRecipe} />
                 <Route path="/breakfast" component={Breakfast} />
-                <Route path="/brunch" component={Brunch} />
-                <Route path="/lunch" component={Lunch} />
-                <Route path="/dinner" component={Dinner} />
+                <Route path="/brunch" component={AllCategories} />
+                <Route path="/lunch" component={AllCategories} />
+                <Route path="/dinner" component={AllCategories} />
                 <Route path="/" component={HomePage} />
             </Switch>
             <Footer />

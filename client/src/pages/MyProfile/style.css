@@ -2,25 +2,6 @@
     padding: 63px 10% 20px;
 }
 
-.my-profile-text {
-    display: flex;
-    align-items: flex-end;
-    width: 100%;
-}
-
-.my-profile-text h2 {
-    font: normal normal bold 36px/48px Roboto Slab;
-    color: #96BB36;
-    padding-right: 10px;
-    margin: 0;
-}
-#border {
-    height: 1px;
-    background-color: #a5a5a5;
-    margin-bottom: 10px;
-    flex-grow: 2
-}
-
 .upload-picture {
     margin-right: 97px;
 }

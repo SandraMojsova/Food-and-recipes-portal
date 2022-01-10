@@ -2,12 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {Card} from './Card';
 import { recipesByCategory , addStar} from '../../api/recipes';
 import './style.css';
+import {Header} from '../Header';
 
 export const Breakfast = ()=> {
     
     let token = localStorage.getItem("jwt");
     const [recipes, setRecipes]= useState([]);
-
+    console.log(window.location.pathname);
     const categoryBreakfast = async()=> {
          try{
          let response = await recipesByCategory('breakfast');
@@ -41,10 +42,11 @@ export const Breakfast = ()=> {
  
     return(
         <div id="breakfast">
-             <div className="home-page-text">
+             {/* <div className="home-page-text">
                 <h2 style={{ color: "#96BB36" }}>Breakfast</h2>
                 <div className="home-page-border"></div>
-            </div>
+            </div> */}
+            <Header text="Breakfast"/>
                  <div className='new-recipes'>
             {
                 recipes.map((item,index)=> {

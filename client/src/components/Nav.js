@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, NavLink } from 'react-router-dom';
 import logo_color from '../images/logo_color.svg';
 import { useAuthContext } from './Context';
 
@@ -18,10 +18,10 @@ export const Nav = () => {
         <div id="nav">
             <Link to="/"><img className="logo" src={logo_color} alt="logo" /></Link>
             <ul className="nav_links">
-                <li><Link to="/breakfast" style={{ textDecoration: 'none', color: '#A5A5A5' }}> Breakfast</Link></li>
-                <li><Link to="/brunch" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Brunch</Link></li>
-                <li><Link to="/lunch" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Lunch</Link></li>
-                <li><Link to="/dinner" style={{ textDecoration: 'none', color: '#A5A5A5' }}>Dinner</Link></li>
+                <li><NavLink to="/breakfast" activeStyle={{color: "#F0972A"}}>Breakfast</NavLink></li>
+                <li><NavLink to="/brunch" activeStyle={{color: "#F0972A"}}>Brunch</NavLink></li>
+                <li><NavLink to="/lunch" activeStyle={{color: "#F0972A"}}>Lunch</NavLink></li>
+                <li><NavLink to="/dinner" activeStyle={{color: "#F0972A"}}>Dinner</NavLink></li>
             </ul>
             {logged ? <>
                 <ul className='logged-links'>

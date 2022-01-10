@@ -2,26 +2,6 @@
     padding: 63px 10% 20px;
 }
 
-.login {
-    display: flex;
-    align-items: flex-end;
-    width: 100%;
-}
-
-.login h2 {
-    font: normal normal bold 36px/48px Roboto Slab;
-    color: #96bb36;
-    margin: 0;
-    padding-right: 10px;
-}
-
-#login-border {
-    height: 1px;
-    background-color: #a5a5a5;
-    margin-bottom: 10px;
-    flex-grow: 2
-}
-
 .login-container {
     display: flex;
     justify-content: space-between;

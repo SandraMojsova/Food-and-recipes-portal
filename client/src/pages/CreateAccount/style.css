@@ -4,26 +4,6 @@
   padding: 63px 10% 20px;
 }
 
-.create-account-text {
-  display: flex;
-  align-items: flex-end;
-  width: 100%;
-}
-
-.create-account-text h2 {
-  font: normal normal bold 36px/48px Roboto Slab;
-  margin: 0;
-  padding-right: 10px;
-  color : #96BB36;
-}
-
-#create-border {
-  height: 1px;
-  background-color: #a5a5a5;
-  margin-bottom: 10px;
-  flex-grow: 2;
-}
-
 .container {
   display: flex;
   justify-content: space-between;

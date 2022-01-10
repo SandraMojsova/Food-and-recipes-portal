@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {getAllRecipes, addStar} from '../../api/recipes';
 import {Card} from '../../components/RecipeCategories/Card';
+import {Header} from '../../components/Header';
 import './style.css';
 
 export const HomePage= ()=> {
@@ -41,10 +42,7 @@ export const HomePage= ()=> {
    let recipesArray= [...recipes];
     return(
         <div id="home-page">
-            <div className="home-page-text">
-                <h2 style={{ color: "#96BB36" }}>Fresh & New</h2>
-                <div className="home-page-border"></div>
-            </div>
+            <Header text="Fresh &amp; New"/>
             <div className='new-recipes'>
             {
                 recipes.slice(-3).map((item,index)=> {
@@ -52,10 +50,7 @@ export const HomePage= ()=> {
                 })
             }
           </div>
-          <div className="home-page-text">
-                <h2 style={{ color: "#96BB36" }}>Most Popular Recipes</h2>
-                <div className="home-page-border"></div>
-            </div>
+            <Header text="Most Popular Recipes"/>
             <div className='new-recipes'>
             {
                 recipesArray.sort((a,b) => (a.likes.length < b.likes.length) ? 1 : ((a.likes.length > b.likes.length) ? -1 : 0)).slice(0,6).map((item,index)=> {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { create } from "../../api/users";
+import {Header} from '../../components/Header';
 import "./style.css";
 
 export const CreateAccount = () => {
@@ -38,10 +39,7 @@ export const CreateAccount = () => {
 
     return (
         <div id="create-account">
-            <div className="create-account-text">
-                <h2>Create Account</h2>
-                <div id="create-border"></div>
-            </div>
+            <Header text="Create Account"/>
             <div className="container">
                 <div className="create-account-info">
                     <h2>

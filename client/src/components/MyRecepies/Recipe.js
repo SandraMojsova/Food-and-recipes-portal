@@ -54,7 +54,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                             >
                                 <option value="breakfast">Breakfast</option>
                                 <option value="brunch">Brunch</option>
-                                <option value="launch">Launch</option>
+                                <option value="lunch">Lunch</option>
                                 <option value="dinner">Dinner</option>
                             </select>
                         </div>

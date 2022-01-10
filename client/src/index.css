@@ -29,7 +29,14 @@ body {
 .nav_links li,
 .footer-list li {
     margin-right: 30px;
+    
 }
+
+.nav_links li a {
+    text-decoration: none;
+    color: #A5A5A5;
+}
+
 .nav_links li:nth-child(1),
 .footer-list li:nth-child(1),
 .logged-links li:nth-child(1) {
@@ -74,6 +81,12 @@ body {
     margin-right: 30px;
     text-transform: uppercase;
     font: normal normal 900 18px/24px Roboto;
+
+}
+
+.logged-links li a {
+    text-decoration: none;
+    border-bottom: 2px solid #A5A5A5;
 }
 
 .logged-links li:last-of-type{
@@ -109,3 +122,29 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.active-class {
+    color: orange
+}
+
+.header {
+    display: flex;
+align-items: flex-end;
+width: 100%;
+margin-bottom: 43px;
+}
+
+.header h2 {
+    font: normal normal bold 36px/48px Roboto Slab;
+  margin: 0;
+    padding-right: 10px;
+    color: #96BB36;
+}
+
+.header-border {
+    height: 1px;
+    background-color: #a5a5a5;
+    margin-bottom: 10px;
+    flex-grow: 2
+}
+
