@@ -5,11 +5,12 @@ import icon_star from "../../images/icon_star.svg";
 import icon_arrows from "../../images/icon_arrows_white.svg";
 import icon_close from '../../images/icon_close.svg'
 import { Modal } from "./Modal";
-// import icon_star_liked from '../../images/icon_star_liked.svg'
+import icon_star_liked from '../../images/icon_star_liked.svg'
 
 export const Card = ({ item , likePost}) => {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [liked,setLiked]= useState(false);
 
   return (
     <div className="card-main-box">
@@ -27,7 +28,7 @@ export const Card = ({ item , likePost}) => {
             <span>{item.preparation_time} min</span>
             <img src={icon_plate} alt="" />
             <span>{item.people} persons</span>
-            <img src={icon_star} alt="" onClick={() => { likePost(item._id) }} />
+            <img src={liked ? icon_star_liked : icon_star} alt="" onClick={() => { likePost(item._id); setLiked(true) }}/>
             <span>{item.likes.length}</span>
             <div onClick={() => console.log("clicked")} className="arrow-button-box">
               <img
