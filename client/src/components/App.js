@@ -13,24 +13,25 @@ import { Breakfast } from './RecipeCategories/Breakfast';
 import { Brunch } from './RecipeCategories/Brunch';
 import { Lunch } from './RecipeCategories/Lunch';
 import { Dinner } from './RecipeCategories/Dinner';
-import { AllCategories} from '../components/RecipeCategories/AllCategories';
+import { AllCategories } from '../components/RecipeCategories/AllCategories';
+import { ProtectedRoute } from '../components/ProtectedRoute';
 
 export const App = () => {
     return (
         <div id="app">
             <Nav />
             <Switch>
+                <Route exact path="/" component={HomePage} />
                 <Route path="/login" component={Login} />
                 <Route path="/create-account" component={CreateAccount} />
-                <Route path="/my-profile" component={MyProfile} />
+                <ProtectedRoute path="/my-profile" component={MyProfile} />
                 <Route path="/my-recepies" component={MyRecepies} />
                 <Route path="/add-recipe" component={AddRecipe} />
                 <Route path="/update-recipe/:id" component={UpdateRecipe} />
-                <Route path="/breakfast" component={Breakfast} />
-                <Route path="/brunch" component={AllCategories} />
-                <Route path="/lunch" component={AllCategories} />
-                <Route path="/dinner" component={AllCategories} />
-                <Route path="/" component={HomePage} />
+                {/* <Route path="/breakfast" component={Breakfast} /> */}
+                <Route path="/category/:category" component={AllCategories} />
+                {/* <Route path="/lunch" component={AllCategories} />
+                <Route path="/dinner" component={AllCategories} /> */}
             </Switch>
             <Footer />
         </div>

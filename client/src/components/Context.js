@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
+import { userInfo } from '../api/users';
 
 export const AuthContext = React.createContext();
 
@@ -19,15 +20,16 @@ export const Context = ({ children }) => {
 
     const getU = async () => {
         try {
-            let response = await axios({
-                method: 'GET',
-                url: `/api/v1/auth/user`,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            console.log(response);
+            // let response = await axios({
+            //     method: 'GET',
+            //     url: `/api/v1/auth/user`,
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         'Authorization': `Bearer ${token}`
+            //     }
+            // })
+            // console.log(response);
+            let response = await userInfo(token);
             setProfileData({
                 email: response.data.email,
                 first_name: response.data.first_name,
@@ -41,12 +43,12 @@ export const Context = ({ children }) => {
             console.log(err);
         }
     }
-    useEffect(async () => {
+    useEffect(() => {
         getU();
     }, []);
-    // console.log(profileData);
+    console.log(profileData);
     return (
-        <AuthContext.Provider value={{logged, setLogged, profileData, setProfileData, getU }}>
+        <AuthContext.Provider value={{ logged, setLogged, profileData, setProfileData, id }}>
             {children}
         </AuthContext.Provider>
     )

@@ -21,7 +21,7 @@ export const login = (loginData) => {
 export const userInfo = (token) => {
     return axios({
         method: 'GET',
-        url: `/api/v1/auth/users`,
+        url: `/api/v1/auth/user`,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -41,7 +41,7 @@ export const updateUser = (id, token, profileData) => {
     })
 }
 
-export const uploadImg = (formData, token)=> {
+export const uploadImg = (formData, token) => {
     return axios({
         method: "POST",
         url: `/api/v1/storage/users`,

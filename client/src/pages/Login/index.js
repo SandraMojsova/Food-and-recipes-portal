@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { login } from '../../api/users';
-import {Header} from '../../components/Header';
+import { Header } from '../../components/Header';
 import './style.css';
 
 export const Login = () => {
@@ -24,18 +24,18 @@ export const Login = () => {
         try {
             let res = await login(loginData);
             localStorage.setItem('jwt', res.data);
-            if(res.status===200) {
-              history.push('/my-profile');
+            if (res.status === 200) {
+                history.push('/my-profile');
             }
         } catch (err) {
             console.log(err.response.data);
             setError(err.response.data);
         }
     };
-    
+
     return (
         <div id="login">
-            <Header text="Log In"/>
+            <Header text="Log In" />
             <div>
                 <div className="login-container">
                     <div className="login-text">

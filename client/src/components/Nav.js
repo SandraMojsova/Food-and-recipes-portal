@@ -7,7 +7,7 @@ export const Nav = () => {
 
     const history = useHistory();
     let { logged, setLogged } = useAuthContext();
-    
+
     const logoutUser = async () => {
         localStorage.removeItem('jwt');
         setLogged(false);
@@ -18,10 +18,10 @@ export const Nav = () => {
         <div id="nav">
             <Link to="/"><img className="logo" src={logo_color} alt="logo" /></Link>
             <ul className="nav_links">
-                <li><NavLink to="/breakfast" activeStyle={{color: "#F0972A"}}>Breakfast</NavLink></li>
-                <li><NavLink to="/brunch" activeStyle={{color: "#F0972A"}}>Brunch</NavLink></li>
-                <li><NavLink to="/lunch" activeStyle={{color: "#F0972A"}}>Lunch</NavLink></li>
-                <li><NavLink to="/dinner" activeStyle={{color: "#F0972A"}}>Dinner</NavLink></li>
+                <li><NavLink to="/category/breakfast" activeStyle={{ color: "#F0972A" }}>Breakfast</NavLink></li>
+                <li><NavLink to="/category/brunch" activeStyle={{ color: "#F0972A" }}>Brunch</NavLink></li>
+                <li><NavLink to="/category/lunch" activeStyle={{ color: "#F0972A" }}>Lunch</NavLink></li>
+                <li><NavLink to="/category/dinner" activeStyle={{ color: "#F0972A" }}>Dinner</NavLink></li>
             </ul>
             {logged ? <>
                 <ul className='logged-links'>

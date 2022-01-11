@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { updateUser, userInfo , uploadImg } from "../../api/users";
-import {Header} from '../../components/Header';
+import React, { useState, useEffect, useRef } from "react";
+import { updateUser, userInfo, uploadImg } from "../../api/users";
+import { Header } from '../../components/Header';
 import "./style.css";
 import img from "../../images/profile-pic.jpg";
 import { useAuthContext } from "../../components/Context";
@@ -8,7 +8,7 @@ import { useAuthContext } from "../../components/Context";
 export const MyProfile = () => {
     let token = localStorage.getItem("jwt");
 
-    let { profileData, setProfileData, id} = useAuthContext();
+    let { profileData, setProfileData, id } = useAuthContext();
 
     const [err, setError] = useState(null);
 
@@ -24,7 +24,7 @@ export const MyProfile = () => {
         let img = result.data.filename;
         setProfileData({ ...profileData, image: img });
     };
-  
+
     const save = async () => {
         try {
             await updateUser(id, token, profileData);
@@ -37,10 +37,10 @@ export const MyProfile = () => {
 
     return (
         <div id="my-profile">
-            <Header text="My Profile"/>
+            <Header text="My Profile" />
             <div className="profile-info">
                 <div className="upload-picture">
-                <img src={profileData.image ? `${profileData.image}` : img} />
+                    <img src={profileData.image ? `${profileData.image}` : img} />
                     <div className="avatar-button">
                         <label htmlFor="upload">Change Avatar</label>
                         <input
