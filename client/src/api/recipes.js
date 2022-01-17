@@ -1,9 +1,10 @@
 import axios from "axios";
+import { routes } from '../const';
 
 export const recipesByUser = (token) => {
     return axios({
         method: "GET",
-        url: `/api/v1/recipes/me`,
+        url: `${routes.recipes}/me`,
         headers: {
             Authorization: `Bearer ${token}`,
         },
@@ -13,7 +14,7 @@ export const recipesByUser = (token) => {
 export const deleteRecipe = (id, token) => {
     return axios({
         method: "DELETE",
-        url: `/api/v1/recipes/${id}`,
+        url: `${routes.recipes}/${id}`,
         headers: {
             Authorization: `Bearer ${token}`,
         },
@@ -23,7 +24,7 @@ export const deleteRecipe = (id, token) => {
 export const uploadImage = (token, formData) => {
     return axios({
         method: "POST",
-        url: `/api/v1/storage/recipes`,
+        url: `${routes.storage}/recipes`,
         data: formData,
         headers: {
             "Content-Type": "multipart/form-data",
@@ -35,7 +36,7 @@ export const uploadImage = (token, formData) => {
 export const addRecipe = (recipeData, token) => {
     return axios({
         method: "POST",
-        url: `/api/v1/recipes`,
+        url: `${routes.recipes}`,
         data: JSON.stringify(recipeData),
         headers: {
             "Content-Type": "application/json",
@@ -47,7 +48,7 @@ export const addRecipe = (recipeData, token) => {
 export const recipeById = (id, token) => {
     return axios({
         method: "GET",
-        url: `/api/v1/recipes/${id}`,
+        url: `${routes.recipes}/${id}`,
         headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -58,7 +59,7 @@ export const recipeById = (id, token) => {
 export const updateRecipe = (id, recipeData, token) => {
     return axios({
         method: "PATCH",
-        url: `/api/v1/recipes/${id}`,
+        url: `${routes.recipes}/${id}`,
         data: JSON.stringify({ recipeData }),
         headers: {
             "Content-Type": "application/json",
@@ -70,15 +71,15 @@ export const updateRecipe = (id, recipeData, token) => {
 export const getAllRecipes = async () => {
     return axios({
         method: "GET",
-        url: `/api/v1/recipes/all`,
+        url: `${routes.recipes}/all`,
         headers: { "Content-Type": "application/json" },
     });
 };
 
-export const addStar = async (id,token) => {
+export const addStar = async (id, token) => {
     return axios({
         method: "PATCH",
-        url: `/api/v1/recipes/like/${id}`,
+        url: `${routes.recipes}/like/${id}`,
         data: JSON.stringify({ id }),
         headers: {
             "Content-Type": "application/json",
@@ -87,10 +88,10 @@ export const addStar = async (id,token) => {
     });
 };
 
-export const recipesByCategory = async(category)=> {
+export const recipesByCategory = async (category) => {
     return axios({
         method: 'GET',
-        url: `/api/v1/recipes/all/${category}`,
+        url: `${routes.recipes}/all/${category}`,
         headers: { 'Content-Type': 'application/json' }
     })
 };

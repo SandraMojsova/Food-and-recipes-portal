@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
-import { updateUser, userInfo, uploadImg } from "../../api/users";
-import { Header } from '../../components/Header';
-import "./style.css";
-import img from "../../images/profile-pic.jpg";
+import React, { useState } from "react";
+import { updateUser, uploadImg } from "../../api/users";
+import { Header } from '../../components/ui/Header';
+import { Error } from "../../components/ui/Error";
+import img from '../../assets/images/profile-pic.jpg';
 import { useAuthContext } from "../../components/Context";
+import { token } from '../../const';
+import "./style.css";
 
 export const MyProfile = () => {
-    let token = localStorage.getItem("jwt");
 
     let { profileData, setProfileData, id } = useAuthContext();
 
@@ -86,7 +87,7 @@ export const MyProfile = () => {
                         <button onClick={save} className="save-button">
                             Save
                         </button>
-                        {err && <h3 style={{ color: "#8B0000" }}>Error : {err}</h3>}
+                        {err && <Error err={err} />}
                     </div>
                     <div className="second">
                         <div className="profile">

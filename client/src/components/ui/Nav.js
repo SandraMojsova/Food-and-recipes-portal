@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useHistory, NavLink } from 'react-router-dom';
-import logo_color from '../images/logo_color.svg';
-import { useAuthContext } from './Context';
+import { useAuthContext } from '../Context';
+import logo_color from '../../assets/images/logo_color.svg';
 
 export const Nav = () => {
 
@@ -12,7 +12,7 @@ export const Nav = () => {
         localStorage.removeItem('jwt');
         setLogged(false);
         history.push('/');
-    }
+    };
 
     return (
         <div id="nav">

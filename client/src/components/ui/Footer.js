@@ -1,10 +1,10 @@
 import React from 'react';
-import logo_white from '../images/logo_white.svg';
+import logo_white from '../../assets/images/logo_white.svg';
 
 export const Footer = () => {
     return (
         <div id="footer">
-            <img src={logo_white} alt=""/>
+            <img src={logo_white} alt="" />
             <ul className="footer-list">
                 <li>Breakfast</li>
                 <li>Brunch</li>

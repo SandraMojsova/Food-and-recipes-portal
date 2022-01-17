@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { recipeById, uploadImage, updateRecipe } from '../../api/recipes';
-import recipe_image from "../../images/recipe-image.jpg";
-import back_button from "../../images/icon_back_white.svg";
+import back_button from '../../assets/images/icon_back_white.svg';
+import recipe_image from '../../assets/images/recipe-image.jpg';
 import { Recipe } from './Recipe';
+import { token } from '../../const';
+import "./style.css";
 
 export const UpdateRecipe = () => {
-    let token = localStorage.getItem('jwt');
+
     let history = useHistory();
 
     const [recipeData, setRecipeData] = useState({
@@ -46,7 +48,7 @@ export const UpdateRecipe = () => {
         }
     }
 
-    const createRecipe = (e) => {
+    const recipeFieldUpdate = (e) => {
         setRecipeData({
             ...recipeData,
             [e.target.name]: e.target.value,
@@ -56,7 +58,7 @@ export const UpdateRecipe = () => {
     const recipeImage = async (event) => {
         setUploadedImage(URL.createObjectURL(event.target.files[0]))
         setImage(event.target.files[0]);
-    }
+    };
 
     const saveRecipeBtn = async (e) => {
         e.preventDefault();
@@ -86,12 +88,12 @@ export const UpdateRecipe = () => {
                 back_button={back_button}
                 backToMyRecipes={backToMyRecipes}
                 recipe_image={recipe_image}
-                createRecipe={createRecipe}
+                recipeFieldUpdate={recipeFieldUpdate}
                 recipeImage={recipeImage}
                 saveRecipeBtn={saveRecipeBtn}
                 uploadedImage={uploadedImage}
+                err={err}
             />
-            {err && <h3>{err}</h3>}
         </div>
     )
 }

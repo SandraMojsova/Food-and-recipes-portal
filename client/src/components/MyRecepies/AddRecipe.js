@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { uploadImage, addRecipe } from '../../api/recipes';
-import back_button from "../../images/icon_back_white.svg";
-import recipe_image from "../../images/recipe-image.jpg";
+import back_button from '../../assets/images/icon_back_white.svg';
+import recipe_image from '../../assets/images/recipe-image.jpg';
 import { Recipe } from './Recipe';
-import "./index.css";
+import { token } from '../../const';
+import "./style.css";
 
 export const AddRecipe = () => {
 
-    let token = localStorage.getItem("jwt");
     let history = useHistory();
 
     const [recipeData, setRecipeData] = useState({
@@ -28,7 +28,7 @@ export const AddRecipe = () => {
         history.push("/my-recepies");
     };
 
-    const createRecipe = (e) => {
+    const recipeFieldUpdate = (e) => {
         setRecipeData({
             ...recipeData,
             [e.target.name]: e.target.value,
@@ -38,17 +38,7 @@ export const AddRecipe = () => {
     const recipeImage = async (event) => {
         setUploadedImage(URL.createObjectURL(event.target.files[0]))
         setImage(event.target.files[0]);
-    }
-    //     let image = event.target.files[0];
-    //     const formData = new FormData();
-    //     formData.append('file', image);
-    //     try {
-    //         const res = await uploadImage(token, formData);
-    //         setRecipeData({ ...recipeData, image: res.data.filename });
-    //     } catch (err) {
-    //         console.log(err.response);
-    //     }
-    // };
+    };
 
     const saveRecipeBtn = async (e) => {
         e.preventDefault();
@@ -74,11 +64,12 @@ export const AddRecipe = () => {
                 backToMyRecipes={backToMyRecipes}
                 recipeImage={recipeImage}
                 uploadedImage={uploadedImage}
-                createRecipe={createRecipe}
+                recipeFieldUpdate={recipeFieldUpdate}
                 saveRecipeBtn={saveRecipeBtn}
                 recipe_image={recipe_image}
+                err={err}
             />
-            {err && <h3>{err}</h3>}
+            {/* {err && <Error err={err} />} */}
         </div>
-    );
+    )
 };

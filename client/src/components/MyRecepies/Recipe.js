@@ -1,6 +1,7 @@
 import React from "react";
+import { Error } from "../ui/Error";
 
-export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, createRecipe, saveRecipeBtn, recipe_image, uploadedImage }) => {
+export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, recipeFieldUpdate, saveRecipeBtn, recipe_image, uploadedImage, err }) => {
     return (
         <div>
             <div className="my-recepies-text-box">
@@ -40,7 +41,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                             name="recipe_title"
                             className="recipe-title-input inputs"
                             value={recipeData.recipe_title}
-                            onChange={createRecipe}
+                            onChange={recipeFieldUpdate}
                         />
                     </div>
                     <div className="data">
@@ -50,8 +51,9 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                                 name="category"
                                 className="inputs select-category"
                                 value={recipeData.category}
-                                onChange={createRecipe}
+                                onChange={recipeFieldUpdate}
                             >
+                                <option value="none" selected hidden>Select Category</option>
                                 <option value="breakfast">Breakfast</option>
                                 <option value="brunch">Brunch</option>
                                 <option value="lunch">Lunch</option>
@@ -64,7 +66,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                                 name="preparation_time"
                                 className="preparation-and-number inputs"
                                 value={recipeData.preparation_time}
-                                onChange={createRecipe}
+                                onChange={recipeFieldUpdate}
                             />
                         </div>
                         <div className="recipe-data">
@@ -73,7 +75,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                                 name="people"
                                 className=" preparation-and-number inputs"
                                 value={recipeData.people}
-                                onChange={createRecipe}
+                                onChange={recipeFieldUpdate}
                             />
                         </div>
                     </div>
@@ -83,13 +85,16 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                             name="short_description"
                             className="description"
                             value={recipeData.short_description}
-                            onChange={createRecipe}
+                            onChange={recipeFieldUpdate}
                             rows={5}
                         />
                     </div>
-                    <button className="save-btn" onClick={saveRecipeBtn}>
-                        Save
-                    </button>
+                    <div>
+                        <button className="save-btn" onClick={saveRecipeBtn}>
+                            Save
+                        </button>
+                        {err && <Error err={err} />}
+                    </div>
                 </div>
                 <div className="recipe-data">
                     <label htmlFor="recipe">Recipe</label>
@@ -97,7 +102,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                         name="recipe"
                         className="recipe-details"
                         value={recipeData.recipe}
-                        onChange={createRecipe}
+                        onChange={recipeFieldUpdate}
                         rows={20}
                     />
                 </div>

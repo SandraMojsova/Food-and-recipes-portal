@@ -1,13 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
-import { userInfo } from '../api/users';
+import { userInfo } from '../../api/users';
+import { token } from '../../const';
 
 export const AuthContext = React.createContext();
 
 export const Context = ({ children }) => {
-    let token = localStorage.getItem('jwt');
-    const [logged, setLogged] = useState(false);
-    const [id, setId] = useState(null);
+
     const [profileData, setProfileData] = useState({
         email: '',
         password: '',
@@ -17,18 +15,11 @@ export const Context = ({ children }) => {
         repeat_password: '',
         image: ''
     });
+    const [logged, setLogged] = useState(false);
+    const [id, setId] = useState(null);
 
     const getU = async () => {
         try {
-            // let response = await axios({
-            //     method: 'GET',
-            //     url: `/api/v1/auth/user`,
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'Authorization': `Bearer ${token}`
-            //     }
-            // })
-            // console.log(response);
             let response = await userInfo(token);
             setProfileData({
                 email: response.data.email,
@@ -42,18 +33,19 @@ export const Context = ({ children }) => {
         } catch (err) {
             console.log(err);
         }
-    }
+    };
+
     useEffect(() => {
         getU();
     }, []);
-    console.log(profileData);
+
     return (
         <AuthContext.Provider value={{ logged, setLogged, profileData, setProfileData, id }}>
             {children}
         </AuthContext.Provider>
     )
-
 }
+
 export const useAuthContext = () => {
     return useContext(AuthContext);
 }

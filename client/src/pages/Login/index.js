@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { login } from '../../api/users';
-import { Header } from '../../components/Header';
+import { Header } from '../../components/ui/Header';
+import { Error } from '../../components/ui/Error';
 import './style.css';
 
 export const Login = () => {
@@ -17,15 +17,12 @@ export const Login = () => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
     };
 
-    let history = useHistory();
-
     const loginBtn = async (e) => {
         e.preventDefault();
         try {
             let res = await login(loginData);
             localStorage.setItem('jwt', res.data);
             if (res.status === 200) {
-                // history.push('/my-profile');
                 window.location.href = "/my-profile";
             }
         } catch (err) {
@@ -52,8 +49,10 @@ export const Login = () => {
                             <label htmlFor="password">Password</label>
                             <input type="password" name="password" placeholder="*******" value={loginData.password} onChange={loginFieldUpdate} />
                         </div>
-                        <button id="login-button" onClick={loginBtn}>Log in</button>
-                        {err && <h3 style={{ color: "#8B0000" }}>Error : {err}</h3>}
+                        <div>
+                            <button id="login-button" onClick={loginBtn}>Log in</button>
+                            {err && <Error err={err} />}
+                        </div>
                     </form>
                 </div>
             </div>

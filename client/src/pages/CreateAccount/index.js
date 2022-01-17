@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { create } from "../../api/users";
-import {Header} from '../../components/Header';
+import { Header } from '../../components/ui/Header';
+import { Error } from "../../components/ui/Error";
 import "./style.css";
 
 export const CreateAccount = () => {
+
     const [createAccountData, setCreateAccountData] = useState({
         email: "",
         password: "",
@@ -39,7 +41,7 @@ export const CreateAccount = () => {
 
     return (
         <div id="create-account">
-            <Header text="Create Account"/>
+            <Header text="Create Account" />
             <div className="container">
                 <div className="create-account-info">
                     <h2>
@@ -73,7 +75,7 @@ export const CreateAccount = () => {
                                 name="email"
                                 value={createAccountData.email}
                                 onChange={createFieldUpdate}
-                                />
+                            />
                         </div>
                         <div>
                             <label htmlFor="pasword">Password</label>
@@ -82,10 +84,10 @@ export const CreateAccount = () => {
                                 name="password"
                                 value={createAccountData.password}
                                 onChange={createFieldUpdate}
-                                />
+                            />
                         </div>
                         <button onClick={createAccountBtn}>create account</button>
-                        {err && <h3 style={{ position: "absolute",color: "#8B0000"}}>Error: {err}</h3>}
+                        {err && <Error err={err} />}
                     </div>
                     <div>
                         <div>
@@ -95,7 +97,7 @@ export const CreateAccount = () => {
                                 name="last_name"
                                 value={createAccountData.last_name}
                                 onChange={createFieldUpdate}
-                                />
+                            />
                         </div>
                         <div>
                             <label htmlFor="birthday">Birthday</label>
@@ -104,7 +106,7 @@ export const CreateAccount = () => {
                                 name="birthday"
                                 value={createAccountData.birthday}
                                 onChange={createFieldUpdate}
-                                />
+                            />
                         </div>
                         <div>
                             <label htmlFor="repeat_password">Repeat Password</label>
@@ -113,7 +115,7 @@ export const CreateAccount = () => {
                                 name="repeat_password"
                                 value={createAccountData.repeat_password}
                                 onChange={createFieldUpdate}
-                                />
+                            />
                         </div>
                     </div>
                 </form>

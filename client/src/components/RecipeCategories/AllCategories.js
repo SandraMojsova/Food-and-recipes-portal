@@ -1,32 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { Card } from './Card';
 import { recipesByCategory, addStar } from '../../api/recipes';
+import { Header } from '../ui/Header';
+import { Card } from './Card';
+import { token } from '../../const';
 import './style.css';
-import { Header } from '../Header';
 
 export const AllCategories = () => {
 
-    let token = localStorage.getItem("jwt");
     const [recipes, setRecipes] = useState([]);
 
     let url = window.location.pathname;
     let category = url.substring(url.lastIndexOf('/') + 1);
 
-    const categoryBreakfast = async () => {
+    const categorySelected = async () => {
         try {
             let response = await recipesByCategory(category);
             setRecipes(response.data);
         } catch (err) {
             console.log(err);
         }
-    }
+    };
 
     const likePost = async (id) => {
         try {
             let response = await addStar(id, token);
             let result = response.data;
             let newData = recipes.map(item => {
-                if (item._id == result._id) {
+                if (item._id === result._id) {
                     return result;
                 }
                 else {
@@ -37,15 +37,14 @@ export const AllCategories = () => {
         } catch (err) {
             console.log(err.response);
         }
-    }
+    };
 
     useEffect(() => {
-        categoryBreakfast();
-    }, [category])
-
+        categorySelected();
+    }, [category]);
 
     return (
-        <div id="breakfast">
+        <div id="categories">
             <Header text={category} />
             <div className='new-recipes'>
                 {
