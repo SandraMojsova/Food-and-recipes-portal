@@ -11,21 +11,25 @@ export const MyProfile = () => {
     let { profileData, setProfileData, id } = useAuthContext();
 
     const [err, setError] = useState(null);
+    const [avatar, setAvatar] = useState(null);
+    const [image, setImage] = useState('');
 
     const update = (e) => {
         setProfileData({ ...profileData, [e.target.name]: e.target.value });
     };
 
-    const uploadImage = async (event) => {
-        let image = event.target.files[0];
-        const formData = new FormData();
-        formData.append("file", image);
-        const result = await uploadImg(formData, token);
-        let img = result.data.filename;
-        setProfileData({ ...profileData, image: img });
-    };
+    const uploadAvatar = (event) => {
+        setAvatar(URL.createObjectURL(event.target.files[0]))
+        setImage(event.target.files[0]);
+    }
 
     const save = async () => {
+        if (image) {
+            const formData = new FormData();
+            formData.append("file", image);
+            const result = await uploadImg(formData, token);
+            profileData.image = result.data.filename;
+        }
         try {
             await updateUser(id, token, profileData);
             window.location.reload();
@@ -35,19 +39,22 @@ export const MyProfile = () => {
         }
     };
 
+
     return (
         <div id="my-profile">
             <Header text="My Profile" />
             <div className="profile-info">
                 <div className="upload-picture">
-                    <img src={profileData.image ? `${profileData.image}` : img} />
+                    {avatar === null ? <img src={profileData.image ? `${profileData.image}` : img} alt="" />
+                        : <img src={avatar} alt="" />
+                    }
                     <div className="avatar-button">
                         <label htmlFor="upload">Change Avatar</label>
                         <input
                             style={{ display: "none" }}
                             type="file"
                             id="upload"
-                            onChange={uploadImage}
+                            onChange={uploadAvatar}
                         />
                     </div>
                 </div>

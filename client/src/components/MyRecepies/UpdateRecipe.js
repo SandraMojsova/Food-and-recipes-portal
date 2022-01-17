@@ -19,6 +19,8 @@ export const UpdateRecipe = () => {
         image: ""
     });
     const [err, setError] = useState(null);
+    const [uploadedImage, setUploadedImage] = useState(null);
+    const [image, setImage] = useState('');
 
     let url = window.location.pathname;
     let id = url.substring(url.lastIndexOf('/') + 1);
@@ -52,19 +54,18 @@ export const UpdateRecipe = () => {
     };
 
     const recipeImage = async (event) => {
-        let image = event.target.files[0];
-        const formData = new FormData();
-        formData.append('file', image);
-        try {
-            const res = await uploadImage(token, formData);
-            setRecipeData({ ...recipeData, image: res.data.filename });
-        } catch (err) {
-            console.log(err.response);
-        }
-    };
+        setUploadedImage(URL.createObjectURL(event.target.files[0]))
+        setImage(event.target.files[0]);
+    }
 
     const saveRecipeBtn = async (e) => {
         e.preventDefault();
+        if (image) {
+            const formData = new FormData();
+            formData.append('file', image);
+            const res = await uploadImage(token, formData);
+            recipeData.image = res.data.filename;
+        }
         try {
             await updateRecipe(id, recipeData, token);
             history.push("/my-recepies");
@@ -88,6 +89,7 @@ export const UpdateRecipe = () => {
                 createRecipe={createRecipe}
                 recipeImage={recipeImage}
                 saveRecipeBtn={saveRecipeBtn}
+                uploadedImage={uploadedImage}
             />
             {err && <h3>{err}</h3>}
         </div>

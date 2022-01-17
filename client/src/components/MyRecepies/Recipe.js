@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, createRecipe, saveRecipeBtn, recipe_image }) => {
+export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, createRecipe, saveRecipeBtn, recipe_image, uploadedImage }) => {
     return (
         <div>
             <div className="my-recepies-text-box">
@@ -17,11 +17,11 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                 <div className="recipe">
                     <div className="recipe-picture">
                         <label className="recipe-picture-label">Recipe Image</label>
-                        <img
+                        {uploadedImage === null ? <img
                             src={recipeData.image ? `${recipeData.image}` : recipe_image}
                             alt=""
-                            id="recipe-picture"
-                        />
+                        /> : <img src={uploadedImage} alt="" />
+                        }
                     </div>
                     <div className="upload-recipe-button">
                         <label for="upload">Upload image</label>

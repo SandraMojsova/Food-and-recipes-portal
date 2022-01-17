@@ -25,7 +25,8 @@ export const Login = () => {
             let res = await login(loginData);
             localStorage.setItem('jwt', res.data);
             if (res.status === 200) {
-                history.push('/my-profile');
+                // history.push('/my-profile');
+                window.location.href = "/my-profile";
             }
         } catch (err) {
             console.log(err.response.data);

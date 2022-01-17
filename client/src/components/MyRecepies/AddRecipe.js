@@ -20,6 +20,8 @@ export const AddRecipe = () => {
         recipe: "",
         image: "",
     });
+    const [uploadedImage, setUploadedImage] = useState(null);
+    const [image, setImage] = useState('');
     const [err, setError] = useState(null);
 
     const backToMyRecipes = () => {
@@ -34,19 +36,28 @@ export const AddRecipe = () => {
     };
 
     const recipeImage = async (event) => {
-        let image = event.target.files[0];
-        const formData = new FormData();
-        formData.append('file', image);
-        try {
-            const res = await uploadImage(token, formData);
-            setRecipeData({ ...recipeData, image: res.data.filename });
-        } catch (err) {
-            console.log(err.response);
-        }
-    };
+        setUploadedImage(URL.createObjectURL(event.target.files[0]))
+        setImage(event.target.files[0]);
+    }
+    //     let image = event.target.files[0];
+    //     const formData = new FormData();
+    //     formData.append('file', image);
+    //     try {
+    //         const res = await uploadImage(token, formData);
+    //         setRecipeData({ ...recipeData, image: res.data.filename });
+    //     } catch (err) {
+    //         console.log(err.response);
+    //     }
+    // };
 
     const saveRecipeBtn = async (e) => {
         e.preventDefault();
+        if (image) {
+            const formData = new FormData();
+            formData.append('file', image);
+            const res = await uploadImage(token, formData);
+            recipeData.image = res.data.filename;
+        }
         try {
             await addRecipe(recipeData, token);
             history.push("/my-recepies");
@@ -62,6 +73,7 @@ export const AddRecipe = () => {
                 back_button={back_button}
                 backToMyRecipes={backToMyRecipes}
                 recipeImage={recipeImage}
+                uploadedImage={uploadedImage}
                 createRecipe={createRecipe}
                 saveRecipeBtn={saveRecipeBtn}
                 recipe_image={recipe_image}
