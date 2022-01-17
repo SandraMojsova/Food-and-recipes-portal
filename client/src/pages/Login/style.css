@@ -1,10 +1,11 @@
 #login {
-    padding: 63px 10% 20px;
+    padding: 63px 0 0;
+    margin: 0 auto;
+    width: 1250px;
 }
 
 .login-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     margin-bottom: 323px;
     margin-top: 93px;
@@ -12,6 +13,7 @@
 
 .login-text {
     width: 688px;
+    margin-right: 144px;
 }
 
 .login-text h2 {

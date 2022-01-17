@@ -9,10 +9,6 @@ import { MyRecepies } from '../pages/MyRecepies';
 import { AddRecipe } from './MyRecepies/AddRecipe';
 import { UpdateRecipe } from './MyRecepies/UpdateRecipe';
 import { HomePage } from '../pages/HomePage';
-import { Breakfast } from './RecipeCategories/Breakfast';
-import { Brunch } from './RecipeCategories/Brunch';
-import { Lunch } from './RecipeCategories/Lunch';
-import { Dinner } from './RecipeCategories/Dinner';
 import { AllCategories } from '../components/RecipeCategories/AllCategories';
 import { ProtectedRoute } from '../components/ProtectedRoute';
 

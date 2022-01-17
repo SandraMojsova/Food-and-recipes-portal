@@ -73,7 +73,7 @@ export const CreateAccount = () => {
                                 name="email"
                                 value={createAccountData.email}
                                 onChange={createFieldUpdate}
-                            />
+                                />
                         </div>
                         <div>
                             <label htmlFor="pasword">Password</label>
@@ -82,10 +82,10 @@ export const CreateAccount = () => {
                                 name="password"
                                 value={createAccountData.password}
                                 onChange={createFieldUpdate}
-                            />
+                                />
                         </div>
                         <button onClick={createAccountBtn}>create account</button>
-                        {err && <h3 style={{ color: "#8B0000"}}>Error: {err}</h3>}
+                        {err && <h3 style={{ position: "absolute",color: "#8B0000"}}>Error: {err}</h3>}
                     </div>
                     <div>
                         <div>
@@ -95,7 +95,7 @@ export const CreateAccount = () => {
                                 name="last_name"
                                 value={createAccountData.last_name}
                                 onChange={createFieldUpdate}
-                            />
+                                />
                         </div>
                         <div>
                             <label htmlFor="birthday">Birthday</label>
@@ -104,7 +104,7 @@ export const CreateAccount = () => {
                                 name="birthday"
                                 value={createAccountData.birthday}
                                 onChange={createFieldUpdate}
-                            />
+                                />
                         </div>
                         <div>
                             <label htmlFor="repeat_password">Repeat Password</label>
@@ -113,7 +113,7 @@ export const CreateAccount = () => {
                                 name="repeat_password"
                                 value={createAccountData.repeat_password}
                                 onChange={createFieldUpdate}
-                            />
+                                />
                         </div>
                     </div>
                 </form>

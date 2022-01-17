@@ -2,7 +2,9 @@
 
 #add-recipe,
 #update-recipe {
-  padding: 63px 10% 20px;
+  padding: 63px 0 0;
+  margin: 0 auto;
+  width: 1250px;
 }
 
 .my-recepies-text-box {
@@ -42,7 +44,7 @@
   box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #a5a5a5;
   border-radius: 5px;
-  width: 200px;
+  width: 234px;
   height: 147px;
   margin-bottom: 17px;
   margin-top: 10px;
@@ -50,7 +52,7 @@
 
 .upload-recipe-button {
   border: 1px solid #a5a5a5;
-  width: 200px;
+  width: 234px;
   height: 32px;
   text-align: center;
   padding-top: 8px;
@@ -74,8 +76,8 @@
   justify-content: space-between;
   flex-direction: column;
   width: 500px;
-  margin-right: 36px;
   margin-left: 36px;
+  margin-right: 36px;
 }
 
 .recipe-data label {
@@ -146,14 +148,14 @@
 }
 
 .recipe {
-  width: 202px;
+  width: 234px;
   height: 284px;
 }
 
 .recipe-details {
   overflow: hidden;
   resize: none;
-  width: 260px;
+  width: 377px;
   background: #f0efea 0% 0% no-repeat padding-box;
   border: 1px solid #a5a5a5;
   border-radius: 5px;

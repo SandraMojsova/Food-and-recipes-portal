@@ -1,0 +1,46 @@
+.other-styles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f8f7f2 0% 0% no-repeat padding-box;
+    z-index: 1000;
+    filter: blur(200px);
+}
+
+.recipe-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 10px 20px #00000012;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    padding: 0px 36px 36px 32px;
+    z-index: 1000;
+    font: normal normal bold 18px/24px Roboto;
+}
+
+.recipes-modal-buttons {
+    text-align: center;
+}
+
+.recipes-modal-buttons button {
+    font: normal normal bold 18px/24px Roboto;
+    width: 100px;
+    border-radius: 5px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-style: none;
+}
+
+.button-confirm {
+    color: white;
+    background: #B22222;
+    margin-right: 5px;
+}
+
+.button-cancel {
+    background: #B5B5B4;
+}

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { recipesByUser, deleteRecipe } from '../../api/recipes';
 import add_icon from '../../images/icon_plus_white.svg';
 import trash_icon from '../../images/icon_trashcan.svg';
+import {Modal} from './Modal';
 import './style.css';
 
 export const MyRecepies = () => {
@@ -11,6 +12,8 @@ export const MyRecepies = () => {
     let history = useHistory();
 
     const [recipes, setRecipes] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [id, setId]= useState('');
 
     const addRecepies = () => {
         history.push('/add-recipe');
@@ -27,13 +30,16 @@ export const MyRecepies = () => {
 
     const removeRecipe = async (event,id) => {
         event.stopPropagation();
-        let selectedRecipe = recipes.find((recipe) => recipe._id === id);
-        try {
-            await deleteRecipe(selectedRecipe._id, token)
-            setRecipes([...recipes].filter((recipe) => recipe._id !== id));
-        } catch (err) {
-            console.log(err.response);
-        }
+        setModalOpen(true);
+        setId(id);
+        // event.stopPropagation();
+        // let selectedRecipe = recipes.find((recipe) => recipe._id === id);
+        // try {
+        //     await deleteRecipe(selectedRecipe._id, token)
+        //     setRecipes([...recipes].filter((recipe) => recipe._id !== id));
+        // } catch (err) {
+        //     console.log(err.response);
+        // }
     }
 
     useEffect(() => {
@@ -47,6 +53,7 @@ export const MyRecepies = () => {
                 <div className="border"></div>
                 <img src={add_icon} alt="" className="add-button-icon" onClick={addRecepies} />
             </div>
+                { modalOpen && <Modal setModalOpen={setModalOpen} id={id} recipes={recipes} setRecipes={setRecipes}></Modal>}
             <table className="recipes-table">
                 <thead>
                     <tr>
@@ -74,3 +81,4 @@ export const MyRecepies = () => {
         </div >
     )
 }
+

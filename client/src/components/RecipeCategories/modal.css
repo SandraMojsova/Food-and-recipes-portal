@@ -9,7 +9,8 @@
   border-radius: 5px;
   padding: 0px 36px 36px 32px;
   z-index: 1000;
-  width: 600px;
+  height: 563px;
+  width: 1027px;
 }
 
 .others-styles {
@@ -24,7 +25,7 @@
 }
 
 .recipe-info-box {
-  width: 50%;
+  width: 412px;
   margin-right: 43px;
 }
 
@@ -37,10 +38,12 @@
   font: normal normal bold 38px/50px Roboto Slab;
   color: #f0972a;
   margin-bottom: 22px;
+  margin-top:22px;
 }
 
 .best-for {
   margin-top: 22px;
+  margin-bottom: 0;
   display: flex;
   justify-content: space-between;
   font: normal normal bold 18px/24px Roboto Slab;
@@ -60,6 +63,7 @@
   margin-top: 17px;
   font: normal normal normal 16px/21px Roboto;
   color: #a5a5a5;
+  height: 126px;
   margin-bottom: 25px;
 }
 
@@ -80,5 +84,6 @@
 
 .recipe-info-box-img {
   object-fit: cover;
-  width: 100%;
+  width: 412px;
+  height: 243px;
 }

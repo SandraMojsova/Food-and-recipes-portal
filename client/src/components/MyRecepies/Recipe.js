@@ -98,7 +98,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                         className="recipe-details"
                         value={recipeData.recipe}
                         onChange={createRecipe}
-                        rows={18}
+                        rows={20}
                     />
                 </div>
             </div>
