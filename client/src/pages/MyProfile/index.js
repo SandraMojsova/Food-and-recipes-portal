@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { updateUser, uploadImg } from "../../api/users";
 import { Header } from '../../components/ui/Header';
 import { Error } from "../../components/ui/Error";
+import { Input } from "../../components/ui/Input";
 import img from '../../assets/images/profile-pic.jpg';
 import { useAuthContext } from "../../components/Context";
 import { token } from '../../const';
@@ -61,64 +62,18 @@ export const MyProfile = () => {
                 </div>
                 <div className="profile-container">
                     <div className="profile-container-data">
-                        <div className="profile">
-                            <label htmlFor="first_name">First Name</label>
-                            <input
-                                type="text"
-                                name="first_name"
-                                value={profileData.first_name}
-                                onChange={update}
-                            />
-                        </div>
-                        <div className="profile">
-                            <label htmlFor="email">Email</label>
-                            <input type="text" name="email" value={profileData.email} />
-                        </div>
-                        <div className="profile">
-                            <label htmlFor="password">Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="****"
-                                value={profileData.password}
-                                onChange={update}
-                            />
-                        </div>
+                        <Input name="first_name" type="text" text="First Name" value={profileData.first_name} onChange={update} className="profile" />
+                        <Input name="email" type="email" text="Email" value={profileData.email} onChange={update} className="profile" />
+                        <Input name="password" type="password" text="Password" placeholder="****" value={profileData.password} onChange={update} className="profile" />
                         <button onClick={save} className="save-button">
                             Save
                         </button>
                         {err && <Error err={err} />}
                     </div>
                     <div className="second">
-                        <div className="profile">
-                            <label htmlFor="last_name">Last Name</label>
-                            <input
-                                type="text"
-                                name="last_name"
-                                value={profileData.last_name}
-                                onChange={update}
-                            />
-                        </div>
-                        <div className="profile">
-                            <label htmlFor="birthday">Birthday</label>
-                            <input
-                                type="date"
-                                name="birthday"
-                                placeholder="****"
-                                value={profileData.birthday}
-                                onChange={update}
-                            />
-                        </div>
-                        <div className="profile">
-                            <label htmlFor="repeat_password">Repeat Password</label>
-                            <input
-                                type="password"
-                                placeholder="****"
-                                name="repeat_password"
-                                value={profileData.repeat_password}
-                                onChange={update}
-                            />
-                        </div>
+                        <Input name="last_name" type="text" text="Last Name" value={profileData.last_name} onChange={update} className="profile" />
+                        <Input name="birthday" type="date" text="Birthday" value={profileData.birthday} onChange={update} className="profile" />
+                        <Input name="repeat_password" type="password" placeholder="****" text="Repeat Password" value={profileData.repeat_password} onChange={update} className="profile" />
                     </div>
                 </div>
             </div>

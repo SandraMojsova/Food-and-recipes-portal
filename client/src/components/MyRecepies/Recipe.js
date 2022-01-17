@@ -1,5 +1,6 @@
 import React from "react";
 import { Error } from "../ui/Error";
+import { Input } from "../ui/Input";
 
 export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, recipeFieldUpdate, saveRecipeBtn, recipe_image, uploadedImage, err }) => {
     return (
@@ -35,15 +36,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                     </div>
                 </div>
                 <div className="recipe-info">
-                    <div className="recipe-data">
-                        <label htmlFor="recipe_title">Recipe Title</label>
-                        <input
-                            name="recipe_title"
-                            className="recipe-title-input inputs"
-                            value={recipeData.recipe_title}
-                            onChange={recipeFieldUpdate}
-                        />
-                    </div>
+                    <Input name="recipe_title" text="Recipe Title" type="text" value={recipeData.recipe_title} onChange={recipeFieldUpdate} className="recipe-data" inputClassName="recipe-title-input inputs" />
                     <div className="data">
                         <div className="recipe-data">
                             <label htmlFor="category">Category</label>
@@ -60,24 +53,8 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                                 <option value="dinner">Dinner</option>
                             </select>
                         </div>
-                        <div className="recipe-data">
-                            <label htmlFor="preparation-time">Preparation time</label>
-                            <input
-                                name="preparation_time"
-                                className="preparation-and-number inputs"
-                                value={recipeData.preparation_time}
-                                onChange={recipeFieldUpdate}
-                            />
-                        </div>
-                        <div className="recipe-data">
-                            <label htmlFor="people">No. people</label>
-                            <input
-                                name="people"
-                                className=" preparation-and-number inputs"
-                                value={recipeData.people}
-                                onChange={recipeFieldUpdate}
-                            />
-                        </div>
+                        <Input name="preparation_time" text="Preparation time" type="number" value={recipeData.preparation_time} onChange={recipeFieldUpdate} className="recipe-data" inputClassName="preparation-and-number inputs" />
+                        <Input name="people" text="No. people" type="number" value={recipeData.people} onChange={recipeFieldUpdate} className="recipe-data" inputClassName="preparation-and-number inputs" />
                     </div>
                     <div className="recipe-data">
                         <label htmlFor="short_description">Short description</label>

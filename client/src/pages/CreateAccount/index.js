@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { create } from "../../api/users";
 import { Header } from '../../components/ui/Header';
 import { Error } from "../../components/ui/Error";
+import { Input } from '../../components/ui/Input';
 import "./style.css";
 
 export const CreateAccount = () => {
@@ -59,64 +60,16 @@ export const CreateAccount = () => {
                 </div>
                 <form method="post" className="form">
                     <div>
-                        <div>
-                            <label htmlFor="first_name">First Name</label>
-                            <input
-                                type="text"
-                                name="first_name"
-                                value={createAccountData.first_name}
-                                onChange={createFieldUpdate}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="email">Email</label>
-                            <input
-                                type="text"
-                                name="email"
-                                value={createAccountData.email}
-                                onChange={createFieldUpdate}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="pasword">Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                value={createAccountData.password}
-                                onChange={createFieldUpdate}
-                            />
-                        </div>
+                        <Input name="first_name" text="First Name" type="text" value={createAccountData.first_name} onChange={createFieldUpdate} />
+                        <Input name="email" text="Email" type="text" value={createAccountData.email} onChange={createFieldUpdate} />
+                        <Input name="password" text="Password" type="password" value={createAccountData.password} onChange={createFieldUpdate} />
                         <button onClick={createAccountBtn}>create account</button>
                         {err && <Error err={err} />}
                     </div>
                     <div>
-                        <div>
-                            <label htmlFor="last_name">Last Name</label>
-                            <input
-                                type="text"
-                                name="last_name"
-                                value={createAccountData.last_name}
-                                onChange={createFieldUpdate}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="birthday">Birthday</label>
-                            <input
-                                type="date"
-                                name="birthday"
-                                value={createAccountData.birthday}
-                                onChange={createFieldUpdate}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="repeat_password">Repeat Password</label>
-                            <input
-                                type="password"
-                                name="repeat_password"
-                                value={createAccountData.repeat_password}
-                                onChange={createFieldUpdate}
-                            />
-                        </div>
+                        <Input name="last_name" text="Last Name" type="text" value={createAccountData.last_name} onChange={createFieldUpdate} />
+                        <Input name="birthday" text="Birthday" type="date" value={createAccountData.birthday} onChange={createFieldUpdate} />
+                        <Input name="repeat_password" text="Repeat Password" type="password" value={createAccountData.repeat_password} onChange={createFieldUpdate} />
                     </div>
                 </form>
             </div>

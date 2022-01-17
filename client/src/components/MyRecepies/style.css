@@ -48,6 +48,7 @@
     height: 147px;
     margin-bottom: 17px;
     margin-top: 10px;
+    object-fit: cover;
 }
 
 .upload-recipe-button {

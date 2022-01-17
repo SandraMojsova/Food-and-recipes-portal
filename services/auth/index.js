@@ -32,3 +32,4 @@ api.listen(cfg.get('services').auth.port, err => {
     }
     console.log(`Server successfully started on port ${cfg.get('services').auth.port}`);
 });
+

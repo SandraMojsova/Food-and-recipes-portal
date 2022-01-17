@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { login } from '../../api/users';
 import { Header } from '../../components/ui/Header';
 import { Error } from '../../components/ui/Error';
+import { Input } from '../../components/ui/Input';
 import './style.css';
 
 export const Login = () => {
@@ -41,14 +42,8 @@ export const Login = () => {
                         <p>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
                     </div>
                     <form method="post" className="formData">
-                        <div className="form-container">
-                            <label htmlFor="email">Email</label>
-                            <input type="text" name="email" placeholder="user@domain.com" value={loginData.email} onChange={loginFieldUpdate} />
-                        </div>
-                        <div className="form-container">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" name="password" placeholder="*******" value={loginData.password} onChange={loginFieldUpdate} />
-                        </div>
+                        <Input name="email" text="Email" type="text" placeholder="user@domain.com" value={loginData.email} onChange={loginFieldUpdate} className="form-container" />
+                        <Input name="password" text="Password" type="password" placeholder="*******" value={loginData.password} onChange={loginFieldUpdate} className="form-container" />
                         <div>
                             <button id="login-button" onClick={loginBtn}>Log in</button>
                             {err && <Error err={err} />}

@@ -69,7 +69,6 @@ export const AddRecipe = () => {
                 recipe_image={recipe_image}
                 err={err}
             />
-            {/* {err && <Error err={err} />} */}
         </div>
     )
 };
