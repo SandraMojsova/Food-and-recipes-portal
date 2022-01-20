@@ -1,12 +1,19 @@
 #home-page {
-  padding: 63px 0 0;
-  margin: 0 auto;
-  width: 1250px;
+    padding: 63px 0 0;
+    margin: 0 auto;
+    width: 1250px;
 }
 
 .new-recipes {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
+    display: flex;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+@media screen and (max-width: 600px) {
+    .new-recipes {
+        flex-direction: column;
+        align-items: center;
+    }
 }

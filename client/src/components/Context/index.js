@@ -36,7 +36,9 @@ export const Context = ({ children }) => {
     };
 
     useEffect(() => {
-        getU();
+        if (token) {
+            getU();
+        }
     }, []);
 
     return (

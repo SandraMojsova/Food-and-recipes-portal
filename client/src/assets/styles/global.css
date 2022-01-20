@@ -20,6 +20,7 @@ body {
 .logo {
     cursor: pointer;
 }
+
 .nav_links {
     text-transform: uppercase;
     display: flex;
@@ -94,14 +95,19 @@ body {
 }
 
 #footer {
+    background-color: #626262;
+    color: white;
+    height: 180px;
+    text-align: center;
+}
+
+.footer-box {
+    width: 1250px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #626262;
-    color: white;
-    padding-left: 58px;
-    padding-right: 58px;
-    height: 180px;
+    padding-top: 71px;
 }
 
 #logo-babys {
@@ -149,4 +155,10 @@ body {
     background-color: #a5a5a5;
     margin-bottom: 10px;
     flex-grow: 2;
+}
+
+@media screen and (max-width: 600px) {
+    #nav {
+        flex-direction: column;
+    }
 }

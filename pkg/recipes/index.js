@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
-const {ObjectId} = mongoose.Schema.Types;
 
 const Recipe = mongoose.model(
     'recipes',
     {
         recipe_title: String,
+        // category: {
+        //     type: String,
+        //     enum: ['breakfast', 'brunch', 'lunch', 'dinner'],
+        //     default: 'breakfast'
+        // },
         category: String,
         preparation_time: Number,
         people: Number,
@@ -13,7 +17,7 @@ const Recipe = mongoose.model(
         user_id: String,
         _created: String,
         image: String,
-        likes:['']
+        likes: ['']
     },
     'recipes'
 );
@@ -38,23 +42,25 @@ const getOne = async (id) => {
     return await Recipe.findById(id);
 };
 
-const getAll = async()=>{
+const getAll = async () => {
     return await Recipe.find({});
-}
+};
 
-const getByCategory= async(category)=> {
-    return await Recipe.find({category: category})
-}
+const getByCategory = async (category) => {
+    return await Recipe.find({ category: category })
+};
 
-const like = async( postId , userId)=> {
-    return await Recipe.findByIdAndUpdate({_id :postId}, {
-        $push: {likes : userId}}, {new:true})
-}
+const like = async (postId, userId) => {
+    return await Recipe.findByIdAndUpdate({ _id: postId }, {
+        $push: { likes: userId }
+    }, { new: true })
+};
 
-const dislike = async( postId , userId)=> {
-    return await Recipe.findByIdAndUpdate({_id :postId}, {
-        $pull: {likes : userId} }, {new:true})
-}
+const dislike = async (postId, userId) => {
+    return await Recipe.findByIdAndUpdate({ _id: postId }, {
+        $pull: { likes: userId }
+    }, { new: true })
+};
 
 
 module.exports = {
@@ -67,4 +73,4 @@ module.exports = {
     getByCategory,
     like,
     dislike
-}
+};
