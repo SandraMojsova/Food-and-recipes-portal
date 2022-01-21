@@ -3,6 +3,7 @@ import { login } from '../../api/users';
 import { Header } from '../../components/ui/Header';
 import { Error } from '../../components/ui/Error';
 import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
 import './style.css';
 
 export const Login = () => {
@@ -45,7 +46,7 @@ export const Login = () => {
                         <Input name="email" text="Email" type="text" placeholder="user@domain.com" value={loginData.email} onChange={loginFieldUpdate} className="form-container" />
                         <Input name="password" text="Password" type="password" placeholder="*******" value={loginData.password} onChange={loginFieldUpdate} className="form-container" />
                         <div>
-                            <button id="login-button" onClick={loginBtn}>Log in</button>
+                            <Button text="Log in" onClick={loginBtn} id="login-button" />
                             {err && <Error err={err} />}
                         </div>
                     </form>

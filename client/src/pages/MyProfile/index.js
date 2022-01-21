@@ -3,6 +3,7 @@ import { updateUser, uploadImg } from "../../api/users";
 import { Header } from '../../components/ui/Header';
 import { Error } from "../../components/ui/Error";
 import { Input } from "../../components/ui/Input";
+import { Button } from '../.././components/ui/Button';
 import img from '../../assets/images/profile-pic.jpg';
 import { useAuthContext } from "../../components/Context";
 import { token } from '../../const';
@@ -65,9 +66,7 @@ export const MyProfile = () => {
                         <Input name="first_name" type="text" text="First Name" value={profileData.first_name} onChange={update} className="profile" />
                         <Input name="email" type="email" text="Email" value={profileData.email} onChange={update} className="profile" />
                         <Input name="password" type="password" text="Password" placeholder="****" value={profileData.password} onChange={update} className="profile" />
-                        <button onClick={save} className="save-button">
-                            Save
-                        </button>
+                        <Button onClick={save} className="save-button" text="Save" />
                         {err && <Error err={err} />}
                     </div>
                     <div className="second">

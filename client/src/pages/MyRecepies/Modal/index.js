@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Button } from '../../../components/ui/Button';
 import { deleteRecipe } from '../../../api/recipes';
 import { token } from '../../../const';
 import './style.css';
@@ -22,8 +23,8 @@ export const Modal = ({ setModalOpen, id, setRecipes, recipes }) => {
             <div className='recipe-modal'>
                 <p>Are you sure you want to delete the recipe?</p>
                 <div className='recipes-modal-buttons'>
-                    <button className='button-confirm' onClick={() => { removeRecipe(id); setModalOpen(false) }}>DELETE</button>
-                    <button className='button-cancel' onClick={() => setModalOpen(false)}>CANCEL</button>
+                    <Button className='button-confirm' onClick={() => { removeRecipe(id); setModalOpen(false) }} text="DELETE" />
+                    <Button className='button-cancel' onClick={() => setModalOpen(false)} text="CANCEL" />
                 </div>
             </div>
         </>, document.getElementById('portal-delete')

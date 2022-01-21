@@ -4,6 +4,7 @@ import { create } from "../../api/users";
 import { Header } from '../../components/ui/Header';
 import { Error } from "../../components/ui/Error";
 import { Input } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
 import "./style.css";
 
 export const CreateAccount = () => {
@@ -63,7 +64,7 @@ export const CreateAccount = () => {
                         <Input name="first_name" text="First Name" type="text" value={createAccountData.first_name} onChange={createFieldUpdate} />
                         <Input name="email" text="Email" type="text" value={createAccountData.email} onChange={createFieldUpdate} />
                         <Input name="password" text="Password" type="password" value={createAccountData.password} onChange={createFieldUpdate} />
-                        <button onClick={createAccountBtn}>create account</button>
+                        <Button onClick={createAccountBtn} text="create account" className="create-account-btn" />
                         {err && <Error err={err} />}
                     </div>
                     <div>

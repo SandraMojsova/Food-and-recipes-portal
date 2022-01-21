@@ -1,6 +1,7 @@
 import React from "react";
 import { Error } from "../ui/Error";
 import { Input } from "../ui/Input";
+import { Button } from '../ui/Button';
 
 export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, recipeFieldUpdate, saveRecipeBtn, recipe_image, uploadedImage, err }) => {
     return (
@@ -67,9 +68,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                         />
                     </div>
                     <div>
-                        <button className="save-btn" onClick={saveRecipeBtn}>
-                            Save
-                        </button>
+                        <Button className="save-btn" onClick={saveRecipeBtn} text="Save" />
                         {err && <Error err={err} />}
                     </div>
                 </div>
