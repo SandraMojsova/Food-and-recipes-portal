@@ -4,12 +4,10 @@ const Recipe = mongoose.model(
     'recipes',
     {
         recipe_title: String,
-        // category: {
-        //     type: String,
-        //     enum: ['breakfast', 'brunch', 'lunch', 'dinner'],
-        //     default: 'breakfast'
-        // },
-        category: String,
+        category: {
+            type: String,
+            enum: ['breakfast', 'brunch', 'lunch', 'dinner']
+        },
         preparation_time: Number,
         people: Number,
         short_description: String,
@@ -17,7 +15,7 @@ const Recipe = mongoose.model(
         user_id: String,
         _created: String,
         image: String,
-        likes: ['']
+        likes: [''],
     },
     'recipes'
 );
@@ -26,6 +24,7 @@ const create = async (data) => {
     let recipe = new Recipe(data);
     return await recipe.save();
 };
+
 const getAllByUser = async (uid) => {
     return await Recipe.find({ user_id: uid });
 };

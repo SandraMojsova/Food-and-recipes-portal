@@ -20,6 +20,7 @@ const create = async (data) => {
     let u = new User(data);
     return await u.save();
 };
+
 const getByEmail = async (email) => {
     return await User.findOne({ email });
 };
@@ -27,10 +28,10 @@ const getByEmail = async (email) => {
 const update = async (id, data) => {
     return await User.updateOne({ _id: id }, data);
 };
+
 const findbyId = async (id) => {
     return await User.findById(id);
-}
-
+};
 
 module.exports = {
     create,

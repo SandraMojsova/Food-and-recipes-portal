@@ -56,7 +56,9 @@ const login = async (req, res) => {
             {
                 uid: user._id,
                 email: user.email,
-                exp: parseInt((new Date().getTime() + 24 * 60 * 60 * 1000) / 1000),
+                exp: parseInt(
+                    (new Date().getTime() + 24 * 60 * 60 * 1000) / 1000
+                ),
             },
             config.get("security").secret
         );

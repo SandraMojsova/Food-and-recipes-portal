@@ -5,6 +5,7 @@ const jwt = require('express-jwt');
 const handlers = require('./handlers/storage');
 
 const api = express();
+
 api.use(jwt({
     algorithms: cfg.get('security').algorithms,
     secret: cfg.get('security').secret,
@@ -14,6 +15,7 @@ api.use(jwt({
         { url: /\/api\/v1\/storage\/recipes\/.*/, methods: ['GET'] }
     ]
 }));
+
 api.use(fileUpload());
 
 api.post('/api/v1/storage/users', handlers.uploadUserImage);
