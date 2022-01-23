@@ -61,16 +61,16 @@ export const CreateAccount = () => {
                 </div>
                 <form method="post" className="form">
                     <div>
-                        <Input name="first_name" text="First Name" type="text" value={createAccountData.first_name} onChange={createFieldUpdate} />
-                        <Input name="email" text="Email" type="text" value={createAccountData.email} onChange={createFieldUpdate} />
-                        <Input name="password" text="Password" type="password" value={createAccountData.password} onChange={createFieldUpdate} />
+                        <Input name="first_name" text="First Name" type="text" value={createAccountData.first_name} onChange={createFieldUpdate} placeholder="John" />
+                        <Input name="email" text="Email" type="text" value={createAccountData.email} onChange={createFieldUpdate} placeholder="john@smith.com" />
+                        <Input name="password" text="Password" type="password" value={createAccountData.password} onChange={createFieldUpdate} placeholder="******" />
                         <Button onClick={createAccountBtn} text="create account" className="create-account-btn" />
                         {err && <Error err={err} />}
                     </div>
                     <div>
-                        <Input name="last_name" text="Last Name" type="text" value={createAccountData.last_name} onChange={createFieldUpdate} />
+                        <Input name="last_name" text="Last Name" type="text" value={createAccountData.last_name} onChange={createFieldUpdate} placeholder="Smith"/>
                         <Input name="birthday" text="Birthday" type="date" value={createAccountData.birthday} onChange={createFieldUpdate} />
-                        <Input name="repeat_password" text="Repeat Password" type="password" value={createAccountData.repeat_password} onChange={createFieldUpdate} />
+                        <Input name="repeat_password" text="Repeat Password" type="password" value={createAccountData.repeat_password} onChange={createFieldUpdate} placeholder="******"/>
                     </div>
                 </form>
             </div>

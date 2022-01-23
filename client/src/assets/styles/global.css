@@ -157,8 +157,189 @@ body {
     flex-grow: 2;
 }
 
-@media screen and (max-width: 600px) {
-    #nav {
+@media screen and (min-width:320px) and (max-width: 600px) {
+    #nav{
         flex-direction: column;
+        align-items: center;
+        width: 300px;
+    } 
+    
+    .footer-box {
+        padding-top: 35px;
+        flex-direction: column;
+        align-items: center;
+        width: 300px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+    .nav-buttons {
+        display: flex;
+        flex-direction: row;
+        font: normal normal bold 10px/12px Roboto;
+    }
+
+    .header h2{
+        font: normal normal bold 18px/24px Roboto;
+    }
+    
+    .span {
+        padding-top: 10px;
+    }
+
+    .login-button {
+        font: normal normal bold 10px/12px Roboto;
+        height: 30px;
+        padding: 0 15px;
+
+    }
+
+    .create-button {
+        font: normal normal bold 10px/12px Roboto;
+        height: 30px;
+        padding: 0 15px;
+    }
+
+    .header-border {
+        margin-bottom: 5px;
+    }
+
+    .card-main-box {
+        width: 100%;
+    }
+
+    .card-container span,
+    .footer-list,
+    .footer-copyright
+    {
+        font: normal normal bold 10px Roboto Slab;    
+    }
+    .nav_links {
+        font: normal normal bold 10px Roboto Slab;    
+        margin-bottom: 25px;
+    }
+
+    #login,
+    #categories,
+    #create-account,
+    #my-profile {
+        width: 300px;
+    }
+
+    .login-container {
+        flex-direction: column;
+        margin-top: 40px;
+        margin-bottom: 160px;
+    }
+    
+    .login-text {
+        width: 300px;
+        margin-bottom: 72px;
+        margin-right: 0px;
+    }
+
+    .login-text h2{
+        font: normal normal bold 23px/30px Roboto Slab;
+    }
+
+    .create-account-info h2 {
+        margin-top: 40px;
+        font: normal normal bold 23px/30px Roboto Slab;
+    }
+
+    .login-text p,
+    .create-account-info p {
+        font: normal normal normal 10px/20px Roboto Slab;
+        width: 300px;
+    }
+
+    .formData {
+        width: 300px;
+
+    }
+    
+    .form {
+        flex-direction: column;
+        width: 300px;
+        margin-top: 102px;
+    }
+
+    .form-container label,
+    .form label,
+    .profile label {
+        font: normal normal bold 14px Roboto Slab;
+    }
+
+    .form-container input,
+    .form input,
+    .profile input {
+        height: 30px;
+        font: normal normal bold 12px Roboto;
+    }
+
+    #login-button {
+        height: 25px;
+        width: 100px;
+        font: normal normal bold 14px Roboto;
+        align-items: center;
+    }
+    
+    .container {
+        flex-direction: column;
+        position: relative;
+    }
+
+    .create-account-info {
+        margin-right: 0px;
+    }
+
+    .create-account-btn {
+        height: 25px;
+        width: 150px;
+        font: normal normal bold 14px Roboto;
+        position: absolute;
+        margin-top: 280px;
+    }
+
+    .profile-info {
+        flex-direction: column;
+    }
+
+    .upload-picture {
+        margin-bottom: 50px;
+    }
+
+    .upload-picture img {
+        margin-left: 80px;
+        height: 150px;
+    }
+
+    .avatar-button {
+        margin-left: 65px;
+        width: 150px;
+    }
+
+    .profile-container {
+        flex-direction: column;
+        position: relative;
+    }
+
+    .save-button{
+        position: absolute;
+        margin-top: 280px;
+        height: 25px;
+        width: 100px;
+    }
+
+    .avatar-button label {
+        font: normal normal normal 12px Roboto;
+
+    }
+
+    .logged-links li {
+        margin-right: 30px;
+        text-transform: uppercase;
+        font: normal normal 900 12px Roboto;
     }
 }

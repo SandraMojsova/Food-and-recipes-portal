@@ -6,14 +6,17 @@
 
 .new-recipes {
     display: flex;
-    /* flex-direction: row; */
     flex-wrap: wrap;
     margin-bottom: 40px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width:320px) and (max-width: 600px){
     .new-recipes {
         flex-direction: column;
         align-items: center;
+    }
+
+    #home-page {
+        width: 300px;
     }
 }
