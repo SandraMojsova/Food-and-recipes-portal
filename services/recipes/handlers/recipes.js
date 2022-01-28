@@ -106,9 +106,11 @@ const likeRecipe = async (req, res) => {
         let data = await recipeModel.getOne(req.params.id);
         if (!data.likes.includes(req.user.uid)) {
             data = await recipeModel.like(data._id, req.user.uid);
+            console.log(data);
             return res.status(200).send(data);
         } else {
             data = await recipeModel.dislike(data._id, req.user.uid);
+            console.log(data);
             return res.status(200).send(data);
         }
     } catch (err) {

@@ -25,6 +25,7 @@ export const AllCategories = () => {
         try {
             let response = await addStar(id, token);
             let result = response.data;
+            console.log(result);
             let newData = recipes.map(item => {
                 if (item._id === result._id) {
                     return result;

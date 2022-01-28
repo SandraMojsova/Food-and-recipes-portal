@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import icon_time from '../../assets/images/icon_time.svg';
 import icon_plate from '../../assets/images/icon_plate.svg';
 import icon_star from '../../assets/images/icon_star.svg';
+import icon_star_liked from '../../assets/images/icon_star_liked.svg';
 import icon_arrows from '../../assets/images/icon_arrows_white.svg';
 import icon_close from '../../assets/images/icon_close.svg';
 import { Modal } from './Modal';
+import { useAuthContext } from "../Context";
 
 export const Card = ({ item, likePost }) => {
 
     const [isOpen, setIsOpen] = useState(false);
+    let { id } = useAuthContext();
 
     return (
         <div className="card-main-box">
@@ -27,7 +30,7 @@ export const Card = ({ item, likePost }) => {
                         <img src={icon_plate} alt="" />
                         <span>{item.people} persons</span>
                         <img
-                            src={icon_star}
+                            src={item.likes.includes(id) ? icon_star_liked : icon_star}
                             alt=""
                             onClick={() => {
                                 likePost(item._id);
