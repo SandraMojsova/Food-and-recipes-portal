@@ -7,7 +7,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
     return (
         <div>
             <div className="my-recepies-text-box">
-                <h2>My recepies</h2>
+                <h2>My Recipes</h2>
                 <div className="border"></div>
                 <img
                     src={back_button}

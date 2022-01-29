@@ -2,7 +2,7 @@
 
 #add-recipe,
 #update-recipe {
-    padding: 63px 0 0;
+    padding: 43px 0 0;
     margin: 0 auto;
     width: 1250px;
 }
@@ -68,7 +68,7 @@
 .recipe-form-box {
     display: flex;
     justify-content: space-between;
-    margin-top: 90px;
+    margin-top: 70px;
     margin-bottom: 174px;
 }
 

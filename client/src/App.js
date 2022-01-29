@@ -21,9 +21,9 @@ export const App = () => {
                 <Route path="/login" component={Login} />
                 <Route path="/create-account" component={CreateAccount} />
                 <ProtectedRoute path="/my-profile" component={MyProfile} />
-                <Route path="/my-recepies" component={MyRecepies} />
-                <Route path="/add-recipe" component={AddRecipe} />
-                <Route path="/update-recipe/:id" component={UpdateRecipe} />
+                <ProtectedRoute path="/my-recepies" component={MyRecepies} />
+                <ProtectedRoute path="/add-recipe" component={AddRecipe} />
+                <ProtectedRoute path="/update-recipe/:id" component={UpdateRecipe} />
                 <Route path="/category/:category" component={AllCategories} />
             </Switch>
             <Footer />

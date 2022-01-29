@@ -222,7 +222,9 @@ body {
     #categories,
     #create-account,
     #my-profile,
-    #my-recepies {
+    #my-recepies,
+    #add-recipe,
+    #update-recipe {
         width: 300px;
     }
 
@@ -238,7 +240,8 @@ body {
         margin-right: 0px;
     }
 
-    .my-recepies-text {
+    .my-recepies-text,
+    .my-recepies-text-box {
         width: 300px;
     }
 
@@ -246,9 +249,9 @@ body {
         font: normal normal bold 23px/30px Roboto Slab;
     }
 
-    .my-recepies-text h2{
-
-       font: normal normal bold 18px/24px Roboto;
+    .my-recepies-text h2,
+    .my-recepies-text-box h2{
+     font: normal normal bold 18px/24px Roboto;
     }
     
     .create-account-info h2 {
@@ -260,7 +263,8 @@ body {
         margin-top: 15px;
     }
 
-    .add-button-icon {
+    .add-button-icon,
+    .back-button-icon {
         padding: 5px;
     }
 
@@ -389,5 +393,59 @@ body {
 
     .recipes-table tbody tr td:last-of-type {
         padding: 0 12px 0 0;
+    }
+    
+    .recipe-picture {
+         display: flex;
+         flex-direction: column;
+         margin-left: 22px;
+    }
+
+    .upload-recipe-button  {
+    margin-left: 65px;
+    width: 150px;
+    } 
+    .recipe-form-box{
+        flex-direction: column;
+    }
+    .recipe-info {
+        width: 300px;
+        margin-left: 0;
+    }
+
+    .inputs{
+        padding: 0;
+        height: 30px;
+    }
+.select-category,
+.preparation-and-number {
+   width: 85px;
+}
+
+.recipe-data label,
+.recipe-picture-label {
+    font: normal normal bold 14px Roboto Slab;
+}
+
+.description,
+.recipe-details {
+        width: 300px;
+        padding: 0;
+    }
+
+    .recipe-details{
+       max-height: 200px;
+    }
+
+    .save-btn {
+        position: absolute;
+    margin-top: 280px;
+    height: 25px;
+    width: 100px;
+    }
+
+    .recipes-modal-buttons {
+        display: flex;
+        align-items: center;
     }
 }
