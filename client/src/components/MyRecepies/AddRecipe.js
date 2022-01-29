@@ -36,6 +36,9 @@ export const AddRecipe = () => {
     };
 
     const recipeImage = async (event) => {
+        if(event.target.files[0].type.substring(0,5) !== "image") {
+            setError("Filetype not allowed");
+        }
         setUploadedImage(URL.createObjectURL(event.target.files[0]))
         setImage(event.target.files[0]);
     };
@@ -46,12 +49,14 @@ export const AddRecipe = () => {
             const formData = new FormData();
             formData.append('file', image);
             const res = await uploadImage(token, formData);
+            console.log(res);
             recipeData.image = res.data.filename;
         }
         try {
             await addRecipe(recipeData, token);
             history.push("/my-recepies");
         } catch (err) {
+            console.log(err.response.data)
             setError(err.response.data);
         }
     };

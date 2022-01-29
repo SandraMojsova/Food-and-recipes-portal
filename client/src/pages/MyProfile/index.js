@@ -22,6 +22,9 @@ export const MyProfile = () => {
     };
 
     const uploadAvatar = (event) => {
+        if(event.target.files[0].type.substring(0,5) !== "image") {
+            setError("Filetype not allowed");
+        }
         setAvatar(URL.createObjectURL(event.target.files[0]))
         setImage(event.target.files[0]);
     }

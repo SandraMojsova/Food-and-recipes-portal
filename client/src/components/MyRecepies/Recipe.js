@@ -27,7 +27,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                         }
                     </div>
                     <div className="upload-recipe-button">
-                        <label for="upload">Upload image</label>
+                        <label htmlFor="upload">Upload image</label>
                         <input
                             type="file"
                             id="upload"
@@ -47,7 +47,7 @@ export const Recipe = ({ recipeData, back_button, backToMyRecipes, recipeImage, 
                                 value={recipeData.category}
                                 onChange={recipeFieldUpdate}
                             >
-                                <option value="none" selected hidden>Select Category</option>
+                                <option value="none" hidden>Select Category</option>
                                 <option value="breakfast">Breakfast</option>
                                 <option value="brunch">Brunch</option>
                                 <option value="lunch">Lunch</option>

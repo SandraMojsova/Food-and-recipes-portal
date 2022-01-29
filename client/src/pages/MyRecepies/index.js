@@ -41,7 +41,7 @@ export const MyRecepies = () => {
     return (
         <div id="my-recepies">
             <div className="my-recepies-text">
-                <h2>My recepies</h2>
+                <h2>My Recipes</h2>
                 <div className="border"></div>
                 <img src={add_icon} alt="" className="add-button-icon" onClick={addRecepies} />
             </div>
