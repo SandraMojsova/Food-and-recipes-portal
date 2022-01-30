@@ -4,7 +4,6 @@ body {
     background-color: #f8f7f2;
     margin: 0;
     padding: 0;
-    /* font-family: 'Roboto'; */
 }
 
 #nav {
@@ -208,7 +207,6 @@ body {
         width: 100%;
     }
 
-    .card-container span,
     .footer-list,
     .footer-copyright {
         font: normal normal bold 10px Roboto Slab;
@@ -216,6 +214,10 @@ body {
     .nav_links {
         font: normal normal bold 10px Roboto Slab;
         margin-bottom: 25px;
+    }
+    .card-container span {
+        font: normal normal bold 10px Roboto Slab;
+        padding-right: 7px;
     }
 
     #login,
@@ -250,10 +252,10 @@ body {
     }
 
     .my-recepies-text h2,
-    .my-recepies-text-box h2{
-     font: normal normal bold 18px/24px Roboto;
+    .my-recepies-text-box h2 {
+        font: normal normal bold 18px/24px Roboto;
     }
-    
+
     .create-account-info h2 {
         margin-top: 40px;
         font: normal normal bold 23px/30px Roboto Slab;
@@ -355,10 +357,14 @@ body {
         font: normal normal normal 12px Roboto;
     }
 
-    .logged-links li {
+    .logged-links li:last-of-type {
         margin-right: 30px;
+    }
+
+    .logged-links li {
+        margin-right: 20px;
         text-transform: uppercase;
-        font: normal normal 900 12px Roboto;
+        font: normal normal 900 10px Roboto;
     }
 
     .recipes-table {
@@ -376,8 +382,9 @@ body {
     }
 
     .recipes-table tbody tr td:first-of-type {
-       padding: 10px 10px;
+        padding: 10px 10px;
     }
+
     .recipes-table thead tr th:first-of-type {
         padding: 10px 3px 10px;
     }
@@ -394,18 +401,19 @@ body {
     .recipes-table tbody tr td:last-of-type {
         padding: 0 12px 0 0;
     }
-    
+
     .recipe-picture {
-         display: flex;
-         flex-direction: column;
-         margin-left: 22px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 22px;
     }
 
-    .upload-recipe-button  {
-    margin-left: 65px;
-    width: 150px;
-    } 
-    .recipe-form-box{
+    .upload-recipe-button {
+        margin-left: 65px;
+        width: 150px;
+    }
+
+    .recipe-form-box {
         flex-direction: column;
     }
     .recipe-info {
@@ -413,39 +421,100 @@ body {
         margin-left: 0;
     }
 
-    .inputs{
+    .inputs {
         padding: 0;
         height: 30px;
     }
-.select-category,
-.preparation-and-number {
-   width: 85px;
-}
+    .select-category,
+    .preparation-and-number {
+        width: 85px;
+    }
 
-.recipe-data label,
-.recipe-picture-label {
-    font: normal normal bold 14px Roboto Slab;
-}
-
-.description,
-.recipe-details {
+    .recipe-data label,
+    .recipe-picture-label {
+        font: normal normal bold 14px Roboto Slab;
+    }
+    .description,
+    .recipe-details {
         width: 300px;
         padding: 0;
     }
 
-    .recipe-details{
-       max-height: 200px;
+    .recipe-details {
+        max-height: 200px;
     }
 
     .save-btn {
         position: absolute;
-    margin-top: 280px;
-    height: 25px;
-    width: 100px;
+        margin-top: 280px;
+        height: 25px;
+        width: 100px;
     }
 
     .recipes-modal-buttons {
         display: flex;
         align-items: center;
+    }
+
+
+    .modal-styles {
+        width: 300px;
+        padding: 0 10px 0px 10px;
+        height: 480px;
+    }
+
+    .title h2 {
+        font: normal normal bold 16px Roboto Slab;
+        margin-bottom: 11px;
+        margin-top: 11px;
+    }
+
+    .recipe-info-box-img {
+        object-fit: cover;
+        width: 170px;
+        height: 200px;
+    }
+
+    .best-for {
+        font: normal normal bold 13px Roboto Slab;
+        flex-direction: column;
+        margin-top: 11px;
+    }
+
+    .best-for span{
+        font: normal normal normal 13px Roboto;
+        width: 70px;
+        padding: 1px 3px;
+        text-align: center;
+    }
+
+    #description {
+        margin-top: 12px;
+        font: normal normal normal 11px Roboto;
+        margin-bottom: 30px;
+        height: 70px;
+    }
+    .recipe-info-box{
+        width: 200px;
+        margin-right: 10px;
+    }
+    
+    .recipe-details-box p {
+        font: normal normal normal 11px Roboto;
+    } 
+
+    .recipe-details-box span {
+        font: normal normal bold 13px Roboto;
+    }
+
+    .recipe-details-box{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 200px;
+    }
+
+    .card-container {
+        padding-top: 30px;
     }
 }

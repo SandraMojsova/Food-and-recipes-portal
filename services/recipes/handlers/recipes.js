@@ -94,7 +94,6 @@ const getAllRecipes = async (req, res) => {
 const getRecipesByCategory = async (req, res) => {
     try {
         let data = await recipeModel.getByCategory(req.params.category);
-        console.log(data);
         return res.status(200).send(data);
     } catch (err) {
         return res.status(500).send(err);
@@ -106,11 +105,9 @@ const likeRecipe = async (req, res) => {
         let data = await recipeModel.getOne(req.params.id);
         if (!data.likes.includes(req.user.uid)) {
             data = await recipeModel.like(data._id, req.user.uid);
-            console.log(data);
             return res.status(200).send(data);
         } else {
             data = await recipeModel.dislike(data._id, req.user.uid);
-            console.log(data);
             return res.status(200).send(data);
         }
     } catch (err) {

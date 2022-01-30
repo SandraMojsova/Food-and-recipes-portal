@@ -4,6 +4,7 @@ const fs = require('fs');
 const cfgApp = cfg.get('storage');
 
 const uploadUserImage = async (req, res) => {
+
     if (req.files.file.size > cfgApp.max_filesize) {
         return res.status(400).send('File exceeds max file size');
     }
@@ -29,6 +30,7 @@ const uploadUserImage = async (req, res) => {
 };
 
 const getUserImage = (req, res) => {
+
     let userDirPath = `${__dirname}/../../../${cfgApp.upload_dir_users}`;
     let filePath = `${userDirPath}/${req.params.filename}`;
     if (!fs.existsSync(filePath)) {
@@ -38,6 +40,7 @@ const getUserImage = (req, res) => {
 };
 
 const uploadRecipeImage = async (req, res) => {
+    
     if (req.files.file.size > cfgApp.max_filesize) {
         return res.status(400).send('Image exceeds max file size');
     }

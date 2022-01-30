@@ -77,7 +77,8 @@ export const Card = ({ item, likePost }) => {
                                             </span>
                                             <img src={icon_plate} alt="" />
                                             <span>{item.people} persons</span>
-                                            <img src={icon_star} alt="" />
+                                            <img  src={item.likes.includes(id) ? icon_star_liked : icon_star} alt=""  onClick={() => {likePost(item._id);
+                            }} />
                                             <span>{item.likes.length}</span>
                                         </div>
                                     </div>
